@@ -1,4 +1,4 @@
-package com.thechance.whatschance
+package com.thechance.whatschance.ui.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

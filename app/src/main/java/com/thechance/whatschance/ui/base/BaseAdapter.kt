@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.thechance.whatschance.ui.base.BaseDiffUtil
 
 interface BaseInteractionListener
 

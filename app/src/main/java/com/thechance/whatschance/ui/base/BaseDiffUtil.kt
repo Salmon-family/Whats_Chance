@@ -1,4 +1,4 @@
-package com.thechance.whatschance
+package com.thechance.whatschance.ui.base
 
 import androidx.recyclerview.widget.DiffUtil
 
