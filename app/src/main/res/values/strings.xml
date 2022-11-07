@@ -7,4 +7,5 @@
     <string name="phone_number">Phone Number</string>
     <string name="verification_sending">We’re sending an SMS with a verification code\n
         to your phone number %1$s</string>
+    <string name="search_people">Search people</string>
 </resources>
