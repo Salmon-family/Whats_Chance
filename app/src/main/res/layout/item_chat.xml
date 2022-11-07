@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_user"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginVertical="@dimen/spacing_medium"
+            android:layout_marginStart="@dimen/spacing_medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_name_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:layout_marginStart="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="@dimen/text_medium_small"
+            app:layout_constraintStart_toEndOf="@+id/image_user"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Mustafa Ahmed" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_last_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_medium"
+            android:layout_marginBottom="@dimen/spacing_medium"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="@dimen/text_small"
+            android:ellipsize="end"
+            android:textColor="@color/text_color_secondary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_user"
+            tools:text="Hello there I’m just typing something for test ..." />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_time_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginEnd="@dimen/spacing_medium"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="@dimen/text_small"
+            android:textColor="@color/text_color_secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="7:42 AM" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
