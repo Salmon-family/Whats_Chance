@@ -16,4 +16,9 @@
         android:name="com.thechance.whatschance.ui.chat.ChatFragment"
         android:label="ChatFragment" />
 
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.thechance.whatschance.ui.home.HomeFragment"
+        android:label="WhatsChance" />
+
 </navigation>
