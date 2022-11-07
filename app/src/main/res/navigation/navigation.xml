@@ -10,4 +10,10 @@
         android:name="com.thechance.whatschance.ui.VerificationFragment"
         android:label="fragment_verification"
         tools:layout="@layout/fragment_verification" />
+
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.thechance.whatschance.ui.chat.ChatFragment"
+        android:label="ChatFragment" />
+
 </navigation>

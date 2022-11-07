@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import com.thechance.whatschance.BR
 
 abstract class BaseFragment<VDB : ViewDataBinding> : Fragment() {
     abstract val layoutIdFragment: Int
@@ -26,7 +27,7 @@ abstract class BaseFragment<VDB : ViewDataBinding> : Fragment() {
         _binding = DataBindingUtil.inflate(inflater, layoutIdFragment, container, false)
         _binding.apply {
             lifecycleOwner = viewLifecycleOwner
-            //setVariable(BR.viewModel, viewModel)
+            setVariable(BR.viewModel, viewModel)
             return root
         }
     }
