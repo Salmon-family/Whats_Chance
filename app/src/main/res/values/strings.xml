@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Whats Chance</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="todo">TODO</string>
+    <string name="login_to_your_account">Login to your account</string>
+    <string name="please_enter_your_name_and_your_phone_n_number_to_get_a_verification_code">please enter your name and your phone\n number, to get a verification code.</string>
+    <string name="phone_number">Phone Number</string>
+
+
 </resources>
