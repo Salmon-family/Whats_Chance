@@ -30,7 +30,7 @@
             app:hintAnimationEnabled="true"
             app:helperTextTextAppearance="@style/HelperTextAppearance"
             app:boxStrokeColor="@color/brand_color"
-            app:helperText="@string/phone_number"
+            android:hint="@string/phone_number"
             app:helperTextTextColor="@color/brand_color"
             android:layout_marginHorizontal="@dimen/spacing_large"
             android:layout_marginTop="@dimen/spacing_medium"
