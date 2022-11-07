@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Whats Chance</string>
+
+    <string name="chat_hint">Type your message....</string>
 </resources>
