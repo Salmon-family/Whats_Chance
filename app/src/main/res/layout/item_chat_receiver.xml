@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -25,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:paddingHorizontal="@dimen/spacing_medium"
-                android:text="testtesttesttesttttesttesttesttest"
+                tools:text="testtesttesttesttttesttesttesttest"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_time"
@@ -37,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="@dimen/spacing_small"
-                android:text="7:90 AM"
+                tools:text="7:90 AM"
                 android:textColor="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_message" />
