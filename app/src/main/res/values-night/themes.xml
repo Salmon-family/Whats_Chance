@@ -12,5 +12,16 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="floatingActionButtonStyle">@style/FabButtonStyle</item>
+    </style>
+
+    <style name="FabShapeStyle" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">@dimen/radius_medium</item>
+
+    </style>
+
+    <style name="FabButtonStyle" parent="Widget.Design.FloatingActionButton">
+        <item name="shapeAppearanceOverlay">@style/FabShapeStyle</item>
+        <item name="backgroundTint">@color/brand_color</item>
     </style>
 </resources>

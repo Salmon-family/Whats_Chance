@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.login.LoginFragment">
+
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:src="@drawable/login_img"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/todo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_header" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_phone_number"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintAnimationEnabled="true"
+            app:helperTextTextAppearance="@style/HelperTextAppearance"
+            app:boxStrokeColor="@color/brand_color"
+            app:helperText="@string/phone_number"
+            app:helperTextTextColor="@color/brand_color"
+            android:layout_marginHorizontal="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/spacing_medium"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:paddingTop="20dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/text_view_login_title"
+            style="@style/TextStyle.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_to_your_account"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline_text_title"/>
+
+        <TextView
+            android:id="@+id/text_view_login_instructions"
+            style="@style/TextStyle.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/please_enter_your_name_and_your_phone_n_number_to_get_a_verification_code"
+            android:textColor="@color/gray"
+            android:maxLines="2"
+            android:gravity="center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline_text_instructions"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_button_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_large"
+            app:borderWidth="0dp"
+            app:elevation="2dp"
+            android:layout_marginEnd="@dimen/spacing_large"
+            android:src="@drawable/ic_arrow_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/todo" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="1dp"
+            app:layout_constraintGuide_percent="0.3"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="1dp"
+            app:layout_constraintGuide_percent="0.34"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_text_instructions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="1dp"
+            app:layout_constraintGuide_percent="0.4"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
