@@ -32,6 +32,16 @@
         <item name="android:textSize">@dimen/text_small</item>
     </style>
 
+    <style name="FabShapeStyle" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">@dimen/radius_medium</item>
+
+    </style>
+
+    <style name="FabButtonStyle" parent="Widget.Design.FloatingActionButton">
+        <item name="shapeAppearanceOverlay">@style/FabShapeStyle</item>
+        <item name="backgroundTint">@color/brand_color</item>
+    </style>
+
     <style name="HelperTextAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/brand_color</item>
         <item name="android:textSize">12sp</item>
@@ -42,13 +52,4 @@
         <item name="colorAccent">@color/brand_color</item>
     </style>
 
-    <style name="FabShapeStyle" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerSize">@dimen/radius_medium</item>
-
-    </style>
-
-    <style name="FabButtonStyle" parent="Widget.Design.FloatingActionButton">
-        <item name="shapeAppearanceOverlay">@style/FabShapeStyle</item>
-        <item name="backgroundTint">@color/brand_color</item>
-    </style>
 </resources>
