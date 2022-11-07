@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Whats Chance</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="verification_sending">We’re sending an SMS with a verification code\n
+        to your phone number %1$s</string>
 </resources>
