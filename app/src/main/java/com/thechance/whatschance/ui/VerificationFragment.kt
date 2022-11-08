@@ -3,7 +3,9 @@ package com.thechance.whatschance.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.transition.TransitionManager
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 
 import androidx.fragment.app.viewModels
@@ -23,8 +25,9 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
 
     private fun showSoftKeyboard(view: View) {
         if (view.requestFocus()) {
-            val imm: InputMethodManager = requireActivity(). getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+            val inputMethodManager = requireActivity(). getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
+            inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
         }
     }
 }
