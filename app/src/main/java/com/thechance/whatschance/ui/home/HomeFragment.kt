@@ -6,7 +6,9 @@ import androidx.fragment.app.viewModels
 import com.thechance.whatschance.R
 import com.thechance.whatschance.databinding.FragmentHomeBinding
 import com.thechance.whatschance.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val layoutIdFragment: Int = R.layout.fragment_home
     override val viewModel: HomeViewModel by viewModels()
