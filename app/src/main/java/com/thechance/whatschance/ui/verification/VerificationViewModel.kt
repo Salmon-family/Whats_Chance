@@ -29,10 +29,16 @@ class VerificationViewModel @Inject constructor(
     }
 
     fun onClickVerify() {
-        if (checkSmsCode(verifyCodeUIState.value.code, args.smsCode)) {
-            _verifyCodeEvent.update { Event(VerificationUIEvent.VerifyCodeEvent) }
-        } else {
-            _verifyCodeUIState.update { it.copy(error = "Incorrect") }
+        checkSmsCode(
+            args.verificationId,
+            verifyCodeUIState.value.code
+        ).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                _verifyCodeEvent.update { Event(VerificationUIEvent.VerifyCodeEvent) }
+            } else {
+                _verifyCodeUIState.update { it.copy(error = "Incorrect") }
+            }
+
         }
     }
 

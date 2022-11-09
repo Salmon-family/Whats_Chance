@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.thechance.whatschance">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".WhatsChanceApp"
         android:allowBackup="true"

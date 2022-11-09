@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.thechance.whatschance.R
 import com.thechance.whatschance.databinding.FragmentVerificationBinding
 import com.thechance.whatschance.ui.base.BaseFragment
@@ -24,6 +25,7 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
         }
 
     }
+
 
     private fun checkVerificationCode(event: VerificationUIEvent) {
         if (event is VerificationUIEvent.VerifyCodeEvent) {
