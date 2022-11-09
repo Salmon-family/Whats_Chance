@@ -38,7 +38,6 @@ class VerificationViewModel @Inject constructor(
             } else {
                 _verifyCodeUIState.update { it.copy(error = "Incorrect") }
             }
-
         }
     }
 

@@ -1,14 +1,11 @@
 package com.thechance.whatschance.ui.login
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
@@ -42,10 +39,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 token: PhoneAuthProvider.ForceResendingToken
             ) {
                 findNavController().navigate(
-                    LoginFragmentDirections.actionLoginFragmentToVerificationFragment(
-                        verificationId,
-                        token.toString()
-                    )
+                    LoginFragmentDirections.actionLoginFragmentToVerificationFragment(verificationId)
                 )
             }
         }
@@ -56,7 +50,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         collectLast(viewModel.loginEvent) {
             it.getContentIfNotHandled()?.let { onEvent(it) }
         }
-
     }
 
     private fun onEvent(event: LoginUIEvent) {
