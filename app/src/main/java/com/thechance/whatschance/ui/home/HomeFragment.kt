@@ -2,6 +2,7 @@ package com.thechance.whatschance.ui.home
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.thechance.whatschance.R
@@ -16,11 +17,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setTitle(true, resources.getString(R.string.whats_chance))
+//        setTitle(true, resources.getString(R.string.whats_chance))
 
+        val color = viewModel.homeColorUiState.value.colorValueUi
 
-        activity?.window?.statusBarColor = Color.parseColor(viewModel.homeColorUiState.value.toString())
+        activity?.window?.statusBarColor =
+            Color.parseColor(color)
 
-
+        Log.i("llllllllll", viewModel.homeColorUiState.value.colorValueUi)
     }
 }

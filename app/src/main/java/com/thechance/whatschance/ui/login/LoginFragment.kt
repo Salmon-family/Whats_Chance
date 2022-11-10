@@ -6,7 +6,9 @@ import androidx.fragment.app.viewModels
 import com.thechance.whatschance.R
 import com.thechance.whatschance.databinding.FragmentLoginBinding
 import com.thechance.whatschance.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     override val layoutIdFragment = R.layout.fragment_login
