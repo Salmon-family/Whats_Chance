@@ -19,11 +19,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         super.onViewCreated(view, savedInstanceState)
 //        setTitle(true, resources.getString(R.string.whats_chance))
 
-        val color = viewModel.homeColorUiState.value.colorValueUi
-
-        activity?.window?.statusBarColor =
-            Color.parseColor(color)
-
-        Log.i("llllllllll", viewModel.homeColorUiState.value.colorValueUi)
+//        val color = viewModel.homeColorUiState.value.colorValueUi
+//
+//        activity?.window?.statusBarColor =
+//            Color.parseColor(color)
+//
+//        Log.i("llllllllll", viewModel.homeColorUiState.value.colorValueUi)
     }
 }

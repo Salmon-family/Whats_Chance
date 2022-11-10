@@ -8,9 +8,8 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-@BindingAdapter("app:color")
-fun changeColorView(view: FloatingActionButton, color: String) {
-    Log.i("lllllllllll6", color)
+@BindingAdapter("app:showColorOffLine")
+fun changeColorView(view: View, color: String) {
     view.backgroundTintList = ColorStateList.valueOf(Color.parseColor(color))
 
 //    view.setTextColor(Color.parseColor(color))

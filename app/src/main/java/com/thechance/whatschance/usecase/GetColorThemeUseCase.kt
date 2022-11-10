@@ -6,7 +6,6 @@ import javax.inject.Inject
 class GetColorThemeUseCase @Inject constructor(
     private val repository: WhatsChanceRepository,
 ) {
-
     operator fun invoke(key: String): String {
         return repository.getColorTheme(key)
     }
