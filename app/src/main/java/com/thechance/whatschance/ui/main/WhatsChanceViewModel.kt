@@ -1,4 +1,4 @@
-package com.thechance.whatschance.ui.home
+package com.thechance.whatschance.ui.main
 
 import androidx.lifecycle.ViewModel
 import com.thechance.whatschance.ui.colorUI.ColorUIState
@@ -11,9 +11,9 @@ import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class WhatsChanceViewModel @Inject constructor(
     private val getColorThemeUseCase: GetColorThemeUseCase,
-) : ViewModel(), ChatsAdapterListener {
+) : ViewModel() {
 
     private val _homeColorUiState = MutableStateFlow(ColorUIState())
     val homeColorUiState: StateFlow<ColorUIState> = _homeColorUiState.asStateFlow()
