@@ -2,7 +2,7 @@ package com.thechance.whatschance.ui.home
 
 import androidx.lifecycle.ViewModel
 import com.thechance.whatschance.ui.colorUI.ColorUIState
-import com.thechance.whatschance.usecase.GetColorThemeUseCase
+import com.thechance.whatschance.model.usecase.GetColorThemeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
