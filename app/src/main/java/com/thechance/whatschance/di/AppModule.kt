@@ -1,7 +1,7 @@
 package com.thechance.whatschance.di
 
 import com.thechance.whatschance.domain.DataEncryptor
-import com.thechance.whatschance.domain.DataEncryptorImp
+import com.thechance.whatschance.domain.AESEncryptor
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,6 +13,6 @@ abstract class AppModule {
 
     @Binds
     abstract fun bindDataEncryptor(
-        dataEncryptor: DataEncryptorImp
+        dataEncryptor: AESEncryptor
     ): DataEncryptor
 }

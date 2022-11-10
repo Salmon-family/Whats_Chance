@@ -1,6 +1,8 @@
-package com.thechance.whatschance.domain
+package com.thechance.whatschance
 
-object Keys {
+import javax.inject.Inject
+
+class Keys @Inject constructor(){
 
     init {
         System.loadLibrary("native-lib")
