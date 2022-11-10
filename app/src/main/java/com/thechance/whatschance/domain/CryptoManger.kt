@@ -28,8 +28,8 @@ class CryptoManger @Inject constructor(){
     }
 
     companion object{
-        const val  SECRET_KEY = "a123edfr54321qas"
-        const val SECRET_IV = "acxs3%y^&u*)smae"
+        val  SECRET_KEY = Keys.secretKey()
+        val SECRET_IV = Keys.secretIv()
         private const val ALGORITHM = "AES"
         private const val BLOCK_MODE = "CBC"
         private const val PADDING = "PKCS5PADDING"
