@@ -13,8 +13,10 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     val verifyPhoneNumber: ValidatePhoneNumberUseCase
 ) : ViewModel() {
+
     private val _loginUIState = MutableStateFlow(LoginUIState())
     val loginUIState = _loginUIState.asStateFlow()
+
 
     private val _loginEvent = MutableStateFlow<Event<LoginUIEvent?>>(Event(null))
     val loginEvent = _loginEvent.asStateFlow()
@@ -22,6 +24,10 @@ class LoginViewModel @Inject constructor(
 
     fun onPhoneNumberChange(phone: CharSequence) {
         _loginUIState.update { it.copy(phoneNumber = phone.toString()) }
+    }
+
+    fun onCountryCodeChange(code: Any) {
+        _loginUIState.update { it.copy(countryCode = code.toString()) }
     }
 
     fun login() {

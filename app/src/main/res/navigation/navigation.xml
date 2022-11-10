@@ -12,12 +12,14 @@
         tools:layout="@layout/fragment_verification">
 
         <argument
-            android:name="verificationId"
+            android:name="phone"
             app:argType="string" />
 
         <action
             android:id="@+id/action_verificationFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/verificationFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -39,7 +41,9 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_verificationFragment"
-            app:destination="@id/verificationFragment" />
+            app:destination="@id/verificationFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>

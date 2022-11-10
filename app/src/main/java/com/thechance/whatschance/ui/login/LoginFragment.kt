@@ -24,26 +24,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     override val layoutIdFragment = R.layout.fragment_login
     override val viewModel: LoginViewModel by viewModels()
-    private val firebaseAuth = Firebase.auth
-    private val callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks by lazy {
-        object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-            }
 
-            override fun onVerificationFailed(e: FirebaseException) {
-                Toast.makeText(requireContext(), e.message.toString(), Toast.LENGTH_LONG).show()
-            }
-
-            override fun onCodeSent(
-                verificationId: String,
-                token: PhoneAuthProvider.ForceResendingToken
-            ) {
-                findNavController().navigate(
-                    LoginFragmentDirections.actionLoginFragmentToVerificationFragment(verificationId)
-                )
-            }
-        }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,13 +35,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     private fun onEvent(event: LoginUIEvent) {
         if (event is LoginUIEvent.LoginEvent) {
-            val options = PhoneAuthOptions.newBuilder(firebaseAuth)
-                .setPhoneNumber(event.phoneNumber)
-                .setTimeout(60L, TimeUnit.SECONDS)
-                .setActivity(requireActivity())
-                .setCallbacks(callbacks)
-                .build()
-            PhoneAuthProvider.verifyPhoneNumber(options)
+            findNavController().navigate(
+                LoginFragmentDirections.actionLoginFragmentToVerificationFragment(event.phoneNumber)
+                )
         }
     }
 
