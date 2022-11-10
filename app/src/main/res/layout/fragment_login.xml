@@ -5,10 +5,6 @@
 
     <data>
 
-        <variable
-            name="viewModel"
-            type="com.thechance.whatschance.ui.login.LoginViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,7 +40,6 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:afterTextChanged="@{(text) -> viewModel.onPhoneNumberChange(text)}"
                 android:inputType="phone"
                 android:maxLines="1"
                 android:paddingStart="20dp"
@@ -84,7 +79,6 @@
             android:layout_marginEnd="@dimen/spacing_large"
             android:layout_marginBottom="@dimen/spacing_large"
             android:contentDescription="@string/todo"
-            android:onClick="@{() -> viewModel.login()}"
             android:src="@drawable/ic_arrow_left"
             app:borderWidth="0dp"
             app:elevation="2dp"

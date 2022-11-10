@@ -5,10 +5,6 @@
 
     <data>
 
-        <variable
-            name="viewModel"
-            type="com.thechance.whatschance.ui.verification.VerificationViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,7 +41,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
-            android:afterTextChanged="@{(text) -> viewModel.onCodeChange(text)}"
             android:backgroundTint="@color/brand_color"
             android:focusable="true"
             android:hint="- - -  - - -"
@@ -68,7 +63,6 @@
             android:layout_marginBottom="@dimen/spacing_large"
             android:src="@drawable/ic_arrow_left"
             app:borderWidth="0dp"
-            android:onClick="@{() -> viewModel.onClickVerify()}"
             app:elevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
