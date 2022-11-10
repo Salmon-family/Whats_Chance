@@ -6,12 +6,20 @@ import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 import javax.inject.Inject
 
-class CryptoManger @Inject constructor(){
+interface DataEncryptor{
+
+    fun encrypt(plainText : String): String
+
+    fun decrypt(cipherText:String): String
+}
+
+
+class DataEncryptorImp @Inject constructor() : DataEncryptor{
 
     private val iv = IvParameterSpec(SECRET_IV.toByteArray())
     private val cipher = Cipher.getInstance(TRANSFORMATION)
 
-    fun encrypt(plainText : String): String {
+    override fun encrypt(plainText : String): String {
         val keySpec = SecretKeySpec(SECRET_KEY.toByteArray(), "AES")
         cipher.init(Cipher.ENCRYPT_MODE, keySpec, iv)
         val encrypted = cipher.doFinal(plainText.toByteArray())
@@ -19,7 +27,7 @@ class CryptoManger @Inject constructor(){
         return String(encodedByte)
     }
 
-    fun decrypt(cipherText:String): String {
+    override fun decrypt(cipherText:String): String {
         val decodedByte: ByteArray = Base64.decode(cipherText, Base64.DEFAULT)
         val keySpec = SecretKeySpec(SECRET_KEY.toByteArray(), "AES")
         cipher.init(Cipher.DECRYPT_MODE, keySpec, iv)
