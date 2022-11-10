@@ -17,7 +17,6 @@ class LoginViewModel @Inject constructor(
     private val _loginUIState = MutableStateFlow(LoginUIState())
     val loginUIState = _loginUIState.asStateFlow()
 
-
     private val _loginEvent = MutableStateFlow<Event<LoginUIEvent?>>(Event(null))
     val loginEvent = _loginEvent.asStateFlow()
 
@@ -26,8 +25,8 @@ class LoginViewModel @Inject constructor(
         _loginUIState.update { it.copy(phoneNumber = phone.toString()) }
     }
 
-    fun onCountryCodeChange(code: Any) {
-        _loginUIState.update { it.copy(countryCode = code.toString()) }
+    fun onCountryCodeChange(code: String) {
+        _loginUIState.update { it.copy(countryCode = code) }
     }
 
     fun login() {
@@ -35,7 +34,7 @@ class LoginViewModel @Inject constructor(
 
         try {
             if (verifyPhoneNumber(loginUIState.value.phoneNumber)) {
-                _loginEvent.update { Event(LoginUIEvent.LoginEvent(loginUIState.value.phoneNumber)) }
+                _loginEvent.update { Event(LoginUIEvent.LoginEvent(loginUIState.value.getFullPhoneNumber())) }
             } else {
                 _loginUIState.update { it.copy(error = "incorrect phone number ") }
             }
