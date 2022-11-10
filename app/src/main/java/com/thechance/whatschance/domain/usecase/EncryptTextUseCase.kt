@@ -1,12 +1,13 @@
 package com.thechance.whatschance.domain.usecase
 
+import com.thechance.whatschance.domain.DataEncryptor
 import com.thechance.whatschance.domain.DataEncryptorImp
 import javax.inject.Inject
 
 class EncryptTextUseCase @Inject constructor(
-    private val cryptoManger: DataEncryptorImp,
+    private val dataEncryptor: DataEncryptor,
 ) {
     operator fun invoke(plainText:String):String{
-        return cryptoManger.encrypt(plainText)
+        return dataEncryptor.encrypt(plainText)
     }
 }
