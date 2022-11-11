@@ -5,14 +5,17 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.thechance.whatschance.ui.verification.VerificationViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="@dimen/spacing_large"
-        tools:context=".ui.VerificationFragment"
-        >
+        tools:context=".ui.verification.VerificationFragment">
 
         <ImageView
             android:id="@+id/imageView"
@@ -30,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
-            android:text="@{@string/verification_sending(&quot;+9647720000000&quot;)}"
+            android:text="@{@string/verification_sending(viewModel.args.phone)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
@@ -41,19 +44,21 @@
             android:id="@+id/otp_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:imeOptions="actionGo"
             android:layout_marginTop="@dimen/spacing_large"
-            android:inputType="number"
-            android:hint="- - -  - - -"
-            android:textSize="32sp"
-            android:maxLength="6"
-            android:focusable="true"
+            android:afterTextChanged="@{(text) -> viewModel.onCodeChange(text)}"
             android:backgroundTint="@color/brand_color"
-            android:textAlignment="center"
+            android:focusable="true"
+            android:hint="- - -  - - -"
+            android:imeOptions="actionGo"
+            android:inputType="number"
+            android:maxLength="6"
+            android:textAlignment="textStart"
+            android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView">
-            <requestFocus/>
+
+            <requestFocus />
         </com.google.android.material.textfield.TextInputEditText>
 
 
@@ -61,9 +66,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/spacing_large"
+            android:onClick="@{() -> viewModel.onClickVerify()}"
+            android:src="@drawable/ic_arrow_left"
             app:borderWidth="0dp"
             app:elevation="2dp"
-            android:src="@drawable/ic_arrow_left"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
