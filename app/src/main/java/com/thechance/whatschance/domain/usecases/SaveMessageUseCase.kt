@@ -7,11 +7,12 @@ import javax.inject.Inject
 class SaveMessageUseCase @Inject constructor(
     private val chatRepository: ChatRepository
 ) {
-    suspend operator fun invoke(id: String, text: String){
-        chatRepository.insertMessage(
+    suspend operator fun invoke(id: String, text: String, user1: String, user2: String){
+        chatRepository.sendMessage(
             Message(
                 id = id,
-                textMessage = text
+                textMessage = text,
+                chatUsers = listOf(user1,user2)
             )
         )
     }

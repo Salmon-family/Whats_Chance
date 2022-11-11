@@ -6,7 +6,7 @@ import com.thechance.whatschance.domain.models.User
 interface ChatRepository {
     suspend fun insertUser(user: User)
 
-    suspend fun insertMessage(message: Message)
+    suspend fun sendMessage(message: Message)
 
-    suspend fun getMessage(): Message
+    suspend fun getMessage(user1: String, user2: String)
 }

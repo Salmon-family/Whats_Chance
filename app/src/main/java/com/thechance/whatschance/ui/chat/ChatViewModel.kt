@@ -1,6 +1,5 @@
 package com.thechance.whatschance.ui.chat
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thechance.whatschance.domain.usecases.GetMessageUseCase
@@ -23,20 +22,21 @@ class ChatViewModel @Inject constructor(
 
     init {
         saveUser("User1", "Mahmoud", "+201098765432")
-        saveMessage("name")
-        saveMessage("mahmoud")
-        getMessage()
+        saveUser("User2", "X", "+201055566610")
+        sendMessage("new", "+201098765432", "+2010555666")
+        sendMessage("way", "+201098765432", "+2010555666")
+        getMessage("+201098765432","+2010555666")
     }
 
     private fun saveUser(id: String, name: String, mobile: String){
         viewModelScope.launch { saveUserUseCase(id, name, mobile) }
     }
 
-    private fun saveMessage(text: String){
-        viewModelScope.launch { saveMessageUseCase("", text) }
+    private fun sendMessage(text: String, user1: String, user2: String){
+        viewModelScope.launch { saveMessageUseCase("", text, user1, user2) }
     }
 
-    private fun getMessage(){
-        viewModelScope.launch {getMessageUseCase()}
+    private fun getMessage(user1: String, user2: String){
+        viewModelScope.launch {getMessageUseCase(user1, user2)}
     }
 }

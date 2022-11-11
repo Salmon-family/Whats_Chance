@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetMessageUseCase @Inject constructor(
     private val chatRepository: ChatRepository
 ) {
-    suspend operator fun invoke(): Message{
-        return chatRepository.getMessage()
+    suspend operator fun invoke(user1: String, user2: String){
+        /*return*/ chatRepository.getMessage(user1, user2)
     }
 }
