@@ -25,7 +25,7 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
 
     private fun checkVerificationCode(event: VerificationUIEvent) {
         if (event is VerificationUIEvent.VerifyCodeEvent) {
-            findNavController().navigate(VerificationFragmentDirections.actionVerificationFragmentToHomeFragment())
+            findNavController().navigate(VerificationFragmentDirections.actionVerificationFragmentToChatFragment())
         }
     }
 }

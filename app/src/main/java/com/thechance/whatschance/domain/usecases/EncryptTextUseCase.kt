@@ -1,4 +1,4 @@
-package com.thechance.whatschance.domain.usecase
+package com.thechance.whatschance.domain.usecases
 
 import com.thechance.whatschance.domain.DataEncryptor
 import javax.inject.Inject

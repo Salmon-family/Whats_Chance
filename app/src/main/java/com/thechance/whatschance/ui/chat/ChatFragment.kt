@@ -14,8 +14,10 @@ class ChatFragment : BaseFragment<FragmentChatBinding>() {
     override val layoutIdFragment = R.layout.fragment_chat
     override val viewModel: ChatViewModel by viewModels()
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
     }
+
 }
