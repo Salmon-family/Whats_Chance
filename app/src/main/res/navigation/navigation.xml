@@ -32,7 +32,11 @@
         android:id="@+id/homeFragment"
         android:name="com.thechance.whatschance.ui.home.HomeFragment"
         android:label="WhatsChance"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_contactFragment"
+            app:destination="@id/contactFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/loginFragment"
@@ -43,6 +47,17 @@
             android:id="@+id/action_loginFragment_to_verificationFragment"
             app:destination="@id/verificationFragment"
             app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.thechance.whatschance.ui.contact.ContactFragment"
+        android:label="ContactFragment"
+        tools:layout="@layout/fragment_contact">
+        <action
+            android:id="@+id/action_contactFragment_to_chatFragment"
+            app:destination="@id/chatFragment"
+            app:popUpTo="@id/contactFragment"
             app:popUpToInclusive="true" />
     </fragment>
 

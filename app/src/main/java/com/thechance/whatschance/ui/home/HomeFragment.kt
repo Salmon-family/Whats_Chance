@@ -1,13 +1,13 @@
 package com.thechance.whatschance.ui.home
 
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.thechance.whatschance.R
 import com.thechance.whatschance.databinding.FragmentHomeBinding
 import com.thechance.whatschance.ui.base.BaseFragment
+import com.thechance.whatschance.utilities.collectLast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,6 +17,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        collectLast(viewModel.homeEvents) {
+            it.getContentIfNotHandled()?.let { onEvent(it) }
+        }
+    }
 
+    private fun onEvent(event: HomeUIEvents) {
+        when (event) {
+            HomeUIEvents.AddContactEvent -> {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToContactFragment())
+            }
+        }
     }
 }

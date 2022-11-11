@@ -1,4 +1,4 @@
-package com.thechance.whatschance.ui.home
+package com.thechance.whatschance.ui.chat
 
 data class ChatUiState(
     val id: String,

@@ -1,27 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+        <variable
+            name="item"
+            type="com.thechance.whatschance.ui.contact.UserUi" />
+
+        <variable
+            name="listener"
+            type="com.thechance.whatschance.ui.contact.ContactInteractionListener" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="@dimen/spacing_medium"
-        android:layout_marginHorizontal="@dimen/spacing_medium"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:onClick="@{() -> listener.onItemSelected(item)}">
 
         <TextView
             android:id="@+id/image_contact"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:background="@drawable/image_contact_shape"
+            android:gravity="center"
             android:text="A"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_too_medium"
             android:textStyle="bold"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:background="@drawable/image_contact_shape"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,10 +38,10 @@
             android:id="@+id/text_contact_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Amnah.a"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:text="@{item.name}"
             android:textColor="@color/black"
             android:textSize="@dimen/text_too_medium"
-            android:layout_marginStart="@dimen/spacing_small"
             app:layout_constraintBottom_toBottomOf="@+id/image_contact"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_contact"
