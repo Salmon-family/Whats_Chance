@@ -7,11 +7,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getColorThemeUseCase: GetColorThemeUseCase,
+    getColorThemeUseCase: GetColorThemeUseCase,
 ) : BaseViewModel(), ChatsAdapterListener {
 
     init {
-        getColor { getColorThemeUseCase() }
+        getColor(getColorThemeUseCase)
     }
 
 }

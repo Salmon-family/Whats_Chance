@@ -11,6 +11,6 @@ class WhatsChanceViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     init {
-        getColor { getColorThemeUseCase() }
+        getColor(getColorThemeUseCase)
     }
 }

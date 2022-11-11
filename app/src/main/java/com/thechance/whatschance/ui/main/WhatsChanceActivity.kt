@@ -22,7 +22,7 @@ class WhatsChanceActivity : AppCompatActivity() {
         getInstance()
         setContentView(R.layout.activity_main)
 
-        window.statusBarColor = Color.parseColor(viewModel.homeColorUiState.value)
+        window.statusBarColor = Color.parseColor(viewModel.brandColor.value)
     }
 
     override fun onResume() {
