@@ -4,7 +4,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import com.thechance.whatschance.ui.main.MainActivity
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.thechance.whatschance.ui.main.WhatsChanceActivity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,6 +23,14 @@ object NetworkModule {
 
     @Singleton
     @Provides
+    fun provideWhatsChanceActivity(): WhatsChanceActivity = WhatsChanceActivity.getInstance() as WhatsChanceActivity
+
+    @Singleton
+    @Provides
+    fun providerRemoteConfigFirebase(): FirebaseRemoteConfig {
+        return Firebase.remoteConfig
+    }
+
     fun provideMainActivity(): MainActivity = MainActivity.getInstance() as MainActivity
 
 

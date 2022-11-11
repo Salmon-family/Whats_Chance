@@ -1,4 +1,4 @@
-package com.thechance.whatschance.domain.usecases
+package com.thechance.whatschance.domain.usecase.validate
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult

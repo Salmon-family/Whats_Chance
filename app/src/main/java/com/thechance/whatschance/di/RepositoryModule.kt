@@ -4,6 +4,8 @@ import com.thechance.whatschance.data.repository.AuthenticationRepository
 import com.thechance.whatschance.data.repository.AuthenticationRepositoryImp
 import com.thechance.whatschance.data.repository.UserRepository
 import com.thechance.whatschance.data.repository.UserRepositoryImp
+import com.thechance.whatschance.data.repository.WhatsChanceRepository
+import com.thechance.whatschance.data.repository.WhatsChanceRepositoryImp
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -18,6 +20,13 @@ abstract class RepositoryModule {
     abstract fun bindAAuthenticationRepository(
         authenticationRepositoryImp: AuthenticationRepositoryImp
     ): AuthenticationRepository
+
+
+    @ViewModelScoped
+    @Binds
+    abstract fun bindWhatsChanceRepository(
+        whatsChanceRepositoryImp: WhatsChanceRepositoryImp
+    ): WhatsChanceRepository
 
     @ViewModelScoped
     @Binds

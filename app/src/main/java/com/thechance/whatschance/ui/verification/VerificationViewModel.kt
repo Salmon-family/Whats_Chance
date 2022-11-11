@@ -2,7 +2,7 @@ package com.thechance.whatschance.ui.verification
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.thechance.whatschance.domain.usecases.VerifyPhoneUseCase
+import com.thechance.whatschance.domain.usecase.validate.VerifyPhoneUseCase
 import com.thechance.whatschance.utilities.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -1,23 +1,28 @@
 package com.thechance.whatschance.ui.main
 
-import android.os.Bundle
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.activity.viewModels
 import com.thechance.whatschance.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class WhatsChanceActivity : AppCompatActivity() {
+    private val viewModel: WhatsChanceViewModel by viewModels()
 
     companion object {
-        var mainActivity: MainActivity? = null
+        var mainActivity: WhatsChanceActivity? = null
 
-        fun getInstance(): MainActivity? = mainActivity
+        fun getInstance(): WhatsChanceActivity? = mainActivity
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getInstance()
         setContentView(R.layout.activity_main)
+
+        window.statusBarColor = Color.parseColor(viewModel.brandColor.value)
     }
 
     override fun onResume() {
