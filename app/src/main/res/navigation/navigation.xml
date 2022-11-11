@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/contactFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/verificationFragment"
@@ -32,7 +32,7 @@
         android:id="@+id/homeFragment"
         android:name="com.thechance.whatschance.ui.home.HomeFragment"
         android:label="WhatsChance"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_contactFragment"
             app:destination="@id/contactFragment" />
@@ -53,6 +53,12 @@
         android:id="@+id/contactFragment"
         android:name="com.thechance.whatschance.ui.contact.ContactFragment"
         android:label="ContactFragment"
-        tools:layout="@layout/fragment_contact"/>
+        tools:layout="@layout/fragment_contact">
+        <action
+            android:id="@+id/action_contactFragment_to_chatFragment"
+            app:destination="@id/chatFragment"
+            app:popUpTo="@id/contactFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>

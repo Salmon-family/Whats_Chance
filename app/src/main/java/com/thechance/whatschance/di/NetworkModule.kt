@@ -23,16 +23,9 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideWhatsChanceActivity(): WhatsChanceActivity = WhatsChanceActivity.getInstance() as WhatsChanceActivity
-
-    @Singleton
-    @Provides
     fun providerRemoteConfigFirebase(): FirebaseRemoteConfig {
         return Firebase.remoteConfig
     }
-
-    fun provideMainActivity(): MainActivity = MainActivity.getInstance() as MainActivity
-
 
     @Singleton
     @Provides

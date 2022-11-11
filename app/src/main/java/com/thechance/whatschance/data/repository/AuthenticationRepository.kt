@@ -2,15 +2,14 @@ package com.thechance.whatschance.data.repository
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.PhoneAuthOptions
 
 interface AuthenticationRepository {
 
-    fun authenticate(phone: String)
+    fun sendVerificationCode(options: PhoneAuthOptions)
 
-    fun onVerifyOtp(code: String): Task<AuthResult>
+    fun onVerifyOtp(code: String, verificationID: String): Task<AuthResult>
 
-    fun getUserPhone(): String
-
-    fun getUserToken(): String
-
+    fun getUser(): FirebaseUser?
 }

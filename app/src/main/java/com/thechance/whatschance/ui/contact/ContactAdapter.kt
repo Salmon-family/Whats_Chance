@@ -9,4 +9,6 @@ class ContactAdapter(items: List<UserUi>, listener: ContactInteractionListener) 
     override val layoutID = R.layout.item_contact
 }
 
-interface ContactInteractionListener : BaseInteractionListener
+interface ContactInteractionListener : BaseInteractionListener {
+    fun onItemSelected(user: UserUi)
+}

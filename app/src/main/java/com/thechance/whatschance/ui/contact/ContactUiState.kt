@@ -4,8 +4,6 @@ data class ContactUiState (
     val users : List<UserUi> = emptyList()
 )
 
-
-
 data class UserUi(
     val uId: String,
     val name: String,
