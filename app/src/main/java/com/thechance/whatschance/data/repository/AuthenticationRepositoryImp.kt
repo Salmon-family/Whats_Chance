@@ -3,13 +3,13 @@ package com.thechance.whatschance.data.repository
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.*
 import com.thechance.whatschance.data.PhoneAuthCallBack
-import com.thechance.whatschance.ui.main.MainActivity
+import com.thechance.whatschance.ui.main.WhatsChanceActivity
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class AuthenticationRepositoryImp @Inject constructor(
     private val auth: FirebaseAuth,
-    private val context: MainActivity,
+    private val context: WhatsChanceActivity,
     private val authCallbacks: PhoneAuthCallBack
 ) : AuthenticationRepository {
 

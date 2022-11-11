@@ -1,4 +1,4 @@
-package com.thechance.whatschance.model.usecase
+package com.thechance.whatschance.domain.usecase
 
 import com.thechance.whatschance.data.repository.WhatsChanceRepository
 import javax.inject.Inject

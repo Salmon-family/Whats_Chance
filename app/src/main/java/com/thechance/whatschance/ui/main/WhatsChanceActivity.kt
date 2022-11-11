@@ -1,10 +1,10 @@
 package com.thechance.whatschance.ui.main
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.thechance.whatschance.R
-import com.thechance.whatschance.utils.changeStatusBarColor
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,7 +22,7 @@ class WhatsChanceActivity : AppCompatActivity() {
         getInstance()
         setContentView(R.layout.activity_main)
 
-        this.changeStatusBarColor(viewModel.homeColorUiState.value.colorValueUi)
+        window.statusBarColor = Color.parseColor(viewModel.homeColorUiState.value)
     }
 
     override fun onResume() {
