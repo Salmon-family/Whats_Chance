@@ -26,7 +26,12 @@ class ContactFragment : BaseFragment<FragmentContactBinding>() {
     private fun onEvent(events: ContactUIEvents) {
         when (events) {
             is ContactUIEvents.SelectedUser -> {
-                findNavController().navigate(ContactFragmentDirections.actionContactFragmentToChatFragment())
+                findNavController().navigate(
+                    ContactFragmentDirections.actionContactFragmentToChatFragment(
+                        events.user.name,
+                        events.user.uId
+                    )
+                )
             }
         }
     }
