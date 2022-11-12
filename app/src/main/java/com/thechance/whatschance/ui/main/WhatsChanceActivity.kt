@@ -28,7 +28,7 @@ class WhatsChanceActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        val navGraph = navController.navInflater.inflate(R.navigation.navigation)
+        val navGraph = navController.graph
         val startDestination = if (viewModel.isUserLogin()) {
             R.id.homeFragment
         } else {
