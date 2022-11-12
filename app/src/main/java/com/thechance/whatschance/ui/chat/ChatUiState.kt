@@ -1,8 +1,7 @@
 package com.thechance.whatschance.ui.chat
 
 data class ChatUiState(
-    val id: String,
-    val name: String,
-    val lastMessage: String,
-    val lastMessageTime: String,
+    val name: String = "",
+    val message: List<String> = emptyList(),
+    val lastMessageTime: String = "",
 )

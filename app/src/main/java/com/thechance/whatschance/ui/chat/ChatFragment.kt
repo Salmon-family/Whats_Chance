@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import com.thechance.whatschance.R
 import com.thechance.whatschance.databinding.FragmentChatBinding
 import com.thechance.whatschance.ui.base.BaseFragment
+import com.thechance.whatschance.ui.contact.ContactAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,6 +17,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.recyclerChat.adapter = ChatAdapter(emptyList(), viewModel)
 
     }
 }

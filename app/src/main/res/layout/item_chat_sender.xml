@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="item"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,11 +29,11 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:paddingHorizontal="@dimen/spacing_medium"
-                tools:text="testtesttesttesttttesttesttesttest"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_time"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@{item}" />
 
             <TextView
                 android:id="@+id/text_time"
@@ -38,10 +41,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="@dimen/spacing_small"
-                tools:text="7:90 AM"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_message" />
+                app:layout_constraintTop_toBottomOf="@+id/text_message"
+                tools:text="7:90 AM" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
