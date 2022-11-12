@@ -3,6 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+        <variable
+            name="item"
+            type="com.thechance.whatschance.ui.contact.UserUi" />
+
+        <variable
+            name="listener"
+            type="com.thechance.whatschance.ui.contact.ContactInteractionListener" />
 
     </data>
 
@@ -29,7 +36,7 @@
             android:id="@+id/text_contact_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Amnah.a"
+            android:text="@{item.name}"
             android:textColor="@color/black"
             android:textSize="@dimen/text_too_medium"
             android:layout_marginStart="@dimen/spacing_small"

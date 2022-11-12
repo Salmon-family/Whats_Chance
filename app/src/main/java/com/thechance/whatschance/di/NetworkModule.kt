@@ -2,6 +2,7 @@ package com.thechance.whatschance.di
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.thechance.whatschance.ui.main.MainActivity
 import dagger.Module
@@ -21,5 +22,12 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideMainActivity(): MainActivity = MainActivity.getInstance() as MainActivity
+
+
+    @Singleton
+    @Provides
+    fun provideFireStoreInstance(): FirebaseFirestore {
+        return FirebaseFirestore.getInstance()
+    }
 
 }
