@@ -21,7 +21,8 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:windowSoftInputMode="adjustResize"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.WhatsChance.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

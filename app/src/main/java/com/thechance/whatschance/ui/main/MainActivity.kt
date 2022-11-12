@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getInstance()
+        setTheme(R.style.Theme_WhatsChance)
         setContentView(R.layout.activity_main)
     }
 
