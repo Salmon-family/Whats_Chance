@@ -1,8 +1,11 @@
 package com.thechance.whatschance.ui.utilities
 
+import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.thechance.whatschance.R
 import com.thechance.whatschance.ui.base.BaseAdapter
 
@@ -15,7 +18,7 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
 }
 
 @BindingAdapter("app:sticker")
-fun setSticker(view: TextView, stickerName: String) {
+fun setSticker(view: ImageView, stickerName: String) {
     val stickers = mapOf(
         ":happy:" to R.drawable.happy,
         ":angry:" to R.drawable.evil,
@@ -30,5 +33,6 @@ fun setSticker(view: TextView, stickerName: String) {
     )
     if (stickerName in stickers.keys) {
         stickers[stickerName]?.let { view.setBackgroundResource(it) }
+        view.load(stickerName)
     }
 }

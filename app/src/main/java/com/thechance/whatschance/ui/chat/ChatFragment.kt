@@ -17,5 +17,6 @@ class ChatFragment : BaseFragment<FragmentChatBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.recyclerChat.adapter = ChatAdapter(emptyList(), viewModel)
     }
 }

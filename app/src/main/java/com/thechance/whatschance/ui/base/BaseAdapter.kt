@@ -41,6 +41,8 @@ abstract class BaseAdapter<T>(
 
     override fun getItemCount() = items.size
 
+    fun getItems() = items
+
     open  fun setItems(newItems: List<T>) {
         val diffResult = DiffUtil.calculateDiff(BaseDiffUtil(items, newItems,::areItemsSame, ::areContentSame))
         items = newItems

@@ -5,18 +5,22 @@
 
     <data>
 
+        <variable
+            name="item"
+            type="com.thechance.whatschance.ui.chat.DetailsChatUiState" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_medium"
         android:background="@android:color/transparent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_send_chat_background"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="0dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
@@ -25,12 +29,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
+                android:background="@drawable/round_send_chat_background"
+                android:text="@{item.lastMessage}"
                 android:paddingHorizontal="@dimen/spacing_medium"
-                tools:text="testtesttesttesttttesttesttesttest"
+                android:paddingVertical="@dimen/spacing_medium"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_time"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="testtesttesttesttttesttesttesttest" />
 
             <TextView
                 android:id="@+id/text_time"
@@ -38,7 +45,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="@dimen/spacing_small"
-                tools:text="7:90 AM"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_message" />
