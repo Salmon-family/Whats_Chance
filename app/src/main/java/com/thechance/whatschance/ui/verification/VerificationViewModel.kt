@@ -22,7 +22,7 @@ class VerificationViewModel @Inject constructor(
     val args = VerificationFragmentArgs.fromSavedStateHandle(state)
 
     private val _verifyCodeUIState = MutableStateFlow(VerificationUIState())
-    val verifyCodeUIState = _verifyCodeUIState.asStateFlow()
+    private val verifyCodeUIState = _verifyCodeUIState.asStateFlow()
 
     private val _verifyCodeEvent = MutableStateFlow<Event<VerificationUIEvent?>>(Event(null))
     val verifyCodeEvent = _verifyCodeEvent.asStateFlow()

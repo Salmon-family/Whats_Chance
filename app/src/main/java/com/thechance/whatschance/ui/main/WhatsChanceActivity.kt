@@ -1,5 +1,6 @@
 package com.thechance.whatschance.ui.main
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -9,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import com.thechance.whatschance.R
 import com.thechance.whatschance.databinding.ActivityMainBinding
+import com.thechance.whatschance.ui.registry.RegistryActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,15 +31,16 @@ class WhatsChanceActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
-
         val navGraph = navController.graph
-        val startDestination = if (viewModel.isUserLogin()) {
-            R.id.homeFragment
+        
+        if (viewModel.isUserLogin()) {
+            navGraph.setStartDestination(R.id.homeFragment)
+            navController.graph = navGraph
         } else {
-            R.id.loginFragment
+            val intent = Intent(this, RegistryActivity::class.java)
+            startActivity(intent)
+            finish()
         }
-        navGraph.setStartDestination(startDestination)
-        navController.graph = navGraph
     }
 
 }

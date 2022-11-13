@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_registry"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.thechance.whatschance.ui.login.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_verificationFragment"
+            app:destination="@id/verificationFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/verificationFragment"
+        android:name="com.thechance.whatschance.ui.verification.VerificationFragment"
+        android:label="VerificationFragment" >
+        <argument
+            android:name="phone"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_verificationFragment_to_whatsChanceActivity"
+            app:destination="@id/whatsChanceActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/whatsChanceActivity"
+        android:name="com.thechance.whatschance.ui.main.WhatsChanceActivity"
+        android:label="WhatsChanceActivity" />
+</navigation>

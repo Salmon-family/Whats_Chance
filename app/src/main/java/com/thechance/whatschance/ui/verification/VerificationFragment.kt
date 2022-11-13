@@ -14,7 +14,6 @@ import com.thechance.whatschance.utilities.collectLast
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 
-
 @AndroidEntryPoint
 class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
     override val layoutIdFragment = R.layout.fragment_verification
@@ -40,7 +39,8 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
 
     private fun checkVerificationCode(event: VerificationUIEvent) {
         if (event is VerificationUIEvent.VerifyCodeEvent) {
-            findNavController().navigate(VerificationFragmentDirections.actionVerificationFragmentToHomeFragment())
+            findNavController().navigate(R.id.action_verificationFragment_to_whatsChanceActivity)
         }
     }
+
 }
