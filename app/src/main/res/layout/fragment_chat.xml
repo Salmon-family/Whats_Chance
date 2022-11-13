@@ -43,6 +43,8 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:hint="@string/chat_hint"
+                android:text="@{viewModel.chatUiState.textMessage}"
+                android:afterTextChanged="@{(text) -> viewModel.onTextMessageChange(text)}"
                 android:paddingVertical="@dimen/spacing_medium"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/image_send"
@@ -53,6 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/spacing_medium"
+                android:onClick="@{()->viewModel.sendMessage()}"
                 android:src="@drawable/send_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />

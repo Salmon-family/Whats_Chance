@@ -1,11 +1,6 @@
 package com.thechance.whatschance.di
 
-import com.thechance.whatschance.data.repository.AuthenticationRepository
-import com.thechance.whatschance.data.repository.AuthenticationRepositoryImp
-import com.thechance.whatschance.data.repository.UserRepository
-import com.thechance.whatschance.data.repository.UserRepositoryImp
-import com.thechance.whatschance.data.repository.WhatsChanceRepository
-import com.thechance.whatschance.data.repository.WhatsChanceRepositoryImp
+import com.thechance.whatschance.data.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -33,4 +28,10 @@ abstract class RepositoryModule {
     abstract fun bindAUserRepository(
         userRepository: UserRepositoryImp,
     ): UserRepository
+
+    @ViewModelScoped
+    @Binds
+    abstract fun bindAChatRepository(
+        chatRepository: ChatRepositoryImp,
+    ): ChatRepository
 }
