@@ -15,12 +15,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <ImageView
             android:id="@+id/text_message"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.83"
+            app:layout_constraintHeight_percent="0.85"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_time"
             app:layout_constraintTop_toTopOf="parent"

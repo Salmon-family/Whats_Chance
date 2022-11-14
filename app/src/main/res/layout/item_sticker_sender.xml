@@ -15,13 +15,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <ImageView
             android:id="@+id/text_message"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.83"
+            app:layout_constraintHeight_percent="0.85"
             app:layout_constraintTop_toBottomOf="@+id/text_time"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.30"
@@ -36,7 +35,7 @@
             android:textColor="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_message"
-            tools:text="7:90 AM" />
+            android:text="7:90 AM" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
