@@ -32,8 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_medium"
             app:ccp_autoDetectCountry="false"
-            app:ccp_defaultNameCode="us"
             app:ccp_defaultLanguage="ENGLISH"
+            app:ccp_defaultNameCode="us"
             app:ccp_showNameCode="false"
             app:ccp_showPhoneCode="false"
             app:layout_constraintBottom_toBottomOf="@+id/text_input_phone_number"
@@ -55,15 +55,44 @@
             app:hintAnimationEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/picker_country_Code"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_login_instructions">
+            app:layout_constraintTop_toBottomOf="@+id/text_input_name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:afterTextChanged="@{(text) -> viewModel.onPhoneNumberChange(text)}"
                 android:inputType="phone"
-                android:maxLines="1"
                 android:maxLength="10"
+                android:maxLines="1"
+                android:paddingStart="20dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="20dp"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginEnd="@dimen/spacing_medium"
+            android:hint="@string/name"
+            app:boxStrokeColor="@color/brand_color"
+            app:helperTextTextAppearance="@style/HelperTextAppearance"
+            app:helperTextTextColor="@color/brand_color"
+            app:hintAnimationEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/picker_country_Code"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_login_instructions">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:afterTextChanged="@{(text) -> viewModel.onNameChange(text)}"
+                android:inputType="text"
+                android:maxLines="1"
                 android:paddingStart="20dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="20dp"

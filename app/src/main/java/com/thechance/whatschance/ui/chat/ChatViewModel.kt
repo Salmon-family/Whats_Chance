@@ -28,28 +28,29 @@ class ChatViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-//            repository.insertUser(args.userName)
-            repository.getMessage(args.userUID)
-                .addOnSuccessListener { documentSnapshot ->
-                    val data = documentSnapshot.toObject<Message>()!!
-                    Log.e("TESTTEST", data.content.toString())
-                    _chatUiState.update { it.copy(message = data.content) }
-                }
-//                .collect {
-//                _chatUiState.update { it.copy(message = it.message) }
-//            }
+            try {
+                repository.getMessage()
+                    .addOnSuccessListener { documentSnapshot ->
+                        val data = documentSnapshot.toObject<Message>()
+                        data?.let {
+                            Log.e("TESTTEST", data.content.toString())
+                            _chatUiState.update { it.copy(message = data.content) }
+                        }
+                    }
+            } catch (t: Throwable) {
+            }
         }
     }
 
-
     fun send() {
+        // need to move it to use-case..
         viewModelScope.launch {
-            val m = Message("+11234567891", listOf(content))
-            try {
-                repository.insertMessage(args.userUID, m)
-            } catch (t: Throwable) {
-                repository.insertFirstMessage(args.userUID, m)
-            }
+            val m = Message(args.phone, listOf(content))
+            repository.getDocument(args.userUID)
+                .addOnSuccessListener {
+                    viewModelScope.launch {  repository.insertMessage(args.userUID, m)} }
+                .addOnFailureListener {
+                    viewModelScope.launch {repository.insertFirstMessage(args.userUID, m)} }
         }
     }
 

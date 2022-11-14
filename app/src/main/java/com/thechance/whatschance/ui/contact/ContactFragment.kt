@@ -29,7 +29,8 @@ class ContactFragment : BaseFragment<FragmentContactBinding>() {
                 findNavController().navigate(
                     ContactFragmentDirections.actionContactFragmentToChatFragment(
                         events.user.name,
-                        events.user.uId
+                        events.user.uId,
+                        events.user.phoneNumber
                     )
                 )
             }

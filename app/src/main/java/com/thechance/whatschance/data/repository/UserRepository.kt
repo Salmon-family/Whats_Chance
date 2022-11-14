@@ -6,6 +6,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.snapshots
 import com.google.firebase.ktx.Firebase
 import com.thechance.whatschance.data.FireStoreDataSource
 import com.thechance.whatschance.data.response.UserDto
@@ -16,15 +17,20 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 interface UserRepository {
+
     suspend fun getUsers(): Flow<List<UserDto>>
 
     suspend fun insertUser(name: String)
 
     suspend fun insertMessage(userID: String, message: Message)
 
-    suspend fun getMessage(userID: String): Task<DocumentSnapshot>
+    suspend fun getMessage(): Task<DocumentSnapshot>
 
     suspend fun insertFirstMessage(userID: String, message: Message)
+
+    suspend fun getMyAccount(): String
+
+    suspend fun getDocument(userID: String): Task<DocumentSnapshot>
 }
 
 class UserRepositoryImp @Inject constructor(
@@ -36,8 +42,8 @@ class UserRepositoryImp @Inject constructor(
         return fireStoreDataSource.getUsers().map { it.toObjects(UserDto::class.java) }
     }
 
-    override suspend fun getMessage(userID: String): Task<DocumentSnapshot> {
-        return fireStoreDataSource.getMessagesDoucment(userID).get()
+    override suspend fun getMessage(): Task<DocumentSnapshot> {
+        return fireStoreDataSource.getMessagesDoucment(Firebase.auth.uid!!).get()
     }
 
     override suspend fun insertUser(name: String) {
@@ -54,6 +60,11 @@ class UserRepositoryImp @Inject constructor(
         messages.update("content", FieldValue.arrayUnion(message.content.first()))
     }
 
+    override suspend fun getDocument(userID: String): Task<DocumentSnapshot> {
+        return fireStore.collection("TMessages")
+            .document(userID).get()
+    }
+
     override suspend fun insertFirstMessage(userID: String, message: Message) {
         fireStore.collection("TMessages")
             .document(userID)
@@ -63,5 +74,7 @@ class UserRepositoryImp @Inject constructor(
             }
     }
 
-
+    override suspend fun getMyAccount(): String {
+        return Firebase.auth.currentUser?.uid ?: ""
+    }
 }

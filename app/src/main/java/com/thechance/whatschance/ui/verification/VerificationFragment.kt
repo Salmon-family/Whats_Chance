@@ -20,6 +20,7 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
     override val layoutIdFragment = R.layout.fragment_verification
     override val viewModel: VerificationViewModel by viewModels()
 
+    // need to move country code inside input text
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         authenticate(viewModel.args.phone)

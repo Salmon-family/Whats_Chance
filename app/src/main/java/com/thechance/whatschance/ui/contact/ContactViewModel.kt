@@ -26,8 +26,7 @@ class ContactViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             getUsers().collect { users ->
-                val users = users.map(userUiMapper::map)
-                _contactUiState.update { it.copy(users = users) }
+                _contactUiState.update { it.copy(users = users.map(userUiMapper::map)) }
             }
         }
     }

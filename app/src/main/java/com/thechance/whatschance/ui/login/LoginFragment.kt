@@ -21,7 +21,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         collectLast(viewModel.loginEvent) {
             it.getContentIfNotHandled()?.let { onEvent(it) }
         }
-
         binding.pickerCountryCode.setOnCountryChangeListener {
             viewModel.onCountryCodeChange(binding.pickerCountryCode.selectedCountryCodeWithPlus)
         }
@@ -30,11 +29,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     private fun onEvent(event: LoginUIEvent) {
         if (event is LoginUIEvent.LoginEvent) {
             findNavController().navigate(
-                LoginFragmentDirections.actionLoginFragmentToVerificationFragment(event.phoneNumber)
+                LoginFragmentDirections.actionLoginFragmentToVerificationFragment(event.phoneNumber, event.name)
             )
         }
     }
-
 
 }
 
