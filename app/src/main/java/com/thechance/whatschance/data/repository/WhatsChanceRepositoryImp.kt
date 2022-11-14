@@ -7,7 +7,7 @@ class WhatsChanceRepositoryImp @Inject constructor(
     private val remoteConfig: FirebaseRemoteConfig
 ) : WhatsChanceRepository {
 
-    override fun getColorTheme(key: String): String {
+    override suspend fun getColorTheme(key: String): String {
         remoteConfig.fetchAndActivate().addOnCompleteListener {
             if (it.isSuccessful) {
                 return@addOnCompleteListener
