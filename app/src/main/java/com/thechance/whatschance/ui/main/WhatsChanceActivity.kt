@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
+import com.google.firebase.perf.metrics.AddTrace
 import com.thechance.whatschance.R
 import com.thechance.whatschance.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,6 +17,7 @@ class WhatsChanceActivity : AppCompatActivity() {
     private val viewModel: WhatsChanceViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
 
+    @AddTrace(name = "onCreateTrace", enabled = true)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
