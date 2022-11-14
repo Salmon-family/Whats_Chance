@@ -10,8 +10,9 @@ import javax.inject.Inject
 class GetUsersUseCase @Inject constructor(
     private val userRepository: UserRepository,
     private val userMapper: UserMapper,
+    private val getCurrentUser: GetCurrentUserUseCase,
 ) {
     suspend operator fun invoke() : Flow<List<User>> {
-        return userRepository.getUsers().map{ it.map(userMapper::map) }
+        return userRepository.getUsers(getCurrentUser()?.uid ?: "").map{ it.map(userMapper::map) }
     }
 }

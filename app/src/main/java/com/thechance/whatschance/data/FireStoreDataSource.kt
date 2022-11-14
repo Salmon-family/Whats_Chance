@@ -10,8 +10,8 @@ import javax.inject.Inject
 class FireStoreDataSource @Inject constructor(
     private val fireStore: FirebaseFirestore
 ) {
-    fun getUsers() : Flow<QuerySnapshot> {
-        return fireStore.collection("devfalahUsers").snapshots()
+    fun getUsers(uId: String) : Flow<QuerySnapshot> {
+        return fireStore.collection("devfalahUsers").whereNotEqualTo("uId",uId).snapshots()
     }
 
     fun addMessage(uId : String,message: MessageDto) : Boolean {

@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="item"
+            type="com.thechance.whatschance.ui.chat.MessageUi" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@android:color/transparent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,6 +28,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:paddingHorizontal="@dimen/spacing_medium"
+                android:text="@{item.textMessage}"
                 tools:text="testtesttesttesttttesttesttesttest"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
