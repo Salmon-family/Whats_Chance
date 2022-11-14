@@ -85,5 +85,7 @@ dependencies {
     //Country Code Picker
     implementation 'com.hbb20:ccp:2.5.0'
 
+    //Coil
+    implementation 'io.coil-kt:coil:2.2.2'
 
 }

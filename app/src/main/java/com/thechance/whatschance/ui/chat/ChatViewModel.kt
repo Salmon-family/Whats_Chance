@@ -24,7 +24,6 @@ class ChatViewModel @Inject constructor(
     private val getMessages: GetMessagesUseCase,
 ) : ViewModel(), BaseInteractionListener {
     val args = ChatFragmentArgs.fromSavedStateHandle(state)
-
     private val _chatUiState = MutableStateFlow(ChatUiState())
     val chatUiState = _chatUiState.asStateFlow()
 
