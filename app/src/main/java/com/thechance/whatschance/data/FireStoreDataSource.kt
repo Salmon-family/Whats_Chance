@@ -4,14 +4,16 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.snapshots
 import com.thechance.whatschance.data.response.MessageDto
+import com.thechance.whatschance.data.response.UserDto
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class FireStoreDataSource @Inject constructor(
     private val fireStore: FirebaseFirestore
 ) {
-    fun getUsers(uId: String) : Flow<QuerySnapshot> {
-        return fireStore.collection(USERS_COLLECTION).whereNotEqualTo(U_ID_KEY,uId).snapshots()
+    fun getUsers(uId: String) : Flow<List<UserDto>> {
+        return fireStore.collection(USERS_COLLECTION).whereNotEqualTo(U_ID_KEY,uId).snapshots().map { it.toObjects(UserDto::class.java) }
     }
 
     fun addMessage(uId : String,message: MessageDto) : Boolean {
@@ -19,9 +21,9 @@ class FireStoreDataSource @Inject constructor(
         return messagesRef.add(message).isSuccessful
     }
 
-    fun getMessages(uId: String,senderId: String) : Flow<QuerySnapshot>{
+    fun getMessages(uId: String,senderId: String) : Flow<List<MessageDto>>{
         return fireStore.collection(MESSAGES_COLLECTION).document(uId).collection(MESSAGE_COLLECTION).whereEqualTo(
-            SENDER_ID_KEY,senderId).snapshots()
+            SENDER_ID_KEY,senderId).snapshots().map { it.toObjects(MessageDto::class.java) }
     }
 
 

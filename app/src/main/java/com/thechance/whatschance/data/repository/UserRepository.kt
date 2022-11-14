@@ -14,6 +14,6 @@ class UserRepositoryImp @Inject constructor(
     private val fireStoreDataSource: FireStoreDataSource,
 ) : UserRepository {
     override suspend fun getUsers(uId:String): Flow<List<UserDto>> {
-        return fireStoreDataSource.getUsers(uId).map { it.toObjects(UserDto::class.java) }
+        return fireStoreDataSource.getUsers(uId)
     }
 }

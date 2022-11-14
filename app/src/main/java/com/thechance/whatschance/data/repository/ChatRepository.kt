@@ -22,6 +22,6 @@ class ChatRepositoryImp @Inject constructor(
     }
 
     override suspend fun getMessages(uId: String,senderId:String): Flow<List<MessageDto>> {
-        return fireStoreDataSource.getMessages(uId,senderId).map { it.toObjects(MessageDto::class.java) }
+        return fireStoreDataSource.getMessages(uId,senderId)
     }
 }
