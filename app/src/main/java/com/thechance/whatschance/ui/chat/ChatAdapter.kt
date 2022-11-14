@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import com.thechance.whatschance.R
 import com.thechance.whatschance.ui.base.BaseAdapter
 import com.thechance.whatschance.ui.base.BaseInteractionListener
-import java.text.FieldPosition
 
 class ChatAdapter(items: List<MessageUi>, listener: BaseInteractionListener) :
     BaseAdapter<MessageUi>(items, listener) {
@@ -23,6 +22,7 @@ class ChatAdapter(items: List<MessageUi>, listener: BaseInteractionListener) :
 
     override fun getItemViewType(position: Int): Int {
         val position = getItems()[position]
+
         if (getItems().isNotEmpty()) {
             return if (position.isFromMe) {
                 showSenderItem(position.textMessage)
@@ -59,12 +59,6 @@ private fun checkIfMessageOrSticker(chat: ChatLayout): Int {
         chat.messageLayout
     }
 }
-
-data class ChatLayout(
-    val message: String,
-    val stickerLayout: Int,
-    val messageLayout: Int
-)
 
 private fun checkString(message: String): Boolean {
     val stickers = listOf(
