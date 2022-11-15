@@ -9,3 +9,9 @@ data class MessageUi(
     val textMessage: String = "",
     val isFromMe: Boolean = true,
 )
+
+data class ChatLayout(
+    val message: String,
+    val stickerLayout: Int,
+    val messageLayout: Int
+)
