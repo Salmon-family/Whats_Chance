@@ -7,6 +7,7 @@ import androidx.navigation.fragment.findNavController
 import com.thechance.whatschance.R
 import com.thechance.whatschance.databinding.FragmentHomeBinding
 import com.thechance.whatschance.ui.base.BaseFragment
+import com.thechance.whatschance.ui.contact.ContactAdapter
 import com.thechance.whatschance.utilities.collectLast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,6 +18,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.recyclerContact.adapter = ContactAdapter(emptyList(), viewModel)
+
         collectLast(viewModel.homeEvents) {
             it.getContentIfNotHandled()?.let { onEvent(it) }
         }
