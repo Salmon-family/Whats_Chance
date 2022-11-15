@@ -9,7 +9,7 @@ class MessageEntityMapper @Inject constructor() : Mapper<MessageEntity, Message>
     override fun map(input: MessageEntity): Message {
         return Message(
             textMessage = input.textMessage,
-            sender = input.id
+            sender = input.userId
         )
     }
 }

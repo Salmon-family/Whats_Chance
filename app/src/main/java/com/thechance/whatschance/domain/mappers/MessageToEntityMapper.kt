@@ -8,8 +8,10 @@ import javax.inject.Inject
 class MessageToEntityMapper @Inject constructor() : Mapper<Message, MessageEntity> {
     override fun map(input: Message): MessageEntity {
         return MessageEntity(
-            id = input.sender,
+            userId = input.sender,
             textMessage = input.textMessage,
+            id = input.id,
+            isFromMe = true
         )
     }
 }
