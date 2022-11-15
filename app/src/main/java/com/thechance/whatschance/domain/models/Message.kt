@@ -4,4 +4,5 @@ data class Message (
     val id: String = "",
     val textMessage: String = "",
     val sender: String = "",
+    val date: String = ""
 )

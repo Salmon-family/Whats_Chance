@@ -14,12 +14,27 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent">
 
+        <TextView
+            android:id="@+id/date_first_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:text="15 Nov" />
+
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_receiver_chat_background"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/date_first_message"
+            android:text="15 Nov"
+            tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/text_message"
@@ -29,11 +44,9 @@
                 android:gravity="start"
                 android:paddingHorizontal="@dimen/spacing_medium"
                 android:text="@{item.textMessage}"
-                tools:text="testtesttesttesttttesttesttesttest"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_time"
-                app:layout_constraintTop_toTopOf="parent" />
+                tools:ignore="MissingConstraints"
+                tools:text="testtesttesttesttttesttesttesttest" />
 
             <TextView
                 android:id="@+id/text_time"
@@ -41,10 +54,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="@dimen/spacing_small"
-                tools:text="7:90 AM"
+                android:text="@{item.date}"
                 android:textColor="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_message" />
+                app:layout_constraintTop_toBottomOf="@+id/text_message"
+                tools:text="7:90 AM" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
