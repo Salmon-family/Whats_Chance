@@ -3,10 +3,13 @@ package com.thechance.whatschance.data.local.database.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+
+// need to add sender phone number
+// + remove messageDate
 @Entity(tableName = "MESSAGE_TABLE")
 data class MessageEntity(
-    @PrimaryKey val id: String,
-    val userId: String,
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    val senderId: String,
     val textMessage: String,
     val messageDate: String = "",
     val isFromMe: Boolean,

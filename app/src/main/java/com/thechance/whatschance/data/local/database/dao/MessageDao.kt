@@ -10,10 +10,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface MessageDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertMessage(message: List<MessageEntity>)
 
-    @Query("SELECT * FROM MESSAGE_TABLE WHERE userId IN (:userId)")
+    @Query("SELECT * FROM MESSAGE_TABLE WHERE senderId IN (:userId)")
     fun getUserMessages(userId: String): Flow<List<MessageEntity>>
 
 

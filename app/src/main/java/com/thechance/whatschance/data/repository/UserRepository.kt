@@ -14,7 +14,7 @@ interface UserRepository {
 
     suspend fun getSavedUsers(): Flow<List<UserEntity>>
 
-    suspend fun saveUsers(users: List<UserEntity>)
+    suspend fun saveUser(user: UserEntity)
 
 }
 
@@ -34,7 +34,7 @@ class UserRepositoryImp @Inject constructor(
         return userDao.getUsers()
     }
 
-    override suspend fun saveUsers(users: List<UserEntity>) {
-        userDao.insertUsers(users)
+    override suspend fun saveUser(user: UserEntity) {
+        userDao.insertUser(user)
     }
 }

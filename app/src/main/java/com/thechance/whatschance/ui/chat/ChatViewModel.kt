@@ -47,7 +47,6 @@ class ChatViewModel @Inject constructor(
                 }
             }
         }
-        Log.e("TEST", "${args.userName}  \n${args.userUID}")
     }
 
     fun onTextMessageChange(text: CharSequence) {
@@ -60,7 +59,6 @@ class ChatViewModel @Inject constructor(
             sender = getCurrentUserUseCase()?.uid ?: "",
             time = Date().time
         )
-
         addMessageUseCase(args.userUID, message)
 
         val chats = _chatUiState.value.chats.toMutableList()

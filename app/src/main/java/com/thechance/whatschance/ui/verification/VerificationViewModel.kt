@@ -45,7 +45,7 @@ class VerificationViewModel @Inject constructor(
                     if (task.isSuccessful) {
                         _verifyCodeEvent.update { Event(VerificationUIEvent.VerifyCodeEvent) }
                         task.result.user?.let {
-                            fireStoreDataSource.addUser(User(it.uid, "Nada", it.phoneNumber!!))
+                            fireStoreDataSource.addUser(User(uId=it.uid, "Nada", it.phoneNumber!!))
                         }
                     } else {
                         _verifyCodeUIState.update { it.copy(error = "Incorrect") }
