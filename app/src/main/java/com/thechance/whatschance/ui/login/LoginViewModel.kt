@@ -36,13 +36,12 @@ class LoginViewModel @Inject constructor(
             if (verifyPhoneNumber(loginUIState.value.phoneNumber)) {
                 _loginEvent.update { Event(LoginUIEvent.LoginEvent(loginUIState.value.getFullPhoneNumber())) }
             } else {
-                _loginUIState.update { it.copy(error = "incorrect phone number ") }
+                _loginUIState.update { it.copy(error = "incorrect, check your phone number.") }
             }
 
         } catch (t: Throwable) {
             _loginUIState.update { it.copy(error = t.message.toString()) }
         }
     }
-
 
 }
