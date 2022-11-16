@@ -11,11 +11,10 @@ class WhatsChanceViewModel @Inject constructor(
     private val getColorThemeUseCase: GetColorThemeUseCase,
     private val getUserLogin: GetUserLoginStatusUseCase
 ) : BaseViewModel() {
-    //
+
     init {
         getColor(getColorThemeUseCase)
     }
 
-    //
     fun isUserLogin() = getUserLogin()
 }
