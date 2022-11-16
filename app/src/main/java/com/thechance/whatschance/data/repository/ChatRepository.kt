@@ -7,6 +7,7 @@ import com.thechance.whatschance.data.local.database.dao.MessageDao
 import com.thechance.whatschance.data.local.database.entity.MessageEntity
 import com.thechance.whatschance.data.response.MessageDto
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flatMapConcat
 import javax.inject.Inject
 
 interface ChatRepository {

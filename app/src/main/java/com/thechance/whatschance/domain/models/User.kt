@@ -1,7 +1,7 @@
 package com.thechance.whatschance.domain.models
 
 data class User(
-    val uId: String,
+    val userID: String,
     val name: String,
     val phoneNumber: String,
 )

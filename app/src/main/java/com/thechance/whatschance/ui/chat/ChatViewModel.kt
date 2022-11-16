@@ -8,6 +8,7 @@ import com.thechance.whatschance.domain.usecase.AddMessageUseCase
 import com.thechance.whatschance.domain.usecase.GetCurrentUserUseCase
 import com.thechance.whatschance.domain.usecase.GetMessagesUseCase
 import com.thechance.whatschance.ui.base.BaseInteractionListener
+import com.thechance.whatschance.utilities.Converter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,6 +23,7 @@ class ChatViewModel @Inject constructor(
     private val getCurrentUserUseCase: GetCurrentUserUseCase,
     private val addMessageUseCase: AddMessageUseCase,
     private val getMessagesUseCase: GetMessagesUseCase,
+    private val timeConverter: Converter
 ) : ViewModel(), BaseInteractionListener {
 
     private val args = ChatFragmentArgs.fromSavedStateHandle(state)
@@ -36,7 +38,11 @@ class ChatViewModel @Inject constructor(
                 if (list.isNotEmpty()) {
                     _chatUiState.update {
                         it.copy(chats = list.map { message ->
-                            MessageUi(message.textMessage, isFromMe = message.fromMe)
+                            MessageUi(
+                                message.textMessage,
+                                isFromMe = message.fromMe,
+                                time = timeConverter.convertLongToTime(message.time)
+                            )
                         })
                     }
 
@@ -58,7 +64,13 @@ class ChatViewModel @Inject constructor(
         viewModelScope.launch { addMessageUseCase(args.userUID, message) }
 
         val chats = _chatUiState.value.chats.toMutableList()
-        chats.add(MessageUi(textMessage = _chatUiState.value.textMessage, isFromMe = true))
+        chats.add(
+            MessageUi(
+                textMessage = _chatUiState.value.textMessage,
+                isFromMe = true,
+                time = timeConverter.convertLongToTime(Date().time)
+            )
+        )
 
         _chatUiState.update { it.copy(textMessage = "", chats = chats) }
     }

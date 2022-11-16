@@ -18,7 +18,7 @@ data class FriendsUIState(
 class FriendUIMapper @Inject constructor() : Mapper<User, FriendsUIState> {
     override fun map(input: User): FriendsUIState {
         return FriendsUIState(
-            uId = input.uId,
+            uId = input.userID,
             name = input.name,
 //            phoneNumber = input.phoneNumber
         )

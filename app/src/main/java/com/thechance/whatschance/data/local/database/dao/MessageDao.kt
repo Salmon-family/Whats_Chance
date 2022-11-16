@@ -13,7 +13,7 @@ interface MessageDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMessage(message: List<MessageEntity>)
 
-    @Query("SELECT * FROM MESSAGE_TABLE WHERE senderId IN (:userId)")
+    @Query("SELECT * FROM MESSAGE_TABLE WHERE senderId IN (:userId) ORDER BY time DESC")
     fun getUserMessages(userId: String): Flow<List<MessageEntity>>
 
 

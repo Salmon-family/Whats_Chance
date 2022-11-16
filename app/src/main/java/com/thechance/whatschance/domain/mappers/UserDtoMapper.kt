@@ -8,7 +8,7 @@ import javax.inject.Inject
 class UserDtoMapper @Inject constructor() : Mapper<UserDto, User> {
     override fun map(input: UserDto): User {
         return User(
-            uId = input.uId?:"",
+            userID = input.userID?:"",
             name = input.name ?: "",
             phoneNumber = input.phoneNumber ?: ""
         )

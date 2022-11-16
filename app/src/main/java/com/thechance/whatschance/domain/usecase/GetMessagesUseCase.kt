@@ -14,14 +14,17 @@ class GetMessagesUseCase @Inject constructor(
     private val chatRepository: ChatRepository,
     private val getCurrentUser: GetCurrentUserUseCase,
     private val messageDtoToEntityMapper: MessageDtoToEntityMapper,
-    private val messageEntityMapper: MessageEntityMapper
+    private val messageEntityMapper: MessageEntityMapper,
+    private val messageMapper: MessageMapper,
 ) {
     suspend operator fun invoke(senderId: String): Flow<List<Message>> {
+
         return chatRepository.getMessages(getCurrentUser()?.uid ?: "", senderId)
             .flatMapConcat {
                 chatRepository.saveMessagesLocally(it.map(messageDtoToEntityMapper::map))
                 chatRepository.getLocalMessages(senderId).map { it.map(messageEntityMapper::map) }
             }
+//            .map { it.map(messageMapper::map) }
     }
 
 }
