@@ -85,5 +85,13 @@ dependencies {
     //Country Code Picker
     implementation 'com.hbb20:ccp:2.5.0'
 
+    // room dependency
+    def room_version = "2.4.3"
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+
+    //Coil
+    implementation 'io.coil-kt:coil:2.2.2'
 
 }

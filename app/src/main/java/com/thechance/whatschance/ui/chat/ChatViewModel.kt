@@ -19,11 +19,12 @@ import javax.inject.Inject
 @HiltViewModel
 class ChatViewModel @Inject constructor(
     state: SavedStateHandle,
-    private val getUser: GetCurrentUserUseCase,
-    private val addMessage: AddMessageUseCase,
-    private val getMessages: GetMessagesUseCase,
+    private val getCurrentUserUseCase: GetCurrentUserUseCase,
+    private val addMessageUseCase: AddMessageUseCase,
+    private val getMessagesUseCase: GetMessagesUseCase,
 ) : ViewModel(), BaseInteractionListener {
-    val args = ChatFragmentArgs.fromSavedStateHandle(state)
+
+    private val args = ChatFragmentArgs.fromSavedStateHandle(state)
 
     private val _chatUiState = MutableStateFlow(ChatUiState())
     val chatUiState = _chatUiState.asStateFlow()
@@ -31,13 +32,14 @@ class ChatViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            getMessages(args.userUID).collect { list ->
+            getMessagesUseCase(args.userUID).collect { list ->
                 if (list.isNotEmpty()) {
-                    Log.e("DEVFALAH", list.first().toString())
                     _chatUiState.update {
-                        it.copy(chats = list.map {
-                            MessageUi(it.textMessage,
-                                it.sender == (getUser()?.uid ?: ""))
+                        it.copy(chats = list.map { message ->
+                            MessageUi(
+                                message.textMessage,
+                                message.sender == (getCurrentUserUseCase()?.uid ?: "")
+                            )
                         })
                     }
 
@@ -52,10 +54,16 @@ class ChatViewModel @Inject constructor(
     }
 
     fun sendMessage() {
-        addMessage(args.userUID,
-            Message(textMessage = _chatUiState.value.textMessage, sender = getUser()?.uid ?: ""))
+        val message = Message(
+            textMessage = _chatUiState.value.textMessage,
+            sender = getCurrentUserUseCase()?.uid ?: ""
+        )
+
+        addMessageUseCase(args.userUID, message)
+
         val chats = _chatUiState.value.chats.toMutableList()
         chats.add(MessageUi(textMessage = _chatUiState.value.textMessage, isFromMe = true))
+
         _chatUiState.update { it.copy(textMessage = "", chats = chats) }
     }
 }

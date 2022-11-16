@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="item"
             type="com.thechance.whatschance.ui.chat.MessageUi" />
@@ -12,29 +13,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_medium"
         android:background="@android:color/transparent">
 
-        <TextView
-            android:id="@+id/date_first_message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:text="15 Nov" />
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_receiver_chat_background"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date_first_message"
-            android:text="15 Nov"
-            tools:ignore="MissingConstraints">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/text_message"
@@ -43,10 +31,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:paddingHorizontal="@dimen/spacing_medium"
-                android:text="@{item.textMessage}"
                 android:textColor="@color/black"
-                tools:ignore="MissingConstraints"
-                tools:text="testtesttesttesttttesttesttesttest" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_time"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="testtesttesttesttttesttesttesttestsjxjnxjanxjkac c nsc ns cns csmc smc sm cc smc smc smc s,c ,sc m" />
 
             <TextView
                 android:id="@+id/text_time"
@@ -54,11 +44,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="@dimen/spacing_small"
-                android:text="@{item.date}"
+                android:text="7:90 AM"
                 android:textColor="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_message"
-                tools:text="7:90 AM" />
+                app:layout_constraintTop_toBottomOf="@+id/text_message" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
