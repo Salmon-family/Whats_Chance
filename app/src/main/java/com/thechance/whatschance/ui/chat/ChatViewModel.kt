@@ -1,6 +1,5 @@
 package com.thechance.whatschance.ui.chat
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -37,10 +36,7 @@ class ChatViewModel @Inject constructor(
                 if (list.isNotEmpty()) {
                     _chatUiState.update {
                         it.copy(chats = list.map { message ->
-                            MessageUi(
-                                message.textMessage,
-                                message.sender == (getCurrentUserUseCase()?.uid ?: "")
-                            )
+                            MessageUi(message.textMessage, isFromMe = message.fromMe)
                         })
                     }
 
@@ -57,9 +53,9 @@ class ChatViewModel @Inject constructor(
         val message = Message(
             textMessage = _chatUiState.value.textMessage,
             sender = getCurrentUserUseCase()?.uid ?: "",
-            time = Date().time
+            time = Date().time,
         )
-        addMessageUseCase(args.userUID, message)
+        viewModelScope.launch { addMessageUseCase(args.userUID, message) }
 
         val chats = _chatUiState.value.chats.toMutableList()
         chats.add(MessageUi(textMessage = _chatUiState.value.textMessage, isFromMe = true))

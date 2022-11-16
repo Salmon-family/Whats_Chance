@@ -10,7 +10,8 @@ class MessageEntityMapper @Inject constructor() : Mapper<MessageEntity, Message>
         return Message(
             textMessage = input.textMessage,
             sender = input.senderId,
-            time = input.time
+            time = input.time,
+            fromMe = input.isFromMe
         )
     }
 }

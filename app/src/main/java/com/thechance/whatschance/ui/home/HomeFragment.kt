@@ -28,6 +28,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             HomeUIEvents.AddContactEvent -> {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToContactFragment())
             }
+            is HomeUIEvents.OnFriendSelected -> {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToChatFragment(
+                        event.friend.name,
+                        event.friend.uId
+                    )
+                )
+            }
         }
     }
 }

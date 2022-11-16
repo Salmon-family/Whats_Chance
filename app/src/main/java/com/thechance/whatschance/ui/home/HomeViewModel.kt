@@ -40,6 +40,6 @@ class HomeViewModel @Inject constructor(
     }
 
     override fun onFriendSelected(friend: FriendsUIState) {
-
+        _homeEvents.update { Event(HomeUIEvents.OnFriendSelected(friend)) }
     }
 }

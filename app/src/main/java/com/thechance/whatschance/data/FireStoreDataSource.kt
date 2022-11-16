@@ -1,5 +1,7 @@
 package com.thechance.whatschance.data
 
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.snapshots
 import com.thechance.whatschance.data.response.MessageDto
@@ -23,10 +25,10 @@ class FireStoreDataSource @Inject constructor(
             .map { it.toObjects(UserDto::class.java) }
     }
 
-    fun addMessage(uId: String, message: MessageDto): Boolean {
+    fun addMessage(uId: String, message: MessageDto): Task<DocumentReference> {
         val messagesRef = fireStore.collection(MESSAGES_COLLECTION).document(uId)
             .collection(MESSAGE_COLLECTION)
-        return messagesRef.add(message).isSuccessful
+        return messagesRef.add(message)
     }
 
     fun getMessages(uId: String, senderId: String): Flow<List<MessageDto>> {

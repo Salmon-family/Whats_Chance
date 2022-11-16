@@ -2,13 +2,12 @@ package com.thechance.whatschance.domain.mappers
 
 import com.thechance.whatschance.data.local.database.entity.MessageEntity
 import com.thechance.whatschance.domain.models.Message
-import com.thechance.whatschance.ui.Mapper
 import javax.inject.Inject
 
-class MessageToEntityMapper @Inject constructor() : Mapper<Message, MessageEntity> {
-    override fun map(input: Message): MessageEntity {
+class MessageToEntityMapper @Inject constructor() {
+    fun map(input: Message, sendToId: String): MessageEntity {
         return MessageEntity(
-            senderId = input.sender,
+            senderId = sendToId,
             textMessage = input.textMessage,
             id = input.id,
             isFromMe = true,
