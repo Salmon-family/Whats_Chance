@@ -1,5 +1,6 @@
 package com.thechance.whatschance.data
 
+import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -38,6 +39,15 @@ class FireStoreDataSource @Inject constructor(
             ).snapshots().map { it.toObjects(MessageDto::class.java) }
     }
 
+    fun deleteMessages(uId: String) {
+        fireStore.collection(MESSAGES_COLLECTION).document(uId).delete()
+            .addOnSuccessListener {
+                Log.e("TESt","Success")
+            }
+            .addOnFailureListener {
+                Log.e("TESt",it.message.toString())
+            }
+    }
 
     companion object {
         private const val U_ID_KEY = "userID"

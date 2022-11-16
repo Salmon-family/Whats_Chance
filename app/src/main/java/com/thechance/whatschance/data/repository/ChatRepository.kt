@@ -22,6 +22,7 @@ interface ChatRepository {
 
     suspend fun getSavedUserMessages(userId: String): Flow<List<MessageEntity>>
 
+    suspend fun deleteMessages(uId: String)
 }
 
 
@@ -49,4 +50,10 @@ class ChatRepositoryImp @Inject constructor(
     override suspend fun getSavedUserMessages(userId: String): Flow<List<MessageEntity>> {
         return messageDao.getUserMessages(userId)
     }
+
+    override suspend fun deleteMessages(uId: String) {
+        fireStoreDataSource.deleteMessages(uId)
+    }
+
+
 }
