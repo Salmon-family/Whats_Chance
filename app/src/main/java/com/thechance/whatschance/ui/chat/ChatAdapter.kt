@@ -2,10 +2,13 @@ package com.thechance.whatschance.ui.chat
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import com.thechance.whatschance.R
 import com.thechance.whatschance.ui.base.BaseAdapter
 import com.thechance.whatschance.ui.base.BaseInteractionListener
+import com.thechance.whatschance.utilities.formatDate
+import java.util.*
 
 class ChatAdapter(items: List<MessageUi>, listener: BaseInteractionListener) :
     BaseAdapter<MessageUi>(items, listener) {
@@ -14,11 +17,13 @@ class ChatAdapter(items: List<MessageUi>, listener: BaseInteractionListener) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return ItemViewHolder(
             DataBindingUtil.inflate(
-                LayoutInflater.from(parent.context), viewType, parent, false
+                LayoutInflater.from(parent.context),
+                viewType,
+                parent,
+                false
             )
         )
     }
-
 
     override fun getItemViewType(position: Int): Int {
         val position = getItems()[position]
@@ -37,8 +42,9 @@ class ChatAdapter(items: List<MessageUi>, listener: BaseInteractionListener) :
 private fun showSenderItem(message: String): Int {
     val chat = ChatLayout(
         message = message,
-        stickerLayout = R.layout.item_sticker_sender,
-        messageLayout = R.layout.item_chat_sender
+//        stickerLayout = R.layout.item_sticker_sender,
+        messageLayout = R.layout.item_chat_sender,
+        dateMessageLayout = R.layout.item_chat_date
     )
     return checkIfMessageOrSticker(chat)
 }
@@ -46,17 +52,18 @@ private fun showSenderItem(message: String): Int {
 private fun showReceiverItem(message: String): Int {
     val chat = ChatLayout(
         message = message,
-        stickerLayout = R.layout.item_sticker_receiver,
-        messageLayout = R.layout.item_chat_receiver
+//        stickerLayout = R.layout.item_sticker_receiver,
+        messageLayout = R.layout.item_chat_receiver,
+        dateMessageLayout = R.layout.item_chat_date
     )
     return checkIfMessageOrSticker(chat)
 }
 
 private fun checkIfMessageOrSticker(chat: ChatLayout): Int {
     return if (checkString(chat.message)) {
-        chat.stickerLayout
-    } else {
         chat.messageLayout
+    } else {
+        chat.dateMessageLayout
     }
 }
 
