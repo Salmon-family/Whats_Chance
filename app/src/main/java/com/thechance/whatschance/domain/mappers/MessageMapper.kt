@@ -11,6 +11,7 @@ class MessageMapper @Inject constructor():Mapper<MessageDto,Message> {
             id = input.id,
             textMessage = input.textMessage,
             sender = input.sender,
+            time = input.time
         )
     }
 }

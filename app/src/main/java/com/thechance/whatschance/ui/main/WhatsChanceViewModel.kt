@@ -9,7 +9,7 @@ import javax.inject.Inject
 @HiltViewModel
 class WhatsChanceViewModel @Inject constructor(
     private val getColorThemeUseCase: GetColorThemeUseCase,
-    private val getUserLogin: GetUserLoginStatusUseCase
+    private val getUserLogin: GetUserLoginStatusUseCase,
 ) : BaseViewModel() {
 
     init {

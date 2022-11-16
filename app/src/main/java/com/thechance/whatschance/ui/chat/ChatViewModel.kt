@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -56,7 +57,8 @@ class ChatViewModel @Inject constructor(
     fun sendMessage() {
         val message = Message(
             textMessage = _chatUiState.value.textMessage,
-            sender = getCurrentUserUseCase()?.uid ?: ""
+            sender = getCurrentUserUseCase()?.uid ?: "",
+            time = Date().time
         )
 
         addMessageUseCase(args.userUID, message)

@@ -10,7 +10,8 @@ class MessageToDtoMapper @Inject constructor(): Mapper<Message,MessageDto> {
         return MessageDto(
             id = input.id,
             textMessage = input.textMessage,
-            sender = input.sender
+            sender = input.sender,
+            time = input.time
         )
     }
 }

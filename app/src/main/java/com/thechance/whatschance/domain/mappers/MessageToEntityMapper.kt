@@ -11,7 +11,8 @@ class MessageToEntityMapper @Inject constructor() : Mapper<Message, MessageEntit
             userId = input.sender,
             textMessage = input.textMessage,
             id = input.id,
-            isFromMe = true
+            isFromMe = true,
+            time = input.time
         )
     }
 }

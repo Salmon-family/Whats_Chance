@@ -23,9 +23,6 @@ class AuthenticationRepositoryImp @Inject constructor(
         return signInWithAuthCredential(credential)
     }
 
-//    override fun getUserPhone(): String {
-//        return auth.currentUser?.phoneNumber.orEmpty()
-//    }
 
     override fun getUser(): FirebaseUser? {
         return Firebase.auth.currentUser

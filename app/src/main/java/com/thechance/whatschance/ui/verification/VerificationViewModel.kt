@@ -3,7 +3,9 @@ package com.thechance.whatschance.ui.verification
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.PhoneAuthOptions
+import com.thechance.whatschance.data.FireStoreDataSource
 import com.thechance.whatschance.data.PhoneAuthCallBack
+import com.thechance.whatschance.domain.models.User
 import com.thechance.whatschance.domain.usecase.validate.VerifyPhoneUseCase
 import com.thechance.whatschance.utilities.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +18,8 @@ import javax.inject.Inject
 class VerificationViewModel @Inject constructor(
     state: SavedStateHandle,
     val verifyPhoneCode: VerifyPhoneUseCase,
-    private val authCallbacks: PhoneAuthCallBack
+    private val authCallbacks: PhoneAuthCallBack,
+    private val fireStoreDataSource: FireStoreDataSource
 ) : ViewModel() {
 
     val args = VerificationFragmentArgs.fromSavedStateHandle(state)
@@ -41,6 +44,9 @@ class VerificationViewModel @Inject constructor(
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         _verifyCodeEvent.update { Event(VerificationUIEvent.VerifyCodeEvent) }
+                        task.result.user?.let {
+                            fireStoreDataSource.addUser(User(it.uid, "Nada", it.phoneNumber!!))
+                        }
                     } else {
                         _verifyCodeUIState.update { it.copy(error = "Incorrect") }
                     }

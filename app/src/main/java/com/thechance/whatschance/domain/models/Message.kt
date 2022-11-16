@@ -1,7 +1,8 @@
 package com.thechance.whatschance.domain.models
 
-data class Message (
+data class Message(
     val id: String = "",
     val textMessage: String = "",
     val sender: String = "",
+    val time: Long
 )

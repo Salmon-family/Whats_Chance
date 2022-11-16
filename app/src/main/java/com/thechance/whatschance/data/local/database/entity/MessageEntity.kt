@@ -10,4 +10,5 @@ data class MessageEntity(
     val textMessage: String,
     val messageDate: String = "",
     val isFromMe: Boolean,
+    val time: Long
 )
