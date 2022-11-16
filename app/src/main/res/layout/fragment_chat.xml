@@ -19,11 +19,9 @@
             android:id="@+id/chat_recycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:items="@{viewModel.chatUiState.chats}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/layout_chat"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_chat_sender" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,11 +45,11 @@
                 style="@style/TextStyle.Medium"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:afterTextChanged="@{(text) -> viewModel.onTextMessageChange(text)}"
                 android:background="@android:color/transparent"
                 android:hint="@string/chat_hint"
-                android:text="@{viewModel.chatUiState.textMessage}"
-                android:afterTextChanged="@{(text) -> viewModel.onTextMessageChange(text)}"
                 android:paddingVertical="@dimen/spacing_medium"
+                android:text="@{viewModel.chatUiState.textMessage}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/image_send"
                 app:layout_constraintStart_toEndOf="@id/image_icon" />
@@ -60,8 +58,8 @@
                 android:id="@+id/image_send"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/spacing_medium"
                 android:onClick="@{()->viewModel.sendMessage()}"
+                android:padding="@dimen/spacing_medium"
                 android:src="@drawable/send_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />

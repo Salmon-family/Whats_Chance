@@ -16,4 +16,6 @@ interface MessageDao {
     @Query("SELECT * FROM MESSAGE_TABLE WHERE userId IN (:userId)")
     fun getUserMessages(userId: String): Flow<List<MessageEntity>>
 
+    @Query("SELECT * FROM MESSAGE_TABLE WHERE userId IN (:userId) AND messageDate IN (:messageDate)")
+    fun getUserMessagesInSameDay(userId: String, messageDate: String): Flow<List<MessageEntity>>
 }

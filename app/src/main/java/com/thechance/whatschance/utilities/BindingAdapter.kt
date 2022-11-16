@@ -1,10 +1,8 @@
 package com.thechance.whatschance.utilities
 
 import android.annotation.SuppressLint
-import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.thechance.whatschance.ui.chat.ChatViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -26,18 +24,18 @@ fun TextView.bindEpochTimeMsToDate(epochTimeMs: Long) {
     }
 }
 
-@BindingAdapter("bind_date", "bind_message_viewModel")
-fun View.bindShouldMessageShowTimeText(date: TextView, viewModel: ChatViewModel) {
-    val lastIndex = viewModel.chatUiState.value.chats.lastIndex - 1
-    val lastMessage = viewModel.chatUiState.value.chats[lastIndex].date
-    val newMessage = viewModel.chatUiState.value.chats.last().date
-
-    if (lastMessage == newMessage) {
-        this.visibility = View.GONE
-    } else {
-        this.visibility = View.VISIBLE
-        date.text = String.format(viewModel.chatUiState.value.chats.last().date)
-    }
-}
-
-
+//@BindingAdapter("bind_date", "bind_message_viewModel")
+//fun View.bindShouldMessageShowTimeText(date: TextView, viewModel: ChatViewModel) {
+//    val lastIndex = viewModel.chatUiState.value.chats.lastIndex - 1
+//    val lastMessage = viewModel.chatUiState.value.chats[lastIndex].textMessage
+//    val newMessage = viewModel.chatUiState.value.chats.last().date
+//
+//    if (lastMessage == newMessage) {
+//        this.visibility = View.GONE
+//    } else {
+//        this.visibility = View.VISIBLE
+//        date.text = String.format(viewModel.chatUiState.value.chats.last().date)
+//    }
+//}
+//
+//
