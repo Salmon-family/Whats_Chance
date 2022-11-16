@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.thechance.whatschance.ui.login.LoginViewModel" />
+            type="com.thechance.whatschance.ui.authentication.login.LoginViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.login.LoginFragment">
+        tools:context=".ui.authentication.login.LoginFragment">
 
         <ImageView
             android:layout_width="160dp"

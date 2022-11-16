@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.thechance.whatschance.ui.verification.VerificationViewModel" />
+            type="com.thechance.whatschance.ui.authentication.verification.VerificationViewModel" />
 
     </data>
 
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="@dimen/spacing_large"
-        tools:context=".ui.verification.VerificationFragment">
+        tools:context=".ui.authentication.verification.VerificationFragment">
 
         <ImageView
             android:id="@+id/imageView"

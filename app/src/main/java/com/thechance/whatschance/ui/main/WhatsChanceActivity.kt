@@ -1,7 +1,9 @@
 package com.thechance.whatschance.ui.main
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -9,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import com.thechance.whatschance.R
 import com.thechance.whatschance.databinding.ActivityMainBinding
+import com.thechance.whatschance.ui.authentication.AuthenticationActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,13 +34,16 @@ class WhatsChanceActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         val navGraph = navController.graph
-        val startDestination = if (viewModel.isUserLogin()) {
-            R.id.homeFragment
+        if (viewModel.isUserLogin()) {
+            navGraph.setStartDestination(
+                R.id.homeFragment
+            )
+            navController.graph = navGraph
         } else {
-            R.id.loginFragment
+            startActivity(Intent(this, AuthenticationActivity::class.java))
+            this.finish()
         }
-        navGraph.setStartDestination(startDestination)
-        navController.graph = navGraph
+
     }
 
 }

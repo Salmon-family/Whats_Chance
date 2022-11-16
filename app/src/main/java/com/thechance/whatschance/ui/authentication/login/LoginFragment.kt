@@ -1,4 +1,4 @@
-package com.thechance.whatschance.ui.login
+package com.thechance.whatschance.ui.authentication.login
 
 import android.os.Bundle
 import android.view.View
@@ -30,7 +30,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     private fun onEvent(event: LoginUIEvent) {
         if (event is LoginUIEvent.LoginEvent) {
             findNavController().navigate(
-                LoginFragmentDirections.actionLoginFragmentToVerificationFragment(event.phoneNumber)
+                LoginFragmentDirections.actionLoginFragmentToVerificationFragment(
+                    event.phoneNumber
+                )
             )
         }
     }

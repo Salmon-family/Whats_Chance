@@ -1,4 +1,4 @@
-package com.thechance.whatschance.ui.verification
+package com.thechance.whatschance.ui.authentication.verification
 
 import android.os.Bundle
 import android.view.View
@@ -40,7 +40,8 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
 
     private fun checkVerificationCode(event: VerificationUIEvent) {
         if (event is VerificationUIEvent.VerifyCodeEvent) {
-            findNavController().navigate(VerificationFragmentDirections.actionVerificationFragmentToHomeFragment())
+            findNavController().navigate(VerificationFragmentDirections.actionVerificationFragmentToWhatsChanceActivity())
+            requireActivity().finish()
         }
     }
 }

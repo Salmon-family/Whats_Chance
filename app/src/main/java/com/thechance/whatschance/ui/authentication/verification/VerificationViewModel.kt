@@ -1,4 +1,4 @@
-package com.thechance.whatschance.ui.verification
+package com.thechance.whatschance.ui.authentication.verification
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

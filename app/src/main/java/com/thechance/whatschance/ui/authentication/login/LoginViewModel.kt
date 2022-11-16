@@ -1,4 +1,4 @@
-package com.thechance.whatschance.ui.login
+package com.thechance.whatschance.ui.authentication.login
 
 import androidx.lifecycle.ViewModel
 import com.thechance.whatschance.domain.usecase.validate.ValidatePhoneNumberUseCase
