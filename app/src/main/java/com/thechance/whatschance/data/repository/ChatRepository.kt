@@ -7,7 +7,6 @@ import com.thechance.whatschance.data.local.database.dao.MessageDao
 import com.thechance.whatschance.data.local.database.entity.MessageEntity
 import com.thechance.whatschance.data.response.MessageDto
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flatMapConcat
 import javax.inject.Inject
 
 interface ChatRepository {
@@ -22,7 +21,7 @@ interface ChatRepository {
 
     suspend fun getSavedUserMessages(userId: String): Flow<List<MessageEntity>>
 
-    suspend fun deleteMessages(uId: String)
+    suspend fun deleteMessages(uId: String, senderId: String)
 }
 
 
@@ -51,8 +50,8 @@ class ChatRepositoryImp @Inject constructor(
         return messageDao.getUserMessages(userId)
     }
 
-    override suspend fun deleteMessages(uId: String) {
-        fireStoreDataSource.deleteMessages(uId)
+    override suspend fun deleteMessages(uId: String, senderId: String) {
+        fireStoreDataSource.deleteMessages(uId, senderId)
     }
 
 

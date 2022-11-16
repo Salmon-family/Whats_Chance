@@ -20,7 +20,7 @@ class GetMessagesUseCase @Inject constructor(
     suspend operator fun invoke(senderId: String): Flow<List<Message>> {
         return chatRepository.getMessages(getCurrentUser()?.uid ?: "", senderId)
             .flatMapConcat {
-                chatRepository.deleteMessages(uId = getCurrentUser()?.uid ?: "")
+                chatRepository.deleteMessages(uId = getCurrentUser()?.uid ?: "", senderId)
                 chatRepository.saveMessagesLocally(it.map(messageDtoToEntityMapper::map))
                 chatRepository.getLocalMessages(senderId).map { it.map(messageEntityMapper::map) }
             }

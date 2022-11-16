@@ -39,14 +39,19 @@ class FireStoreDataSource @Inject constructor(
             ).snapshots().map { it.toObjects(MessageDto::class.java) }
     }
 
-    fun deleteMessages(uId: String) {
-        fireStore.collection(MESSAGES_COLLECTION).document(uId).delete()
-            .addOnSuccessListener {
-                Log.e("TESt","Success")
+    fun deleteMessages(uId: String, senderId: String) {
+        fireStore.collection(MESSAGES_COLLECTION).document(uId)
+            .collection(MESSAGE_COLLECTION).whereEqualTo(SENDER_ID_KEY, senderId).get()
+            .addOnSuccessListener { documentSnapshots ->
+                for (documentSnapshot in documentSnapshots)
+                    documentSnapshot.reference.delete().addOnFailureListener { e ->
+                        Log.e("TESTTEST", "reference ${documentSnapshot.reference.id}")
+                    }
+            }.addOnFailureListener { e ->
+                Log.e("TESTTEST", e.message.toString())
             }
-            .addOnFailureListener {
-                Log.e("TESt",it.message.toString())
-            }
+
+
     }
 
     companion object {
