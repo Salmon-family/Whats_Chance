@@ -36,17 +36,18 @@ class VerificationViewModel @Inject constructor(
     }
 
     fun onClickVerify() {
+        _verifyCodeUIState.update { it.copy(loading = true) }
         try {
             verifyPhoneCode(verifyCodeUIState.value.code, authCallbacks.getVerificationID())
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         _verifyCodeEvent.update { Event(VerificationUIEvent.VerifyCodeEvent) }
                     } else {
-                        _verifyCodeUIState.update { it.copy(error = "Incorrect") }
+                        _verifyCodeUIState.update { it.copy(error = "The Code Incorrect", loading = false) }
                     }
                 }
         } catch (t: Throwable) {
-            _verifyCodeUIState.update { it.copy(error = "Error in Code") }
+            _verifyCodeUIState.update { it.copy(error = "Error in Code", loading = false) }
         }
     }
 
