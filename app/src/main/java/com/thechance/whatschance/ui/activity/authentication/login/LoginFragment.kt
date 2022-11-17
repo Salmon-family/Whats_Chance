@@ -1,5 +1,6 @@
-package com.thechance.whatschance.ui.authentication.login
+package com.thechance.whatschance.ui.activity.authentication.login
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -25,12 +26,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         binding.pickerCountryCode.setOnCountryChangeListener {
             viewModel.onCountryCodeChange(binding.pickerCountryCode.selectedCountryCodeWithPlus)
         }
+
+        activity?.window?.statusBarColor =  Color.parseColor(viewModel.brandColor.value)
     }
 
     private fun onEvent(event: LoginUIEvent) {
         if (event is LoginUIEvent.LoginEvent) {
             findNavController().navigate(
-                LoginFragmentDirections.actionLoginFragmentToVerificationFragment(
+               LoginFragmentDirections.actionLoginFragmentToVerificationFragment(
                     event.phoneNumber
                 )
             )

@@ -1,4 +1,4 @@
-package com.thechance.whatschance.ui.authentication.login
+package com.thechance.whatschance.ui.activity.authentication.login
 
 data class LoginUIState(
     val countryCode: String = "+1",

@@ -1,4 +1,4 @@
-package com.thechance.whatschance.ui.authentication.verification
+package com.thechance.whatschance.ui.activity.authentication.verification
 
 import android.os.Bundle
 import android.util.Log

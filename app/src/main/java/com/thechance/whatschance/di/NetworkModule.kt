@@ -6,7 +6,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfig
-import com.thechance.whatschance.ui.main.WhatsChanceActivity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

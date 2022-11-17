@@ -1,4 +1,4 @@
-package com.thechance.whatschance.ui.main
+package com.thechance.whatschance.ui.activity.whatsChance
 
 import com.thechance.whatschance.domain.usecase.GetColorThemeUseCase
 import com.thechance.whatschance.domain.usecase.GetUserLoginStatusUseCase

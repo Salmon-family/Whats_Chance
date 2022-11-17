@@ -1,4 +1,4 @@
-package com.thechance.whatschance.ui.authentication.login
+package com.thechance.whatschance.ui.activity.authentication.login
 
 sealed interface LoginUIEvent {
     data class LoginEvent(val phoneNumber: String) : LoginUIEvent

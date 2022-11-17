@@ -5,16 +5,18 @@
 
     <data>
 
+        <import type="android.graphics.Color" />
+
         <variable
             name="viewModel"
-            type="com.thechance.whatschance.ui.authentication.login.LoginViewModel" />
+            type="com.thechance.whatschance.ui.activity.authentication.login.LoginViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.authentication.login.LoginFragment">
+        tools:context=".ui.activity.authentication.login.LoginFragment">
 
         <ImageView
             android:layout_width="160dp"
@@ -102,6 +104,7 @@
             android:layout_marginEnd="@dimen/spacing_large"
             android:layout_marginBottom="@dimen/spacing_large"
             android:contentDescription="@string/todo"
+            android:backgroundTint="@{Color.parseColor(viewModel.brandColor)}"
             android:onClick="@{() -> viewModel.login()}"
             android:src="@drawable/ic_arrow_left"
             app:borderWidth="0dp"

@@ -1,4 +1,4 @@
-package com.thechance.whatschance.ui.authentication
+package com.thechance.whatschance.ui.activity.authentication
 
 import android.graphics.Color
 import android.os.Bundle
@@ -15,6 +15,10 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>() {
         get() = R.layout.activity_authentication
     override val viewModel: AuthenticationViewModel by viewModels()
 
+    override fun onStart() {
+        super.onStart()
+        window.statusBarColor = Color.parseColor(viewModel.brandColor.value)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
