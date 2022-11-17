@@ -41,6 +41,7 @@ class ChatRepositoryImp @Inject constructor(
         fireStoreDataSource.getMessages(uId, senderId).collect {
             Log.e("TESTTEST", it.toString())
             messageDao.insertMessage(it.map { messageDtoToEntityMapper.map(it) })
+            deleteMessages(uId, senderId)
         }
     }
 

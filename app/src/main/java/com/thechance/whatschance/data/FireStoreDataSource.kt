@@ -50,8 +50,6 @@ class FireStoreDataSource @Inject constructor(
             }.addOnFailureListener { e ->
                 Log.e("TESTTEST", e.message.toString())
             }
-
-
     }
 
     companion object {
