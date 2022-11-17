@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.thechance.whatschance.ui.activity.authentication.login.LoginFragment"
+        android:name="com.thechance.whatschance.ui.authentication.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/verificationFragment"
-        android:name="com.thechance.whatschance.ui.activity.authentication.verification.VerificationFragment"
+        android:name="com.thechance.whatschance.ui.authentication.verification.VerificationFragment"
         android:label="fragment_verification"
         tools:layout="@layout/fragment_verification">
 
@@ -36,7 +36,7 @@
 
     <activity
         android:id="@+id/whatsChanceActivity"
-        android:name="com.thechance.whatschance.ui.activity.whatsChance.WhatsChanceActivity"
+        android:name="com.thechance.whatschance.ui.main.WhatsChanceActivity"
         android:label="WhatsChanceActivity" />
 
 </navigation>

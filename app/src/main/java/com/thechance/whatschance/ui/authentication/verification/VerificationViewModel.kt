@@ -1,4 +1,4 @@
-package com.thechance.whatschance.ui.activity.authentication.verification
+package com.thechance.whatschance.ui.authentication.verification
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -16,7 +16,8 @@ class VerificationViewModel @Inject constructor(
     getColorThemeUseCase: GetColorThemeUseCase,
 ) : BaseViewModel() {
 
-    val args = VerificationFragmentArgs.fromSavedStateHandle(state)
+    val args =
+        VerificationFragmentArgs.fromSavedStateHandle(state)
 
     private val _verifyCodeUIState = MutableStateFlow(VerificationUIState())
     val verifyCodeUIState = _verifyCodeUIState.asStateFlow()

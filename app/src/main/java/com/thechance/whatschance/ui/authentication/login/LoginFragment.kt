@@ -1,4 +1,4 @@
-package com.thechance.whatschance.ui.activity.authentication.login
+package com.thechance.whatschance.ui.authentication.login
 
 import android.graphics.Color
 import android.os.Bundle
@@ -33,7 +33,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     private fun onEvent(event: LoginUIEvent) {
         if (event is LoginUIEvent.LoginEvent) {
             findNavController().navigate(
-               LoginFragmentDirections.actionLoginFragmentToVerificationFragment(
+                LoginFragmentDirections.actionLoginFragmentToVerificationFragment(
                     event.phoneNumber
                 )
             )

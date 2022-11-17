@@ -1,4 +1,4 @@
-package com.thechance.whatschance.ui.activity.authentication.verification
+package com.thechance.whatschance.ui.authentication.verification
 
 import android.os.Bundle
 import android.util.Log
@@ -33,7 +33,7 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
         authenticate(viewModel.args.phone)
 
         binding.fabVerify.setOnClickListener {
-            getCode(viewModel.verifyCodeUIState.value.code, authCallbacks.getVerificationID())
+            getVerificationCode(viewModel.verifyCodeUIState.value.code, authCallbacks.getVerificationID())
         }
     }
 
@@ -47,7 +47,7 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
         PhoneAuthProvider.verifyPhoneNumber(options)
     }
 
-    private fun getCode(userSmsCode: String, verificationID: String): Task<AuthResult> {
+    private fun getVerificationCode(userSmsCode: String, verificationID: String): Task<AuthResult> {
         return if (userSmsCode.isNotBlank() && userSmsCode.length == 6) {
             onVerifyOtp(userSmsCode, verificationID)
         } else {

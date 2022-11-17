@@ -1,4 +1,4 @@
-package com.thechance.whatschance.ui.activity.authentication.verification
+package com.thechance.whatschance.ui.authentication.verification
 
 data class VerificationUIState (
     val code: String = "",

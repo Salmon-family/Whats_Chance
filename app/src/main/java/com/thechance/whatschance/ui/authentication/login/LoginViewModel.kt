@@ -1,4 +1,4 @@
-package com.thechance.whatschance.ui.activity.authentication.login
+package com.thechance.whatschance.ui.authentication.login
 
 import com.thechance.whatschance.domain.usecase.GetColorThemeUseCase
 import com.thechance.whatschance.domain.usecase.ValidatePhoneNumberUseCase
