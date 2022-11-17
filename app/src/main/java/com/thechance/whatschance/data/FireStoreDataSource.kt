@@ -28,7 +28,7 @@ class FireStoreDataSource @Inject constructor(
 
 
     companion object{
-        private const val U_ID_KEY = "uId"
+        private const val U_ID_KEY = "userID"
         private const val SENDER_ID_KEY = "sender"
         private const val USERS_COLLECTION = "devfalahUsers"
         private const val MESSAGES_COLLECTION = "devfalahMessages"

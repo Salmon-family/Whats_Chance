@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthenticationViewModel @Inject constructor(
-    private val getColorThemeUseCase: GetColorThemeUseCase,
+    getColorThemeUseCase: GetColorThemeUseCase,
 ) : BaseViewModel() {
 
     init {

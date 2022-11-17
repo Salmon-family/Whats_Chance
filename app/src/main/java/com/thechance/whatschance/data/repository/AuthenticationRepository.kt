@@ -7,9 +7,5 @@ import com.google.firebase.auth.PhoneAuthOptions
 
 interface AuthenticationRepository {
 
-    fun sendVerificationCode(options: PhoneAuthOptions)
-
-    fun onVerifyOtp(code: String, verificationID: String): Task<AuthResult>
-
     fun getUser(): FirebaseUser?
 }
