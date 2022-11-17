@@ -32,11 +32,9 @@ class FireStoreDataSource @Inject constructor(
         return messagesRef.add(message)
     }
 
-    fun getMessages(uId: String, senderId: String): Flow<List<MessageDto>> {
+    fun getMessages(uId: String): Flow<List<MessageDto>> {
         return fireStore.collection(MESSAGES_COLLECTION).document(uId)
-            .collection(MESSAGE_COLLECTION).whereEqualTo(
-                SENDER_ID_KEY, senderId
-            ).snapshots().map { it.toObjects(MessageDto::class.java) }
+            .collection(MESSAGE_COLLECTION).snapshots().map { it.toObjects(MessageDto::class.java) }
     }
 
     fun deleteMessages(uId: String, senderId: String) {

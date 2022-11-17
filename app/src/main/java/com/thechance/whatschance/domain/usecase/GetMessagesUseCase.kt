@@ -1,5 +1,6 @@
 package com.thechance.whatschance.domain.usecase
 
+import android.util.Log
 import com.thechance.whatschance.data.repository.ChatRepository
 import com.thechance.whatschance.domain.mappers.MessageDtoToEntityMapper
 import com.thechance.whatschance.domain.mappers.MessageEntityMapper
@@ -17,19 +18,20 @@ class GetMessagesUseCase @Inject constructor(
     private val messageMapper: MessageMapper,
 ) {
     suspend operator fun invoke(senderId: String): Flow<List<Message>> {
-        CoroutineScope(Dispatchers.IO).launch {
-            refreshMessages(senderId)
-        }
         return chatRepository.getLocalMessages(senderId).map { it.map(messageEntityMapper::map)}
     }
 
 
 
 
-    private suspend fun refreshMessages(senderId: String){
-               chatRepository.refreshMessages(getCurrentUser()?.uid ?: "",senderId).collect {
-                   chatRepository.saveMessagesLocally(it.map(messageDtoToEntityMapper::map))
-               }
+    fun refreshMessages(){
+        CoroutineScope(Dispatchers.IO).launch {
+            chatRepository.refreshMessages(getCurrentUser()?.uid ?: "").collect {
+                chatRepository.saveMessagesLocally(it.map(messageDtoToEntityMapper::map))
+                Log.i("test_msg", it.toString())
+            }
+        }
+
     }
 
 }

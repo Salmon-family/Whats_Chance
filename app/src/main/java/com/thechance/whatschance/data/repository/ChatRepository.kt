@@ -18,7 +18,7 @@ interface ChatRepository {
 
     fun addMessage(uId: String, message: MessageDto): Task<DocumentReference>
 
-    suspend fun refreshMessages(uId: String, senderId: String) : Flow<List<MessageDto>>
+    suspend fun refreshMessages(uId: String) : Flow<List<MessageDto>>
 
     suspend fun getLocalMessages(senderId: String): Flow<List<MessageEntity>>
 
@@ -40,8 +40,8 @@ class ChatRepositoryImp @Inject constructor(
         return fireStoreDataSource.addMessage(uId, message)
     }
 
-    override suspend fun refreshMessages(uId: String, senderId: String) : Flow<List<MessageDto>> {
-        return fireStoreDataSource.getMessages(uId, senderId)
+    override suspend fun refreshMessages(uId: String) : Flow<List<MessageDto>> {
+        return fireStoreDataSource.getMessages(uId)
     }
 
     override suspend fun getLocalMessages(senderId: String): Flow<List<MessageEntity>> {

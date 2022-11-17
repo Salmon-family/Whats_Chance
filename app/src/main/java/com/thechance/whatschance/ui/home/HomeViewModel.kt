@@ -2,6 +2,7 @@ package com.thechance.whatschance.ui.home
 
 import androidx.lifecycle.viewModelScope
 import com.thechance.whatschance.domain.usecase.GetColorThemeUseCase
+import com.thechance.whatschance.domain.usecase.GetMessagesUseCase
 import com.thechance.whatschance.domain.usecase.GetMyFriendsUseCase
 import com.thechance.whatschance.ui.base.BaseViewModel
 import com.thechance.whatschance.utilities.Event
@@ -15,6 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     getColorThemeUseCase: GetColorThemeUseCase,
+    getMessagesUseCase: GetMessagesUseCase,
     private val getMyFriends: GetMyFriendsUseCase,
     private val friendUIMapper: FriendUIMapper
 ) : BaseViewModel(), ChatsAdapterListener {
@@ -26,6 +28,8 @@ class HomeViewModel @Inject constructor(
     val homeEvents = _homeEvents.asStateFlow()
 
     init {
+        getMessagesUseCase.refreshMessages()
+
         getColor(getColorThemeUseCase)
         viewModelScope.launch {
             getMyFriends().collect { friends ->
