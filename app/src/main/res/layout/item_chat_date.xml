@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="item"
+            type="com.thechance.whatschance.ui.chat.MessageUi" />
     </data>
 
 
@@ -11,5 +14,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/round_background"
         android:padding="@dimen/spacing_too_small"
-        android:text="5 Aug" />
+        android:text="@{item.date}"
+        tools:text="25 Nov"/>
 </layout>

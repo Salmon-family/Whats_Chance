@@ -18,7 +18,7 @@ interface ChatRepository {
 
     suspend fun getSavedUserMessages(userId: String): Flow<List<MessageEntity>>
 
-    suspend fun getUserMessagesInSameDay(userId: String, messageDate: String): Flow<List<MessageEntity>>
+    suspend fun getUserMessagesInSameDay(userId: String, messageDate: String) : Flow<List<MessageEntity>>
 
 }
 

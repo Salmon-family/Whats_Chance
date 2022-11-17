@@ -8,10 +8,12 @@ import com.thechance.whatschance.domain.models.Message
 import com.thechance.whatschance.domain.usecase.AddMessageUseCase
 import com.thechance.whatschance.domain.usecase.GetCurrentUserUseCase
 import com.thechance.whatschance.domain.usecase.GetMessagesUseCase
+import com.thechance.whatschance.domain.usecase.GetUserMessagesInSameDayUseCase
 import com.thechance.whatschance.ui.base.BaseInteractionListener
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,13 +24,13 @@ class ChatViewModel @Inject constructor(
     private val getCurrentUserUseCase: GetCurrentUserUseCase,
     private val addMessageUseCase: AddMessageUseCase,
     private val getMessagesUseCase: GetMessagesUseCase,
+    private val getUserMessagesInSameDayUseCase: GetUserMessagesInSameDayUseCase
 ) : ViewModel(), BaseInteractionListener {
 
     private val args = ChatFragmentArgs.fromSavedStateHandle(state)
 
     private val _chatUiState = MutableStateFlow(ChatUiState())
     val chatUiState = _chatUiState.asStateFlow()
-
 
     init {
         viewModelScope.launch {
@@ -38,11 +40,11 @@ class ChatViewModel @Inject constructor(
                         it.copy(chats = list.map { message ->
                             MessageUi(
                                 message.textMessage,
-                                message.sender == (getCurrentUserUseCase()?.uid ?: "")
+                                message.sender == (getCurrentUserUseCase()?.uid ?: ""),
+                                date = message.date
                             )
                         })
                     }
-
                 }
             }
         }
