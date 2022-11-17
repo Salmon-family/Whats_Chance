@@ -18,7 +18,7 @@ interface ChatRepository {
 
     suspend fun getSavedUserMessages(userId: String): Flow<List<MessageEntity>>
 
-    suspend fun getUserMessagesInSameDay(userId: String, messageDate: String) : Flow<List<MessageEntity>>
+    suspend fun getUserMessagesInSameDay(userId: String, messageDate: List<String>) : Flow<List<MessageEntity>>
 
 }
 
@@ -45,7 +45,7 @@ class ChatRepositoryImp @Inject constructor(
 
     override suspend fun getUserMessagesInSameDay(
         userId: String,
-        messageDate: String,
+        messageDate: List<String>,
     ): Flow<List<MessageEntity>> {
         return messageDao.getUserMessagesInSameDay(userId,messageDate)
     }

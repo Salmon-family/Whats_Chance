@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,21 +34,22 @@ class ChatViewModel @Inject constructor(
     val chatUiState = _chatUiState.asStateFlow()
 
     init {
-        viewModelScope.launch {
-            getMessagesUseCase(args.userUID).collect { list ->
-                if (list.isNotEmpty()) {
-                    _chatUiState.update {
-                        it.copy(chats = list.map { message ->
-                            MessageUi(
-                                message.textMessage,
-                                message.sender == (getCurrentUserUseCase()?.uid ?: ""),
-                                date = message.date
-                            )
-                        })
-                    }
-                }
-            }
-        }
+//        viewModelScope.launch {
+//            getMessagesUseCase(args.userUID).collect { list ->
+//                if (list.isNotEmpty()) {
+//                    _chatUiState.update {
+//                        it.copy(chats = list.map { message ->
+//                            MessageUi(
+//                                message.textMessage,
+//                                message.sender == (getCurrentUserUseCase()?.uid ?: ""),
+//                                date = message.date
+//                            )
+//                        })
+//                    }
+//                }
+//            }
+//        }
+        getAllMessageInSameDay()
         Log.e("TEST", "${args.userName}  \n${args.userUID}")
     }
 
@@ -67,5 +69,23 @@ class ChatViewModel @Inject constructor(
         chats.add(MessageUi(textMessage = _chatUiState.value.textMessage, isFromMe = true))
 
         _chatUiState.update { it.copy(textMessage = "", chats = chats) }
+    }
+
+    private fun getAllMessageInSameDay() {
+        viewModelScope.launch {
+            getUserMessagesInSameDayUseCase(args.userUID).collect { list ->
+                if (list.isNotEmpty()) {
+                    _chatUiState.update {
+                        it.copy(chats = list.map { message ->
+                            MessageUi(
+                                message.textMessage,
+                                message.sender == (getCurrentUserUseCase()?.uid ?: ""),
+                                date = message.date
+                            )
+                        })
+                    }
+                }
+            }
+        }
     }
 }
