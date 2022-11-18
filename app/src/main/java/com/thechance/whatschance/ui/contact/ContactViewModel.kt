@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thechance.whatschance.domain.usecase.GetUsersUseCase
 import com.thechance.whatschance.domain.usecase.SaveUsersLocallyUseCase
-import com.thechance.whatschance.domain.usecase.SearchUsersUseCase
 import com.thechance.whatschance.utilities.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,7 +18,6 @@ class ContactViewModel @Inject constructor(
     private val userUiMapper: UserUiMapper,
     private val userMapper: UserMapper,
     private val saveUserUseCase: SaveUsersLocallyUseCase,
-    private val searchUsersUseCase: SearchUsersUseCase,
 ) : ViewModel(), ContactInteractionListener {
 
     private val _contactUiState = MutableStateFlow(ContactUiState())
@@ -50,11 +48,12 @@ class ContactViewModel @Inject constructor(
 
     private fun onSearch(searchQuery: String) {
         viewModelScope.launch {
-            searchUsersUseCase(searchQuery = searchQuery).collect { users ->
+            getUsers().collect { users ->
+                val searchResult = users.filter {
+                    it.name.lowercase().startsWith(searchQuery.lowercase())
+                }
                 _contactUiState.update { uiState ->
-                    uiState.copy(users = users.map {
-                        userUiMapper.map(it)
-                    })
+                    uiState.copy(users = searchResult.map { userUiMapper.map(it) })
                 }
             }
         }
