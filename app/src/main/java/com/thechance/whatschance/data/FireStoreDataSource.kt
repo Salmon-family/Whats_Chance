@@ -1,10 +1,11 @@
 package com.thechance.whatschance.data
 
-import android.util.Log
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.snapshots
+import com.google.firebase.ktx.Firebase
 import com.thechance.whatschance.data.response.MessageDto
 import com.thechance.whatschance.data.response.UserDto
 import com.thechance.whatschance.domain.models.User
@@ -37,24 +38,20 @@ class FireStoreDataSource @Inject constructor(
             .collection(MESSAGE_COLLECTION).snapshots().map { it.toObjects(MessageDto::class.java) }
     }
 
-    fun deleteMessages(uId: String, senderId: String) {
-        fireStore.collection(MESSAGES_COLLECTION).document(uId)
-            .collection(MESSAGE_COLLECTION).whereEqualTo(SENDER_ID_KEY, senderId).get()
+    fun deleteMessages() {
+        fireStore.collection(MESSAGES_COLLECTION)
+            .document(Firebase.auth.uid ?: "")
+            .collection(MESSAGE_COLLECTION).get()
             .addOnSuccessListener { documentSnapshots ->
                 for (documentSnapshot in documentSnapshots)
-                    documentSnapshot.reference.delete().addOnFailureListener { e ->
-                        Log.e("TESTTEST", "reference ${documentSnapshot.reference.id}")
-                    }
-            }.addOnFailureListener { e ->
-                Log.e("TESTTEST", e.message.toString())
+                    documentSnapshot.reference.delete()
             }
     }
 
     companion object {
         private const val U_ID_KEY = "userID"
-        private const val SENDER_ID_KEY = "sender"
-        private const val USERS_COLLECTION = "devfalahUsers"
-        private const val MESSAGES_COLLECTION = "devfalahMessages"
+        private const val USERS_COLLECTION = "users"
+        private const val MESSAGES_COLLECTION = "theChanceMessages"
         private const val MESSAGE_COLLECTION = "messages"
     }
 }
