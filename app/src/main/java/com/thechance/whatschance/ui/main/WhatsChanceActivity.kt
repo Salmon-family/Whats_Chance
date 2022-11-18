@@ -1,14 +1,14 @@
 package com.thechance.whatschance.ui.main
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.databinding.DataBindingUtil
-import androidx.navigation.fragment.NavHostFragment
 import com.thechance.whatschance.R
-import com.thechance.whatschance.databinding.ActivityMainBinding
+import com.thechance.whatschance.databinding.ActivityWhatsChanceBinding
+import com.thechance.whatschance.ui.authentication.AuthenticationActivity
+import com.thechance.whatschance.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,8 +24,6 @@ class WhatsChanceActivity : BaseActivity<ActivityWhatsChanceBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-        supportRequestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         window.statusBarColor = Color.parseColor(viewModel.brandColor.value)
         setNavigationGraph()
     }
