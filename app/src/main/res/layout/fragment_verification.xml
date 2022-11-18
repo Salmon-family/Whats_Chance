@@ -88,12 +88,50 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/otp_edit_text" />
 
+        <TextView
+            android:id="@+id/chronometer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/timer(viewModel.verifyCodeUIState.time)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/error_message"
+            />
+
+        <TextView
+            android:id="@+id/question"
+            style="@style/TextStyle.Small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:maxLines="2"
+            android:text="Don't you get the code?"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chronometer2" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/appCompatButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/brand_color"
+            android:text="Resend"
+            app:isClickable="@{viewModel.verifyCodeUIState.enableResend}"
+            android:textColor="@color/white"
+            android:onClick="@{() -> viewModel.resend()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/question" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_loading"
             android:layout_width="128dp"
             android:layout_height="128dp"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:isVisible="@{viewModel.verifyCodeUIState.loading}"
             app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
             app:layout_constraintEnd_toEndOf="parent"

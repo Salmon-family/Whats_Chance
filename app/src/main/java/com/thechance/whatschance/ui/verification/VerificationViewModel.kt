@@ -1,5 +1,7 @@
 package com.thechance.whatschance.ui.verification
 
+import android.os.CountDownTimer
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.PhoneAuthOptions
@@ -11,6 +13,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
+
 
 @HiltViewModel
 class VerificationViewModel @Inject constructor(
@@ -29,6 +32,21 @@ class VerificationViewModel @Inject constructor(
 
     fun sendSmsCode(options: PhoneAuthOptions) {
         verifyPhoneCode.sendAuthenticationCode(options)
+    }
+
+    fun startTimer(){
+        object: CountDownTimer(20000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                _verifyCodeUIState.update { it.copy(time = millisUntilFinished / 1000, clickResend = false, enableResend = false) }
+            }
+            override fun onFinish() {
+                _verifyCodeUIState.update { it.copy(enableResend = true) }
+            }
+        }.start()
+    }
+
+    fun resend(){
+        _verifyCodeUIState.update { it.copy(clickResend = true, enableResend = false) }
     }
 
     fun onCodeChange(smsCode: CharSequence) {

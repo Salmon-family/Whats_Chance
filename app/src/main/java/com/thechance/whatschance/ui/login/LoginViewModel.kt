@@ -1,5 +1,7 @@
 package com.thechance.whatschance.ui.login
 
+import android.os.CountDownTimer
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.thechance.whatschance.domain.usecase.validate.ValidatePhoneNumberUseCase
 import com.thechance.whatschance.utilities.Event
@@ -31,7 +33,6 @@ class LoginViewModel @Inject constructor(
 
     fun login() {
         _loginUIState.update { it.copy(error = "") }
-
         try {
             if (verifyPhoneNumber(loginUIState.value.phoneNumber)) {
                 _loginEvent.update { Event(LoginUIEvent.LoginEvent(loginUIState.value.getFullPhoneNumber())) }
