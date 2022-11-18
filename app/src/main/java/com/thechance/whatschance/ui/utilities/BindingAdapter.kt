@@ -34,14 +34,9 @@ fun setSticker(view: ImageView, stickerName: String) {
         view.load(stickerName)
     }
 
-    @BindingAdapter("app:isVisible")
-    fun <T> isVisible(view: View, value:Boolean) {
-        view.isVisible = value
-    }
+}
 
-    @BindingAdapter("app:isClickable")
-    fun <T> isClickable(view: View, value:Boolean) {
-        view.isEnabled = value
-    }
-
+@BindingAdapter("app:isVisible")
+fun <T> isVisible(view: View, value:Boolean) {
+    view.isVisible = value
 }

@@ -111,21 +111,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chronometer2" />
 
-
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/appCompatButton3"
+            android:id="@+id/containedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_medium"
             android:layout_marginTop="8dp"
-            android:backgroundTint="@color/brand_color"
-            android:text="Resend"
-            app:isClickable="@{viewModel.verifyCodeUIState.enableResend}"
-            android:textColor="@color/white"
+            android:enabled="@{viewModel.verifyCodeUIState.enableResend}"
+            android:text="@string/resend"
             android:onClick="@{() -> viewModel.resend()}"
+            android:textColor="@color/white"
+            app:cornerRadius="@dimen/radius_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/question" />
+            app:layout_constraintTop_toBottomOf="@+id/question"
+            />
+
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_loading"
