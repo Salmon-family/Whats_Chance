@@ -11,10 +11,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.thechance.whatschance.R
 import com.thechance.whatschance.data.PhoneAuthCallBack
 import com.thechance.whatschance.databinding.FragmentVerificationBinding
+import com.thechance.whatschance.domain.models.User
 import com.thechance.whatschance.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
@@ -24,8 +26,9 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
     override val layoutIdFragment = R.layout.fragment_verification
     override val viewModel: VerificationViewModel by viewModels()
 
-    private val authCallbacks = PhoneAuthCallBack()
+    private val USERS_COLLECTION = "users"
 
+    private val authCallbacks = PhoneAuthCallBack()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,7 +36,10 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
         authenticate(viewModel.args.phone)
 
         binding.fabVerify.setOnClickListener {
-            getVerificationCode(viewModel.verifyCodeUIState.value.code, authCallbacks.getVerificationID())
+            getVerificationCode(
+                viewModel.verifyCodeUIState.value.code,
+                authCallbacks.getVerificationID()
+            )
         }
     }
 
@@ -63,10 +69,23 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     findNavController().navigate(VerificationFragmentDirections.actionVerificationFragmentToWhatsChanceActivity())
+                    task.result.user?.let {
+                        addUser(User(it.uid, "Test${((0..10).random())}", it.phoneNumber!!))
+                    }
+
                     requireActivity().finish()
                 } else {
                     Log.i("ErrorOfListener", "Error")
                 }
             }
     }
+
+    private fun addUser(user: User) {
+        val userRef =
+            FirebaseFirestore.getInstance().collection(USERS_COLLECTION)
+                .document(user.userID)
+        userRef.set(user)
+    }
+
+
 }

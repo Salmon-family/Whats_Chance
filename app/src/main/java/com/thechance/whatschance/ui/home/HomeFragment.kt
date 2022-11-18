@@ -17,6 +17,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setTitle(true, getString(R.string.app_name))
+        binding.recyclerViewChats.adapter = HomeAdapter(emptyList(), viewModel)
         collectLast(viewModel.homeEvents) {
             it.getContentIfNotHandled()?.let { onEvent(it) }
         }
@@ -26,6 +28,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         when (event) {
             HomeUIEvents.AddContactEvent -> {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToContactFragment())
+            }
+            is HomeUIEvents.OnFriendSelected -> {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToChatFragment(
+                        event.friend.name,
+                        event.friend.uId
+                    )
+                )
             }
         }
     }

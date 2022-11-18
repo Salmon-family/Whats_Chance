@@ -19,6 +19,7 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>() {
         super.onStart()
         window.statusBarColor = Color.parseColor(viewModel.brandColor.value)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)

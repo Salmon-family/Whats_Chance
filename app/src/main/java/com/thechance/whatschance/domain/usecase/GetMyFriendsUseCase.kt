@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class GetSavedUsers @Inject constructor(
+class GetMyFriendsUseCase @Inject constructor(
     private val userRepository: UserRepository,
     private val userEntityMapper: UserEntityMapper,
 ) {

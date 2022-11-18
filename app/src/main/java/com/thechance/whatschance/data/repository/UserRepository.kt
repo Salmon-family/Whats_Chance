@@ -5,7 +5,6 @@ import com.thechance.whatschance.data.local.database.dao.UserDao
 import com.thechance.whatschance.data.local.database.entity.UserEntity
 import com.thechance.whatschance.data.response.UserDto
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 interface UserRepository {
@@ -14,13 +13,16 @@ interface UserRepository {
     suspend fun saveUsersLocally(user: UserEntity)
 
     suspend fun getSavedUsers(): Flow<List<UserEntity>>
+
+    suspend fun saveUser(user: UserEntity)
+
 }
 
 class UserRepositoryImp @Inject constructor(
     private val fireStoreDataSource: FireStoreDataSource,
     private val userDao: UserDao,
 ) : UserRepository {
-    override suspend fun getUsers(uId:String): Flow<List<UserDto>> {
+    override suspend fun getUsers(uId: String): Flow<List<UserDto>> {
         return fireStoreDataSource.getUsers(uId)
     }
 
@@ -30,5 +32,9 @@ class UserRepositoryImp @Inject constructor(
 
     override suspend fun getSavedUsers(): Flow<List<UserEntity>> {
         return userDao.getUsers()
+    }
+
+    override suspend fun saveUser(user: UserEntity) {
+        userDao.insertUser(user)
     }
 }

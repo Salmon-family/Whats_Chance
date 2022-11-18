@@ -5,9 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "MESSAGE_TABLE")
 data class MessageEntity(
-    @PrimaryKey val id: String,
-    val userId: String,
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    val senderId: String,
     val textMessage: String,
-    val messageDate: String = "",
     val isFromMe: Boolean,
+    val time: Long
 )
