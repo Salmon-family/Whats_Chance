@@ -18,6 +18,7 @@ import com.thechance.whatschance.data.PhoneAuthCallBack
 import com.thechance.whatschance.databinding.FragmentVerificationBinding
 import com.thechance.whatschance.domain.models.User
 import com.thechance.whatschance.ui.base.BaseFragment
+import com.thechance.whatschance.utilities.collectLast
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 
@@ -35,6 +36,10 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
 
         authenticate(viewModel.args.phone)
 
+        collectLast(viewModel.verifyCodeUIState){
+            if (it.clickResend){ authenticate(viewModel.args.phone) }
+        }
+
         binding.fabVerify.setOnClickListener {
             getVerificationCode(
                 viewModel.verifyCodeUIState.value.code,
@@ -51,6 +56,7 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
             .setPhoneNumber(phone)
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
+        viewModel.startTimer()
     }
 
     private fun getVerificationCode(userSmsCode: String, verificationID: String): Task<AuthResult> {

@@ -7,6 +7,7 @@
     <string name="phone_number">Phone Number</string>
     <string name="verification_sending">We’re sending an SMS with a verification code\n
         to your phone number %1$s</string>
+    <string name="timer">00 : %1$s</string>
     <string name="search_people">Search people</string>
     <string name="chat_hint">Type your message....</string>
     <string name="whats_chance">WhatsChance</string>
@@ -14,4 +15,5 @@
     <string name="start_your_first_conversation">Start your first conversation!</string>
 
     <string name="verification_failed">Verification Failed!!</string>
+    <string name="resend">Resend</string>
 </resources>
