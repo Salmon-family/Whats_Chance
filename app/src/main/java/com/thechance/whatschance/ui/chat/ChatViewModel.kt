@@ -52,8 +52,7 @@ class ChatViewModel @Inject constructor(
 //            }
 //        }
         getAllMessageInSameDay(args.userUID)
-        showPlaceHolder(args.userUID)
-        Log.i("TEST_ONE", _chatUiState.value.chats.toString())
+        showPlaceHolder(args.userUID, )
     }
 
     fun onTextMessageChange(text: CharSequence) {
@@ -86,7 +85,7 @@ class ChatViewModel @Inject constructor(
                 if (list.isNotEmpty()) {
                     _chatUiState.update {
                         it.copy(
-                            placeHolder = "",
+                            placeHolder = "Today",
                             chats = list.map { message ->
                                 MessageUi(
                                     message.textMessage,
@@ -106,7 +105,7 @@ class ChatViewModel @Inject constructor(
             getUserMessagesInSameDayUseCase(userId).collect { list ->
                 if (list.isNotEmpty()) {
                     _chatUiState.update {
-                        it.copy(placeHolder = "")
+                        it.copy(placeHolder = "Today")
                     }
                     updateChatItems(ChatItemUIState.DateText(_chatUiState.value.placeHolder))
                 }
