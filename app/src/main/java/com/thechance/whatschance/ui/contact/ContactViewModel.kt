@@ -17,7 +17,7 @@ class ContactViewModel @Inject constructor(
     private val getUsers: GetUsersUseCase,
     private val userUiMapper: UserUiMapper,
     private val userMapper: UserMapper,
-    private val saveUserUseCase: SaveUsersLocallyUseCase
+    private val saveUserUseCase: SaveUsersLocallyUseCase,
 ) : ViewModel(), ContactInteractionListener {
 
     private val _contactUiState = MutableStateFlow(ContactUiState())
@@ -40,5 +40,22 @@ class ContactViewModel @Inject constructor(
             saveUserUseCase(userMapper.map(user))
         }
         _contactEvents.update { Event(ContactUIEvents.SelectedUser(user)) }
+    }
+
+    fun onSearchInputChanged(searchQuery: CharSequence) {
+        onSearch(searchQuery.toString())
+    }
+
+    private fun onSearch(searchQuery: String) {
+        viewModelScope.launch {
+            getUsers().collect { users ->
+                val searchResult = users.filter {
+                    it.name.lowercase().startsWith(searchQuery.lowercase())
+                }
+                _contactUiState.update { uiState ->
+                    uiState.copy(users = searchResult.map { userUiMapper.map(it) })
+                }
+            }
+        }
     }
 }
