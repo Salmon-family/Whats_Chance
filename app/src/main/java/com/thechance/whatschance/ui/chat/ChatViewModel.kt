@@ -85,7 +85,6 @@ class ChatViewModel @Inject constructor(
                 if (list.isNotEmpty()) {
                     _chatUiState.update {
                         it.copy(
-                            placeHolder = "Today",
                             chats = list.map { message ->
                                 MessageUi(
                                     message.textMessage,
