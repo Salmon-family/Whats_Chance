@@ -1,6 +1,8 @@
 package com.thechance.whatschance.ui.utilities
 
+import android.view.View
 import android.widget.ImageView
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -32,4 +34,9 @@ fun setSticker(view: ImageView, stickerName: String) {
         stickers[stickerName]?.let { view.setBackgroundResource(it) }
         view.load(stickerName)
     }
+}
+
+@BindingAdapter("app:isVisible")
+fun <T> isVisible(view: View, value:Boolean) {
+    view.isVisible = value
 }

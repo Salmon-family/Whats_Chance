@@ -1,7 +1,7 @@
 package com.thechance.whatschance.ui.authentication.verification
 
+import android.os.CountDownTimer
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
 import com.thechance.whatschance.domain.usecase.GetColorThemeUseCase
 import com.thechance.whatschance.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,7 +26,31 @@ class VerificationViewModel @Inject constructor(
         getColor(getColorThemeUseCase)
     }
 
+    fun startTimer(){
+        object: CountDownTimer(60000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                _verifyCodeUIState.update { it.copy(time = millisUntilFinished / 1000, clickResend = false, enableResend = false) }
+            }
+            override fun onFinish() {
+                _verifyCodeUIState.update { it.copy(enableResend = true) }
+            }
+        }.start()
+    }
+
+    fun resend(){
+        _verifyCodeUIState.update { it.copy(clickResend = true, enableResend = false) }
+    }
+
     fun onCodeChange(smsCode: CharSequence) {
         _verifyCodeUIState.update { it.copy(code = smsCode.toString()) }
     }
+
+    fun loading(){
+        _verifyCodeUIState.update { it.copy(loading = true) }
+    }
+
+    fun error(toString: String) {
+        _verifyCodeUIState.update { it.copy(error = toString, loading = false) }
+    }
+
 }
