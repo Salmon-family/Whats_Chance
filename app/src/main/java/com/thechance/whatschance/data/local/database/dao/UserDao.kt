@@ -19,4 +19,6 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUsers(users: List<UserEntity>)
 
+    @Query("SELECT * FROM USER_TABLE WHERE NAME LIKE '%' || :searchQuery || '%'")
+    fun searchUsers(searchQuery: String): Flow<List<UserEntity>>
 }

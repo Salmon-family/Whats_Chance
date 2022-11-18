@@ -16,6 +16,8 @@ interface UserRepository {
 
     suspend fun saveUser(user: UserEntity)
 
+    suspend fun searchUsers(searchQuery: String): Flow<List<UserEntity>>
+
 }
 
 class UserRepositoryImp @Inject constructor(
@@ -36,5 +38,9 @@ class UserRepositoryImp @Inject constructor(
 
     override suspend fun saveUser(user: UserEntity) {
         userDao.insertUser(user)
+    }
+
+    override suspend fun searchUsers(searchQuery: String): Flow<List<UserEntity>> {
+        return userDao.searchUsers(searchQuery)
     }
 }
