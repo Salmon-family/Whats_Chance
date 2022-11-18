@@ -17,6 +17,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setTitle(true, getString(R.string.app_name))
         binding.recyclerViewChats.adapter = HomeAdapter(emptyList(), viewModel)
         collectLast(viewModel.homeEvents) {
             it.getContentIfNotHandled()?.let { onEvent(it) }

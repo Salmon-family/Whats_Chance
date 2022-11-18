@@ -9,7 +9,7 @@ class MessageToEntityMapper @Inject constructor() {
         return MessageEntity(
             senderId = sendToId,
             textMessage = input.textMessage,
-            id = input.id,
+            id = 0,
             isFromMe = true,
             time = input.time
         )

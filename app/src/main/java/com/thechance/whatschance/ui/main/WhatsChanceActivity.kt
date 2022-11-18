@@ -2,6 +2,7 @@ package com.thechance.whatschance.ui.main
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.Window
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -19,6 +20,7 @@ class WhatsChanceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
+        supportRequestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         window.statusBarColor = Color.parseColor(viewModel.brandColor.value)
 
@@ -30,7 +32,7 @@ class WhatsChanceActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        val navGraph =  navController.navInflater.inflate(R.navigation.navigation)
+        val navGraph = navController.navInflater.inflate(R.navigation.navigation)
         val startDestination = if (viewModel.isUserLogin()) {
             R.id.homeFragment
         } else {

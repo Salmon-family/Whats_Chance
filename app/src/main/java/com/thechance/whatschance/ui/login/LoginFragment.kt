@@ -18,6 +18,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setTitle(false)
         collectLast(viewModel.loginEvent) {
             it.getContentIfNotHandled()?.let { onEvent(it) }
         }

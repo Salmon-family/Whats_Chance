@@ -26,7 +26,7 @@ class ChatViewModel @Inject constructor(
     private val timeConverter: Converter
 ) : ViewModel(), BaseInteractionListener {
 
-    private val args = ChatFragmentArgs.fromSavedStateHandle(state)
+    val args = ChatFragmentArgs.fromSavedStateHandle(state)
 
     private val _chatUiState = MutableStateFlow(ChatUiState())
     val chatUiState = _chatUiState.asStateFlow()
@@ -49,10 +49,6 @@ class ChatViewModel @Inject constructor(
                 }
             }
         }
-
-//        viewModelScope.launch {
-//            getMessagesUseCase.getMessages(args.userUID)
-//        }
     }
 
     fun onTextMessageChange(text: CharSequence) {

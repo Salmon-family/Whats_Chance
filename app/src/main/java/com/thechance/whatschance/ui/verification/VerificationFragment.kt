@@ -22,6 +22,7 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setTitle(false)
         authenticate(viewModel.args.phone)
         collectLast(viewModel.verifyCodeEvent) {
             it.getContentIfNotHandled()?.let { checkVerificationCode(it) }
