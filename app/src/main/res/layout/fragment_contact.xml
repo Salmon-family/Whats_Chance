@@ -25,13 +25,13 @@
             android:background="@drawable/search_contact_shape"
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="@dimen/spacing_small"
-            android:hint="@string/search_people"
-            android:paddingStart="@dimen/spacing_small"
             android:focusable="true"
             android:focusableInTouchMode="true"
+            android:hint="@string/search_people"
+            android:paddingStart="@dimen/spacing_small"
+            android:paddingEnd="@dimen/spacing_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.065"
-            android:paddingEnd="@dimen/spacing_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
