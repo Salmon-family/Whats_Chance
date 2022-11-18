@@ -17,5 +17,4 @@ class WhatsChanceViewModel @Inject constructor(
     }
 
     fun isUserLogin() = getUserLogin()
-
 }

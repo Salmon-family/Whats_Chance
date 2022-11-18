@@ -1,7 +1,8 @@
-package com.thechance.whatschance.ui.login
+package com.thechance.whatschance.ui.authentication.login
 
-import androidx.lifecycle.ViewModel
-import com.thechance.whatschance.domain.usecase.validate.ValidatePhoneNumberUseCase
+import com.thechance.whatschance.domain.usecase.GetColorThemeUseCase
+import com.thechance.whatschance.domain.usecase.ValidatePhoneNumberUseCase
+import com.thechance.whatschance.ui.base.BaseViewModel
 import com.thechance.whatschance.utilities.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,8 +12,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    val verifyPhoneNumber: ValidatePhoneNumberUseCase
-) : ViewModel() {
+    val verifyPhoneNumber: ValidatePhoneNumberUseCase,
+    getColorThemeUseCase: GetColorThemeUseCase
+) : BaseViewModel() {
 
     private val _loginUIState = MutableStateFlow(LoginUIState())
     val loginUIState = _loginUIState.asStateFlow()
@@ -20,6 +22,9 @@ class LoginViewModel @Inject constructor(
     private val _loginEvent = MutableStateFlow<Event<LoginUIEvent?>>(Event(null))
     val loginEvent = _loginEvent.asStateFlow()
 
+    init {
+        getColor(getColorThemeUseCase)
+    }
 
     fun onPhoneNumberChange(phone: CharSequence) {
         _loginUIState.update { it.copy(phoneNumber = phone.toString()) }

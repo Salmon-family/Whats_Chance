@@ -2,7 +2,6 @@ package com.thechance.whatschance.ui.main
 
 import android.graphics.Color
 import android.os.Bundle
-import android.view.Window
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -13,9 +12,14 @@ import com.thechance.whatschance.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class WhatsChanceActivity : AppCompatActivity() {
-    private val viewModel: WhatsChanceViewModel by viewModels()
-    private lateinit var binding: ActivityMainBinding
+class WhatsChanceActivity : BaseActivity<ActivityWhatsChanceBinding>() {
+    override val viewModel: WhatsChanceViewModel by viewModels()
+    override val layoutIdActivity: Int = R.layout.activity_whats_chance
+
+    override fun onStart() {
+        super.onStart()
+        window.statusBarColor = Color.parseColor(viewModel.brandColor.value)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -23,23 +27,14 @@ class WhatsChanceActivity : AppCompatActivity() {
         supportRequestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         window.statusBarColor = Color.parseColor(viewModel.brandColor.value)
-
         setNavigationGraph()
     }
 
     private fun setNavigationGraph() {
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-
-        val navGraph = navController.navInflater.inflate(R.navigation.navigation)
-        val startDestination = if (viewModel.isUserLogin()) {
-            R.id.homeFragment
-        } else {
-            R.id.loginFragment
+        if (!viewModel.isUserLogin()) {
+            startActivity(Intent(this, AuthenticationActivity::class.java))
+            this.finish()
         }
-        navGraph.setStartDestination(startDestination)
-        navController.graph = navGraph
-    }
 
+    }
 }
