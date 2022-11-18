@@ -50,9 +50,9 @@ class ChatViewModel @Inject constructor(
             }
         }
 
-        viewModelScope.launch {
-            getMessagesUseCase.getMessages(args.userUID)
-        }
+//        viewModelScope.launch {
+//            getMessagesUseCase.getMessages(args.userUID)
+//        }
     }
 
     fun onTextMessageChange(text: CharSequence) {
