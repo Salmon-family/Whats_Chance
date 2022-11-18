@@ -11,9 +11,9 @@ import kotlinx.coroutines.flow.Flow
 interface MessageDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMessage(message: MessageEntity)
+    suspend fun insertMessage(message: List<MessageEntity>)
 
-    @Query("SELECT * FROM MESSAGE_TABLE WHERE userId IN (:userId)")
+    @Query("SELECT * FROM MESSAGE_TABLE WHERE senderId IN (:userId) ORDER BY time DESC")
     fun getUserMessages(userId: String): Flow<List<MessageEntity>>
 
     @Query("SELECT * FROM MESSAGE_TABLE WHERE userId IN (:userId) AND messageDate IN (:messageDate)")

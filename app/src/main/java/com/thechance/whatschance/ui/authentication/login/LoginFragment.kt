@@ -1,5 +1,6 @@
-package com.thechance.whatschance.ui.login
+package com.thechance.whatschance.ui.authentication.login
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -18,6 +19,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setTitle(false)
         collectLast(viewModel.loginEvent) {
             it.getContentIfNotHandled()?.let { onEvent(it) }
         }
@@ -25,12 +27,16 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         binding.pickerCountryCode.setOnCountryChangeListener {
             viewModel.onCountryCodeChange(binding.pickerCountryCode.selectedCountryCodeWithPlus)
         }
+
+        activity?.window?.statusBarColor =  Color.parseColor(viewModel.brandColor.value)
     }
 
     private fun onEvent(event: LoginUIEvent) {
         if (event is LoginUIEvent.LoginEvent) {
             findNavController().navigate(
-                LoginFragmentDirections.actionLoginFragmentToVerificationFragment(event.phoneNumber)
+                LoginFragmentDirections.actionLoginFragmentToVerificationFragment(
+                    event.phoneNumber
+                )
             )
         }
     }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/authentication_navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.thechance.whatschance.ui.authentication.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_verificationFragment"
+            app:destination="@id/verificationFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/verificationFragment"
+        android:name="com.thechance.whatschance.ui.authentication.verification.VerificationFragment"
+        android:label="fragment_verification"
+        tools:layout="@layout/fragment_verification">
+
+        <argument
+            android:name="phone"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_verificationFragment_to_whatsChanceActivity"
+            app:destination="@id/whatsChanceActivity"
+            app:popUpTo="@id/verificationFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <activity
+        android:id="@+id/whatsChanceActivity"
+        android:name="com.thechance.whatschance.ui.main.WhatsChanceActivity"
+        android:label="WhatsChanceActivity" />
+
+</navigation>

@@ -1,9 +1,9 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Theme.WhatsChance" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.WhatsChance" parent="Theme.MaterialComponents.DayNight">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/brand_color</item>
+        <item name="colorPrimaryVariant">@color/light_grey</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -13,7 +13,16 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="floatingActionButtonStyle">@style/FabButtonStyle</item>
+        <item name="actionBarTheme">@style/MyTheme</item>
     </style>
+
+    <style name="MyTheme" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
+        <item name="android:background">@color/brand_color</item>
+        <item name="android:textColorPrimary">@color/light_grey</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="contentInsetStart">0dp</item>
+    </style>
+
 
     <style name="Theme.WhatsChance.SplashScreen" parent="Theme.SplashScreen.IconBackground">
         <item name="postSplashScreenTheme">@style/Theme.WhatsChance</item>

@@ -17,6 +17,7 @@ class ContactFragment : BaseFragment<FragmentContactBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setTitle(false)
         binding.recyclerContact.adapter = ContactAdapter(emptyList(), viewModel)
         collectLast(viewModel.contactEvents) {
             it.getContentIfNotHandled()?.let { onEvent(it) }

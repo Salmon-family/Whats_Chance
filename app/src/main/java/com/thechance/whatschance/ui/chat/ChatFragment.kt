@@ -8,7 +8,6 @@ import com.thechance.whatschance.R
 import com.thechance.whatschance.databinding.FragmentChatBinding
 import com.thechance.whatschance.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -20,8 +19,8 @@ class ChatFragment : BaseFragment<FragmentChatBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-     setAdapter()
-
+        setTitle(true, viewModel.args.userName)
+        setAdapter()
     }
 
     private fun setAdapter() {

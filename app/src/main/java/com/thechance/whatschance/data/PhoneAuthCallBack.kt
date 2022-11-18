@@ -4,7 +4,7 @@ import android.util.Log
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
-import com.thechance.whatschance.ui.login.LoginUIEvent
+import com.thechance.whatschance.ui.authentication.login.LoginUIEvent
 import javax.inject.Inject
 
 

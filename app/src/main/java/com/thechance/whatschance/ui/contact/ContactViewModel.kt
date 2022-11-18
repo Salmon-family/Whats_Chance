@@ -3,6 +3,7 @@ package com.thechance.whatschance.ui.contact
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thechance.whatschance.domain.usecase.GetUsersUseCase
+import com.thechance.whatschance.domain.usecase.SaveUsersLocallyUseCase
 import com.thechance.whatschance.utilities.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,6 +16,8 @@ import javax.inject.Inject
 class ContactViewModel @Inject constructor(
     private val getUsers: GetUsersUseCase,
     private val userUiMapper: UserUiMapper,
+    private val userMapper: UserMapper,
+    private val saveUserUseCase: SaveUsersLocallyUseCase
 ) : ViewModel(), ContactInteractionListener {
 
     private val _contactUiState = MutableStateFlow(ContactUiState())
@@ -33,6 +36,9 @@ class ContactViewModel @Inject constructor(
     }
 
     override fun onItemSelected(user: UserUi) {
+        viewModelScope.launch {
+            saveUserUseCase(userMapper.map(user))
+        }
         _contactEvents.update { Event(ContactUIEvents.SelectedUser(user)) }
     }
 }

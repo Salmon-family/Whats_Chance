@@ -8,8 +8,7 @@ data class ChatUiState(
 data class MessageUi(
     val textMessage: String = "",
     val isFromMe: Boolean = true,
-    val date: String = ""
-
+    val time: String = "",
 )
 
 data class ChatLayout(

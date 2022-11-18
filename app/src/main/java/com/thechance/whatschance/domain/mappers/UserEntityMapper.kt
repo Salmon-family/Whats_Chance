@@ -8,7 +8,7 @@ import javax.inject.Inject
 class UserEntityMapper @Inject constructor() : Mapper<UserEntity, User> {
     override fun map(input: UserEntity): User {
         return User(
-            uId = input.id,
+            userID = input.id,
             name = input.name,
             phoneNumber = input.phoneNumber
         )

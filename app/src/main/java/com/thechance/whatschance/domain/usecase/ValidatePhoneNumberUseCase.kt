@@ -1,4 +1,4 @@
-package com.thechance.whatschance.domain.usecase.validate
+package com.thechance.whatschance.domain.usecase
 
 import javax.inject.Inject
 
