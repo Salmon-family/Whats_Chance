@@ -35,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
+            android:gravity="center_horizontal"
             android:text="@{@string/verification_sending(viewModel.args.phone)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +47,7 @@
             android:id="@+id/otp_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
+            android:layout_marginTop="32dp"
             android:afterTextChanged="@{(text) -> viewModel.onCodeChange(text)}"
             android:backgroundTint="@color/brand_color"
             android:focusable="true"
@@ -93,24 +94,25 @@
             android:id="@+id/chronometer2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="@{@string/timer(viewModel.verifyCodeUIState.time)}"
+            app:layout_constraintBottom_toTopOf="@+id/otp_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/error_message"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <TextView
             android:id="@+id/question"
             style="@style/TextStyle.Small"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:gravity="center_horizontal"
             android:maxLines="2"
             android:text="Don't you get the code?"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chronometer2" />
+            app:layout_constraintTop_toBottomOf="@+id/error_message" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/resendButton"
@@ -134,7 +136,7 @@
             android:id="@+id/animation_loading"
             android:layout_width="128dp"
             android:layout_height="128dp"
-            android:visibility="gone"
+            android:visibility="invisible"
             app:isVisible="@{viewModel.verifyCodeUIState.loading}"
             app:layout_constraintBottom_toTopOf="@+id/fab_verify"
             app:layout_constraintEnd_toEndOf="parent"

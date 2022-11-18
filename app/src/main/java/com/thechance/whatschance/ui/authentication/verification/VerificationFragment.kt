@@ -1,7 +1,6 @@
 package com.thechance.whatschance.ui.authentication.verification
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -41,6 +40,7 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
         }
 
         binding.fabVerify.setOnClickListener {
+            viewModel.loading()
             getVerificationCode(
                 viewModel.verifyCodeUIState.value.code,
                 authCallbacks.getVerificationID()
@@ -59,13 +59,16 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
         viewModel.startTimer()
     }
 
-    private fun getVerificationCode(userSmsCode: String, verificationID: String): Task<AuthResult> {
-        return if (userSmsCode.isNotBlank() && userSmsCode.length == 6) {
-            onVerifyOtp(userSmsCode, verificationID)
-        } else {
-            throw Throwable("Error")
+    private fun getVerificationCode(userSmsCode: String, verificationID: String) {
+        try {
+            if (userSmsCode.isNotBlank() && userSmsCode.length == 6) {
+                onVerifyOtp(userSmsCode, verificationID)
+            } else {
+                viewModel.error("The code consists of 6 digits")
+            }
+        }catch (e:Exception){
+            viewModel.error(e.message.toString())
         }
-
     }
 
     private fun onVerifyOtp(code: String, verificationID: String): Task<AuthResult> {
@@ -81,7 +84,7 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
 
                     requireActivity().finish()
                 } else {
-                    Log.i("ErrorOfListener", "Error")
+                    viewModel.error("The Code Incorrect")
                 }
             }
     }
