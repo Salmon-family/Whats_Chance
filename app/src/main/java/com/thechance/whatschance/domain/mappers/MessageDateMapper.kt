@@ -8,10 +8,10 @@ import javax.inject.Inject
 class MessageDateMapper @Inject constructor(): Mapper<MessageEntity, Message> {
     override fun map(input: MessageEntity): Message {
         return Message(
-            id = input.id,
+            fromMe = input.isFromMe,
             textMessage = input.textMessage,
-            sender = input.userId,
-            date = input.messageDate
+            sender = input.senderId,
+            time = input.time
         )
     }
 }

@@ -16,6 +16,6 @@ interface MessageDao {
     @Query("SELECT * FROM MESSAGE_TABLE WHERE senderId IN (:userId) ORDER BY time DESC")
     fun getUserMessages(userId: String): Flow<List<MessageEntity>>
 
-    @Query("SELECT * FROM MESSAGE_TABLE WHERE userId IN (:userId) AND messageDate IN (:messageDate)")
-    fun getUserMessagesInSameDay(userId: String, messageDate: List<String>): Flow<List<MessageEntity>>
+    @Query("SELECT * FROM MESSAGE_TABLE WHERE senderId == :senderId GROUP BY date(time / 1000, 'unixepoch')")
+    fun getUserMessagesInSameDay(senderId: String): Flow<List<MessageEntity>>
 }

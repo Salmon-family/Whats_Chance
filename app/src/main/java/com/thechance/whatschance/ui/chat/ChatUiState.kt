@@ -3,6 +3,9 @@ package com.thechance.whatschance.ui.chat
 data class ChatUiState(
     val chats: List<MessageUi> = emptyList(),
     val textMessage: String = "",
+    val chatsItemResult: List<ChatItemUIState> = emptyList(),
+    val placeHolder: String = "",
+
 )
 
 data class MessageUi(

@@ -18,6 +18,6 @@ interface ChatRepository {
 
     suspend fun deleteMessages()
 
-    suspend fun getUserMessagesInSameDay(userId: String, messageDate: List<String>) : Flow<List<MessageEntity>>
+    suspend fun getUserMessagesInSameDay(senderId: String) : Flow<List<MessageEntity>>
 }
 

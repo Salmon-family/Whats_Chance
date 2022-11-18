@@ -36,4 +36,10 @@ class ChatRepositoryImp @Inject constructor(
     override suspend fun deleteMessages() {
         fireStoreDataSource.deleteMessages()
     }
+
+    override suspend fun getUserMessagesInSameDay(
+        senderId: String,
+    ): Flow<List<MessageEntity>> {
+        return messageDao.getUserMessagesInSameDay(senderId)
+    }
 }

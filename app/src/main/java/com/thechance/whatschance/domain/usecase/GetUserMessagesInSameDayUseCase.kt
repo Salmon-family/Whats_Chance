@@ -10,19 +10,11 @@ import javax.inject.Inject
 
 class GetUserMessagesInSameDayUseCase @Inject constructor(
     private val repository: ChatRepository,
-    private val messageMapper: MessageDateMapper,
-) {
+    private val messageDateMapper: MessageDateMapper,
+
+    ) {
     suspend operator fun invoke(userId: String): Flow<List<Message>> {
-        return repository.getUserMessagesInSameDay(userId, getCalenderDateAllLastDays()).map { it.map(messageMapper::map) }
-    }
-    
-    fun getCalenderDateAllLastDays(): List<String> {
-        val calender = Calendar.getInstance()
-        val dates = mutableListOf<String>()
-        for (i in 0..365) {
-            calender.add(Calendar.DAY_OF_YEAR, -1)
-            dates.add(calender.time.toString())
-        }
-        return dates
+        return repository.getUserMessagesInSameDay(userId)
+            .map { it.map(messageDateMapper::map) }
     }
 }

@@ -42,7 +42,7 @@ class ChatUIStateAdapter(
 
     override fun setItems(newItems: List<ChatItemUIState>) {
         item = newItems.sortedBy { it.priority }
-        super.setItems(newItems)
+        super.setItems(item)
     }
 
     override fun areContentSame(oldItem: ChatItemUIState, newItem: ChatItemUIState): Boolean {
