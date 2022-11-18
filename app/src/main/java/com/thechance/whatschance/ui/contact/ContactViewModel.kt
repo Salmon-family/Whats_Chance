@@ -45,23 +45,7 @@ class ContactViewModel @Inject constructor(
     }
 
     fun onSearchInputChanged(searchQuery: CharSequence) {
-        if (searchQuery.toString().isEmpty()) {
-            onInputSearchEmpty()
-        } else {
-            onSearch(searchQuery.toString())
-        }
-    }
-
-    private fun onInputSearchEmpty() {
-        viewModelScope.launch {
-            getUsers().collect { users ->
-                _contactUiState.update { uiState ->
-                    uiState.copy(
-                        users = users.map { userUiMapper.map(it) }
-                    )
-                }
-            }
-        }
+        onSearch(searchQuery.toString())
     }
 
     private fun onSearch(searchQuery: String) {
