@@ -17,5 +17,7 @@ interface ChatRepository {
     suspend fun saveMessagesLocally(message: List<MessageEntity>)
 
     suspend fun deleteMessages()
+
+    suspend fun getUsersID(): Flow<List<String>>
 }
 

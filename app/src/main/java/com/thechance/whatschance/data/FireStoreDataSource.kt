@@ -27,6 +27,12 @@ class FireStoreDataSource @Inject constructor(
             .map { it.toObjects(UserDto::class.java) }
     }
 
+    fun getUser(users: List<String>): Flow<List<UserDto>> {
+        return fireStore.collection(USERS_COLLECTION)
+            .whereIn(U_ID_KEY, users).snapshots()
+            .map { it.toObjects(UserDto::class.java) }
+    }
+
     fun addMessage(uId: String, message: MessageDto): Task<DocumentReference> {
         val messagesRef = fireStore.collection(MESSAGES_COLLECTION).document(uId)
             .collection(MESSAGE_COLLECTION)
