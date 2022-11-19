@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -31,11 +32,12 @@
             style="@style/TextStyle.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/spacing_small"
+            android:layout_marginHorizontal="@dimen/spacing_small"
+            android:text="@{item.time}"
             android:textColor="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_message"
-            android:text="7:90 AM" />
+            tools:text="7:90 AM" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
