@@ -23,7 +23,7 @@
     </style>
 
 
-    <style name="Theme.WhatsChance.SplashScreen" parent="Theme.SplashScreen.IconBackground">
+    <style name="Theme.WhatsChance.SplashScreen" parent="Theme.SplashScreen">
         <item name="postSplashScreenTheme">@style/Theme.WhatsChance</item>
         <item name="android:windowBackground">@drawable/splash_screen_list</item>
     </style>

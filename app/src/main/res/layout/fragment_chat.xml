@@ -52,15 +52,16 @@
             android:id="@+id/image_send"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:padding="@dimen/spacing_medium"
-            android:onClick="@{()->viewModel.sendMessage()}"
-            android:src="@drawable/send_icon"
             android:background="@color/white"
+            android:clickable="@{viewModel.chatUiState.enabled}"
+            android:onClick="@{()->viewModel.sendMessage()}"
+            android:padding="@dimen/spacing_medium"
+            android:src="@drawable/send_icon"
+            app:brandColor="@{viewModel.brandColor}"
+            app:isEnabled="@{viewModel.chatUiState.enabled}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:clickable="@{viewModel.chatUiState.enabled}"
-            app:isEnabled="@{viewModel.chatUiState.enabled}"
-            app:brandColor="@{viewModel.brandColor}"/>
+            app:layout_constraintTop_toTopOf="@+id/autoComplete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
