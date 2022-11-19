@@ -54,6 +54,7 @@
                 android:afterTextChanged="@{(text) -> viewModel.onTextMessageChange(text)}"
                 android:background="@android:color/transparent"
                 android:completionThreshold="1"
+                android:dropDownHeight="160dp"
                 android:dropDownWidth="match_parent"
                 android:hint="@string/chat_hint"
                 android:paddingVertical="@dimen/spacing_medium"
