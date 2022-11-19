@@ -16,4 +16,7 @@ interface UserDao {
     @Query("SELECT * FROM USER_TABLE u WHERE EXISTS (SELECT 1 FROM MESSAGE_TABLE m WHERE m.senderId = u.id);")
     fun getUsers(): Flow<List<UserEntity>>
 
+    @Query("SELECT EXISTS(SELECT * FROM USER_TABLE u WHERE u.id = :id)")
+    suspend fun isUserExist(id : String) : Boolean
+
 }

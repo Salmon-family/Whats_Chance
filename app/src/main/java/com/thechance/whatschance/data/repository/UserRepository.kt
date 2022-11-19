@@ -16,6 +16,8 @@ interface UserRepository {
 
     suspend fun saveUser(user: UserEntity)
 
+    suspend fun isUserExist(id : String) : Boolean
+
 }
 
 class UserRepositoryImp @Inject constructor(
@@ -36,5 +38,9 @@ class UserRepositoryImp @Inject constructor(
 
     override suspend fun saveUser(user: UserEntity) {
         userDao.insertUser(user)
+    }
+
+    override suspend fun isUserExist(id: String): Boolean {
+        return userDao.isUserExist(id)
     }
 }
