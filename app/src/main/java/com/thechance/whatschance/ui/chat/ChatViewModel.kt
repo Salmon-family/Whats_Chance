@@ -57,11 +57,15 @@ class ChatViewModel @Inject constructor(
 
     fun sendMessage() {
         val message = Message(
-            textMessage = _chatUiState.value.textMessage,
+            textMessage = _chatUiState.value.textMessage.trim(),
             sender = getCurrentUserUseCase()?.uid ?: "",
             time = Date().time,
         )
-        viewModelScope.launch { addMessageUseCase(args.userUID, message) }
+        viewModelScope.launch {
+            if(message.textMessage.isNotBlank()){
+                addMessageUseCase(args.userUID, message)
+            }
+        }
 
         val chats = _chatUiState.value.chats.toMutableList()
         chats.add(

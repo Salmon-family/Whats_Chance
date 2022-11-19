@@ -18,28 +18,26 @@
         android:layout_marginTop="@dimen/spacing_medium"
         android:background="@android:color/transparent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_send_chat_background"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:backgroundTint="@color/brand_color"
+            app:cardCornerRadius="@dimen/spacing_small">
 
             <TextView
                 android:id="@+id/text_message"
                 style="@style/TextStyle.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_medium"
-                android:layout_marginTop="@dimen/spacing_small"
-                android:gravity="start"
+                android:layout_marginTop="@dimen/spacing_too_small"
+                android:layout_marginBottom="@dimen/spacing_extra_large"
                 android:text="@{item.textMessage}"
                 android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_time"
-                app:layout_constraintTop_toTopOf="parent"
+                android:maxWidth="280dp"
+                android:layout_gravity="start|top"
+                android:layout_marginHorizontal="@dimen/spacing_small"
                 tools:text="testtesttesttesttttestkjcskjcksjcmkscmkscmncksnckstesttesttest" />
 
             <TextView
@@ -47,13 +45,16 @@
                 style="@style/TextStyle.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/spacing_small"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_marginBottom="@dimen/spacing_too_small"
                 android:text="@{item.time}"
                 android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="@+id/text_message"
-                app:layout_constraintTop_toBottomOf="@+id/text_message"
+                android:layout_gravity="bottom|end"
+                android:layout_marginHorizontal="@dimen/spacing_small"
                 tools:text="7:90 AM" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+
+
