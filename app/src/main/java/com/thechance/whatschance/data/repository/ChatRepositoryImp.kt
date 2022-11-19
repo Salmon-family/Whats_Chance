@@ -1,9 +1,7 @@
 package com.thechance.whatschance.data.repository
 
 import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.ktx.Firebase
 import com.thechance.whatschance.data.FireStoreDataSource
 import com.thechance.whatschance.data.local.database.dao.MessageDao
 import com.thechance.whatschance.data.local.database.entity.MessageEntity
@@ -35,5 +33,9 @@ class ChatRepositoryImp @Inject constructor(
 
     override suspend fun deleteMessages() {
         fireStoreDataSource.deleteMessages()
+    }
+
+    override suspend fun getUsersID(): Flow<List<String>> {
+        return messageDao.getUsers()
     }
 }

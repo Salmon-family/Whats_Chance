@@ -27,6 +27,10 @@
             android:name="phone"
             app:argType="string" />
 
+        <argument
+            android:name="name"
+            app:argType="string" />
+
         <action
             android:id="@+id/action_verificationFragment_to_whatsChanceActivity"
             app:destination="@id/whatsChanceActivity"

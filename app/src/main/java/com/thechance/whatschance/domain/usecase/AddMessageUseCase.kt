@@ -1,6 +1,5 @@
 package com.thechance.whatschance.domain.usecase
 
-import android.util.Log
 import com.thechance.whatschance.data.repository.ChatRepository
 import com.thechance.whatschance.domain.mappers.MessageToDtoMapper
 import com.thechance.whatschance.domain.mappers.MessageToEntityMapper
@@ -13,12 +12,14 @@ class AddMessageUseCase @Inject constructor(
     private val messageToDtoMapper: MessageToDtoMapper,
     private val messageToEntityMapper: MessageToEntityMapper,
     private val encryptText: EncryptTextUseCase,
+    private val getFriendsUseCase: GetFriendsUseCase
 ) {
     suspend operator fun invoke(uId: String, message: Message) {
         chatRepository.addMessage(uId, messageToDtoMapper.map(message.copy(textMessage =encryptText(message.textMessage))))
             .addOnSuccessListener {
                 runBlocking {
                     chatRepository.saveMessagesLocally(listOf(messageToEntityMapper.map(message, uId)))
+                    getFriendsUseCase.refreshUsers()
                 }
             }
             .addOnFailureListener {

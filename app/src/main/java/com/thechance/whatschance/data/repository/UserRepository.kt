@@ -16,6 +16,12 @@ interface UserRepository {
 
     suspend fun saveUser(user: UserEntity)
 
+    suspend fun saveUsers(user: List<UserEntity>)
+
+    suspend fun isUserExist(id: String): Boolean
+
+    suspend fun getUser(users: List<String>): Flow<List<UserDto>>
+
     suspend fun searchUsers(searchQuery: String): Flow<List<UserEntity>>
 
 }
@@ -39,6 +45,19 @@ class UserRepositoryImp @Inject constructor(
     override suspend fun saveUser(user: UserEntity) {
         userDao.insertUser(user)
     }
+
+    override suspend fun saveUsers(user: List<UserEntity>){
+        userDao.insertUsers(user)
+    }
+
+    override suspend fun isUserExist(id: String): Boolean {
+        return userDao.isUserExist(id)
+    }
+
+    override suspend fun getUser(users: List<String>): Flow<List<UserDto>> {
+        return fireStoreDataSource.getUser(users)
+    }
+
 
     override suspend fun searchUsers(searchQuery: String): Flow<List<UserEntity>> {
         return userDao.searchUsers(searchQuery)

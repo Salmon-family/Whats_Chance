@@ -15,5 +15,7 @@
     <string name="start_your_first_conversation">Start your first conversation!</string>
 
     <string name="verification_failed">Verification Failed!!</string>
+    <string name="user_name">Full Name</string>
+
     <string name="resend">Resend</string>
 </resources>
