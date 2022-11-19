@@ -17,7 +17,6 @@
     </style>
 
     <style name="MyTheme" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
-        <item name="android:background">@color/brand_color</item>
         <item name="android:textColorPrimary">@color/light_grey</item>
         <item name="contentInsetStartWithNavigation">0dp</item>
         <item name="contentInsetStart">0dp</item>

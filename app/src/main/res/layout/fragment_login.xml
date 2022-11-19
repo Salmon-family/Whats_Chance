@@ -34,8 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_medium"
             app:ccp_autoDetectCountry="false"
-            app:ccp_defaultNameCode="us"
             app:ccp_defaultLanguage="ENGLISH"
+            app:ccp_defaultNameCode="us"
             app:ccp_showNameCode="false"
             app:ccp_showPhoneCode="false"
             app:layout_constraintBottom_toBottomOf="@+id/text_input_phone_number"
@@ -51,10 +51,11 @@
             android:layout_marginTop="@dimen/spacing_medium"
             android:layout_marginEnd="@dimen/spacing_medium"
             android:hint="@string/phone_number"
-            app:boxStrokeColor="@color/brand_color"
+            app:boxStrokeColor="@{Color.parseColor(viewModel.brandColor)}"
             app:helperTextTextAppearance="@style/HelperTextAppearance"
-            app:helperTextTextColor="@color/brand_color"
+            app:helperTextTextColor="@color/gray"
             app:hintAnimationEnabled="true"
+            app:hintTextColor="@{Color.parseColor(viewModel.brandColor)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/picker_country_Code"
             app:layout_constraintTop_toBottomOf="@+id/text_view_login_instructions">
@@ -64,13 +65,43 @@
                 android:layout_height="wrap_content"
                 android:afterTextChanged="@{(text) -> viewModel.onPhoneNumberChange(text)}"
                 android:inputType="phone"
-                android:maxLines="1"
                 android:maxLength="10"
+                android:maxLines="1"
                 android:paddingStart="20dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="20dp"
-                android:textColor="@color/black" />
+                android:textColor="@{Color.parseColor(viewModel.brandColor)}" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:hint="@string/user_name"
+            app:boxStrokeColor="@{Color.parseColor(viewModel.brandColor)}"
+            app:helperTextTextAppearance="@style/HelperTextAppearance"
+            app:helperTextTextColor="@color/gray"
+            app:hintAnimationEnabled="true"
+            app:hintTextColor="@{Color.parseColor(viewModel.brandColor)}"
+            app:layout_constraintEnd_toEndOf="@+id/text_input_phone_number"
+            app:layout_constraintStart_toStartOf="@+id/text_input_phone_number"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_phone_number">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:afterTextChanged="@{(text) -> viewModel.onNameChange(text)}"
+                android:inputType="text"
+                android:maxLength="20"
+                android:maxLines="1"
+                android:paddingStart="20dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="20dp"
+                android:textColor="@{Color.parseColor(viewModel.brandColor)}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <TextView
             android:id="@+id/error_message"
@@ -117,8 +148,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/spacing_large"
             android:layout_marginBottom="@dimen/spacing_large"
-            android:contentDescription="@string/todo"
             android:backgroundTint="@{Color.parseColor(viewModel.brandColor)}"
+            android:contentDescription="@string/todo"
             android:onClick="@{() -> viewModel.login()}"
             android:src="@drawable/ic_arrow_left"
             app:borderWidth="0dp"

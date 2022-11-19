@@ -13,11 +13,14 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: UserEntity)
 
-    @Query("SELECT * FROM USER_TABLE ORDER BY NAME ASC")
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertUsers(user: List<UserEntity>)
+
+    @Query("SELECT * FROM USER_TABLE u WHERE EXISTS (SELECT 1 FROM MESSAGE_TABLE m WHERE m.senderId = u.id);")
     fun getUsers(): Flow<List<UserEntity>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUsers(users: List<UserEntity>)
+    @Query("SELECT EXISTS(SELECT * FROM USER_TABLE u WHERE u.id = :id)")
+    suspend fun isUserExist(id : String) : Boolean
 
     @Query("SELECT * FROM USER_TABLE WHERE NAME LIKE '%' || :searchQuery || '%' ORDER BY NAME ASC")
     fun searchUsers(searchQuery: String): Flow<List<UserEntity>>

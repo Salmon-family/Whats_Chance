@@ -77,11 +77,16 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
         return auth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    findNavController().navigate(VerificationFragmentDirections.actionVerificationFragmentToWhatsChanceActivity())
                     task.result.user?.let {
-                        addUser(User(it.uid, "Test${((0..10).random())}", it.phoneNumber!!))
+                        addUser(
+                            User(
+                                it.uid,
+                                viewModel.args.name,
+                                it.phoneNumber ?: viewModel.args.phone
+                            )
+                        )
                     }
-
+                    findNavController().navigate(VerificationFragmentDirections.actionVerificationFragmentToWhatsChanceActivity())
                     requireActivity().finish()
                 } else {
                     viewModel.error("The Code Incorrect")
