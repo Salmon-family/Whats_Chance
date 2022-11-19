@@ -2,8 +2,10 @@ package com.thechance.whatschance.ui.contact
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.thechance.whatschance.domain.usecase.GetColorThemeUseCase
 import com.thechance.whatschance.domain.usecase.GetUsersUseCase
 import com.thechance.whatschance.domain.usecase.SaveUsersLocallyUseCase
+import com.thechance.whatschance.ui.base.BaseViewModel
 import com.thechance.whatschance.utilities.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,8 +19,9 @@ class ContactViewModel @Inject constructor(
     private val getUsers: GetUsersUseCase,
     private val userUiMapper: UserUiMapper,
     private val userMapper: UserMapper,
-    private val saveUserUseCase: SaveUsersLocallyUseCase
-) : ViewModel(), ContactInteractionListener {
+    private val saveUserUseCase: SaveUsersLocallyUseCase,
+    getColorThemeUseCase: GetColorThemeUseCase,
+    ) : BaseViewModel(), ContactInteractionListener {
 
     private val _contactUiState = MutableStateFlow(ContactUiState())
     val contactUiState = _contactUiState.asStateFlow()
@@ -28,6 +31,7 @@ class ContactViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
+            getColor(getColorThemeUseCase)
             getUsers().collect { users ->
                 val users = users.map(userUiMapper::map)
                 _contactUiState.update { it.copy(users = users) }

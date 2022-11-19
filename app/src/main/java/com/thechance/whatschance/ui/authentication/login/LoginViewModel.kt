@@ -30,6 +30,11 @@ class LoginViewModel @Inject constructor(
         _loginUIState.update { it.copy(phoneNumber = phone.toString()) }
     }
 
+
+    fun onNameChange(name: CharSequence) {
+        _loginUIState.update { it.copy(name = name.toString()) }
+    }
+
     fun onCountryCodeChange(code: String) {
         _loginUIState.update { it.copy(countryCode = code) }
     }
@@ -39,7 +44,14 @@ class LoginViewModel @Inject constructor(
 
         try {
             if (verifyPhoneNumber(loginUIState.value.phoneNumber)) {
-                _loginEvent.update { Event(LoginUIEvent.LoginEvent(loginUIState.value.getFullPhoneNumber())) }
+                _loginEvent.update {
+                    Event(
+                        LoginUIEvent.LoginEvent(
+                            loginUIState.value.getFullPhoneNumber(),
+                            loginUIState.value.name
+                        )
+                    )
+                }
             } else {
                 _loginUIState.update { it.copy(error = "incorrect phone number ") }
             }

@@ -28,14 +28,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             viewModel.onCountryCodeChange(binding.pickerCountryCode.selectedCountryCodeWithPlus)
         }
 
-        activity?.window?.statusBarColor =  Color.parseColor(viewModel.brandColor.value)
+        activity?.window?.statusBarColor = Color.parseColor(viewModel.brandColor.value)
     }
 
     private fun onEvent(event: LoginUIEvent) {
         if (event is LoginUIEvent.LoginEvent) {
             findNavController().navigate(
                 LoginFragmentDirections.actionLoginFragmentToVerificationFragment(
-                    event.phoneNumber
+                    event.phoneNumber,
+                    event.userName
                 )
             )
         }

@@ -17,7 +17,6 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     getColorThemeUseCase: GetColorThemeUseCase,
     getMessagesUseCase: GetMessagesUseCase,
-//    private val getMyFriends: GetMyFriendsUseCase,
     private val getFriendsUseCase: GetFriendsUseCase,
     private val friendUIMapper: FriendUIMapper
 ) : BaseViewModel(), ChatsAdapterListener {
