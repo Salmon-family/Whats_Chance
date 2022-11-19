@@ -1,8 +1,11 @@
 package com.thechance.whatschance.ui.utilities
 
 import android.view.View
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.widget.ImageView
 import androidx.core.view.isVisible
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -39,4 +42,13 @@ fun setSticker(view: ImageView, stickerName: String) {
 @BindingAdapter("app:isVisible")
 fun <T> isVisible(view: View, value:Boolean) {
     view.isVisible = value
+}
+
+@BindingAdapter(value = ["app:isEnabled", "app:brandColor"])
+fun setSendButtonColor(view: ImageView, isEnabled: Boolean, brandColor: String) {
+    if (isEnabled) {
+        view.imageTintList = ColorStateList.valueOf(Color.parseColor(brandColor))
+    } else {
+        view.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(view.context, R.color.gray))
+    }
 }
