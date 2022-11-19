@@ -1,6 +1,5 @@
 package com.thechance.whatschance.domain.usecase
 
-import android.util.Log
 import com.thechance.whatschance.data.repository.ChatRepository
 import com.thechance.whatschance.domain.mappers.MessageDtoToEntityMapper
 import com.thechance.whatschance.domain.mappers.MessageEntityMapper

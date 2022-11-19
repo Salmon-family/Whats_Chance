@@ -16,7 +16,6 @@ interface MessageDao {
     @Query("SELECT * FROM MESSAGE_TABLE WHERE senderId IN (:userId) ORDER BY time DESC")
     fun getUserMessages(userId: String): Flow<List<MessageEntity>>
 
-    //    @Query("SELECT DISTINCT senderId FROM MESSAGE_TABLE " )
     @Query("SELECT DISTINCT senderId FROM MESSAGE_TABLE  EXCEPT SELECT id FROM USER_TABLE")
     fun getUsers(): Flow<List<String>>
 

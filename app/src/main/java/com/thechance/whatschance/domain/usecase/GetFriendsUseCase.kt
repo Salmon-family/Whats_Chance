@@ -1,6 +1,5 @@
 package com.thechance.whatschance.domain.usecase
 
-import android.util.Log
 import com.thechance.whatschance.data.repository.ChatRepository
 import com.thechance.whatschance.data.repository.UserRepository
 import com.thechance.whatschance.domain.mappers.UserDtoToEntityMapper
@@ -26,10 +25,8 @@ class GetFriendsUseCase @Inject constructor(
     fun refreshUsers() {
         CoroutineScope(Dispatchers.IO).launch {
             repository.getUsersID().collect {
-                Log.e("Test2", it.toString())
                 if (it.isNotEmpty()) {
                     userRepository.getUser(it).collect {
-                        Log.e("Test", it.toString())
                         userRepository.saveUsers(it.map { userDtoMapper.map(it) })
                     }
                 }

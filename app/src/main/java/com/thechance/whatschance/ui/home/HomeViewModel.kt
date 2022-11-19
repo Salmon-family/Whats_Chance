@@ -29,7 +29,6 @@ class HomeViewModel @Inject constructor(
 
     init {
         getMessagesUseCase.refreshMessages()
-        getFriendsUseCase.refreshUsers()
         getColor(getColorThemeUseCase)
         viewModelScope.launch {
             getFriendsUseCase().collect { friends ->
