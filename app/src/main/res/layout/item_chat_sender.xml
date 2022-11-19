@@ -8,10 +8,6 @@
         <import type="android.graphics.Color"/>
 
         <variable
-            name="viewModel"
-            type="com.thechance.whatschance.ui.chat.ChatViewModel" />
-
-        <variable
             name="item"
             type="com.thechance.whatschance.ui.chat.MessageUi" />
 
@@ -29,7 +25,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:backgroundTint="@{Color.parseColor(viewModel.brandColor)}"
+            android:backgroundTint="@{Color.parseColor(item.color)}"
             app:cardCornerRadius="@dimen/spacing_small">
 
             <TextView

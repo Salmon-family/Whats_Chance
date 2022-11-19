@@ -9,6 +9,7 @@ data class MessageUi(
     val textMessage: String = "",
     val isFromMe: Boolean = true,
     val time: String = "",
+    val color: String = "#66C16F"
 )
 
 data class ChatLayout(

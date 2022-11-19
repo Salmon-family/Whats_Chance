@@ -45,6 +45,7 @@ class ChatViewModel @Inject constructor(
                             MessageUi(
                                 message.textMessage,
                                 isFromMe = message.fromMe,
+                                color = brandColor.value,
                                 time = timeConverter.convertLongToTime(message.time)
                             )
                         })
