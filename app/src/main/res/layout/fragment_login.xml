@@ -70,7 +70,7 @@
                 android:paddingStart="20dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="20dp"
-                android:textColor="@{Color.parseColor(viewModel.brandColor)}" />
+                android:textColor="@color/text_color" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -99,7 +99,7 @@
                 android:paddingStart="20dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="20dp"
-                android:textColor="@{Color.parseColor(viewModel.brandColor)}" />
+                android:textColor="@color/text_color" />
         </com.google.android.material.textfield.TextInputLayout>
 
 

@@ -38,6 +38,7 @@
                 android:id="@+id/text_search_contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/spacing_small"
                 android:afterTextChanged="@{(text) -> viewModel.onSearchInputChanged(text)}"
                 android:drawableStart="@drawable/ic_search" />
 

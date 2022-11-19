@@ -21,8 +21,7 @@
         <activity
             android:name=".ui.authentication.AuthenticationActivity"
             android:exported="true"
-            android:theme="@style/Theme.WhatsChance.SplashScreen"
-            android:windowSoftInputMode="adjustResize">
+            android:theme="@style/Theme.WhatsChance.SplashScreen" >
 
             <meta-data
                 android:name="android.app.lib_name"
