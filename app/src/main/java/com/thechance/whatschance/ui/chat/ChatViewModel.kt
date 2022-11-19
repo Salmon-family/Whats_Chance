@@ -57,7 +57,7 @@ class ChatViewModel @Inject constructor(
     }
 
     fun onTextMessageChange(text: CharSequence) {
-        _chatUiState.update { it.copy(textMessage = text.toString()) }
+        _chatUiState.update { it.copy(textMessage = text.toString(), isEnabled = text.isNotBlank()) }
     }
 
     fun sendMessage() {

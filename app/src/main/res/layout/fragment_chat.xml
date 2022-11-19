@@ -56,7 +56,9 @@
             android:src="@drawable/send_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:backgroundTint="@{Color.parseColor(viewModel.brandColor)}"/>
+            android:clickable="@{viewModel.chatUiState.enabled}"
+            app:isEnabled="@{viewModel.chatUiState.enabled}"
+            app:brandColor="@{viewModel.brandColor}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
