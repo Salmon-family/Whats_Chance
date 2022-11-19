@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.graphics.Color"/>
+
         <variable
             name="viewModel"
             type="com.thechance.whatschance.ui.chat.ChatViewModel" />
@@ -53,7 +55,8 @@
             android:onClick="@{()->viewModel.sendMessage()}"
             android:src="@drawable/send_icon"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@{Color.parseColor(viewModel.brandColor)}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
