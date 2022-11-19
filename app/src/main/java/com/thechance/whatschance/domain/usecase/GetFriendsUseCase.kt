@@ -26,11 +26,11 @@ class GetFriendsUseCase @Inject constructor(
     fun refreshUsers() {
         CoroutineScope(Dispatchers.IO).launch {
             repository.getUsersID().collect {
-                Log.e("Test", it.toString())
+                Log.e("Test2", it.toString())
                 if (it.isNotEmpty()) {
                     userRepository.getUser(it).collect {
                         Log.e("Test", it.toString())
-                        userRepository.saveUser(userDtoMapper.map(it[0]))
+                        userRepository.saveUsers(it.map { userDtoMapper.map(it) })
                     }
                 }
             }

@@ -16,6 +16,8 @@ interface UserRepository {
 
     suspend fun saveUser(user: UserEntity)
 
+    suspend fun saveUsers(user: List<UserEntity>)
+
     suspend fun isUserExist(id: String): Boolean
 
     suspend fun getUser(users: List<String>): Flow<List<UserDto>>
@@ -42,6 +44,10 @@ class UserRepositoryImp @Inject constructor(
 
     override suspend fun saveUser(user: UserEntity) {
         userDao.insertUser(user)
+    }
+
+    override suspend fun saveUsers(user: List<UserEntity>){
+        userDao.insertUsers(user)
     }
 
     override suspend fun isUserExist(id: String): Boolean {

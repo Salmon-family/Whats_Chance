@@ -13,6 +13,9 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: UserEntity)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertUsers(user: List<UserEntity>)
+
     @Query("SELECT * FROM USER_TABLE u WHERE EXISTS (SELECT 1 FROM MESSAGE_TABLE m WHERE m.senderId = u.id);")
     fun getUsers(): Flow<List<UserEntity>>
 
