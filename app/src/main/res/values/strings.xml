@@ -16,4 +16,18 @@
 
     <string name="verification_failed">Verification Failed!!</string>
     <string name="resend">Resend</string>
+
+    <string-array name="stickers">
+        <item>:happy:</item>
+        <item>:angry:</item>
+        <item>:cry:</item>
+        <item>:laugh:</item>
+        <item>:love:</item>
+        <item>:smile:</item>
+        <item>:unhappy:</item>
+        <item>:wink:</item>
+        <item>:wow:</item>
+        <item>:sad:</item>
+    </string-array>
+
 </resources>
