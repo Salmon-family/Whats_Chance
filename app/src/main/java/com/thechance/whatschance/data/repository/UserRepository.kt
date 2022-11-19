@@ -19,6 +19,9 @@ interface UserRepository {
     suspend fun isUserExist(id: String): Boolean
 
     suspend fun getUser(users: List<String>): Flow<List<UserDto>>
+
+    suspend fun searchUsers(searchQuery: String): Flow<List<UserEntity>>
+
 }
 
 class UserRepositoryImp @Inject constructor(
@@ -49,4 +52,8 @@ class UserRepositoryImp @Inject constructor(
         return fireStoreDataSource.getUser(users)
     }
 
+
+    override suspend fun searchUsers(searchQuery: String): Flow<List<UserEntity>> {
+        return userDao.searchUsers(searchQuery)
+    }
 }

@@ -19,4 +19,6 @@ interface UserDao {
     @Query("SELECT EXISTS(SELECT * FROM USER_TABLE u WHERE u.id = :id)")
     suspend fun isUserExist(id : String) : Boolean
 
+    @Query("SELECT * FROM USER_TABLE WHERE NAME LIKE '%' || :searchQuery || '%' ORDER BY NAME ASC")
+    fun searchUsers(searchQuery: String): Flow<List<UserEntity>>
 }

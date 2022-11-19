@@ -45,4 +45,21 @@ class ContactViewModel @Inject constructor(
         }
         _contactEvents.update { Event(ContactUIEvents.SelectedUser(user)) }
     }
+
+    fun onSearchInputChanged(searchQuery: CharSequence) {
+        onSearch(searchQuery.toString())
+    }
+
+    private fun onSearch(searchQuery: String) {
+        viewModelScope.launch {
+            getUsers().collect { users ->
+                val searchResult = users.filter {
+                    it.name.lowercase().startsWith(searchQuery.lowercase())
+                }
+                _contactUiState.update { uiState ->
+                    uiState.copy(users = searchResult.map { userUiMapper.map(it) })
+                }
+            }
+        }
+    }
 }

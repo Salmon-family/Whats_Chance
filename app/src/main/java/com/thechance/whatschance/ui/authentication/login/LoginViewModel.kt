@@ -53,7 +53,7 @@ class LoginViewModel @Inject constructor(
                     )
                 }
             } else {
-                _loginUIState.update { it.copy(error = "incorrect phone number ") }
+                _loginUIState.update { it.copy(error = "incorrect, check your phone number.") }
             }
 
         } catch (t: Throwable) {

@@ -1,7 +1,6 @@
 package com.thechance.whatschance.ui.authentication.verification
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -18,6 +17,7 @@ import com.thechance.whatschance.data.PhoneAuthCallBack
 import com.thechance.whatschance.databinding.FragmentVerificationBinding
 import com.thechance.whatschance.domain.models.User
 import com.thechance.whatschance.ui.base.BaseFragment
+import com.thechance.whatschance.utilities.collectLast
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 
@@ -35,7 +35,12 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
 
         authenticate(viewModel.args.phone)
 
+        collectLast(viewModel.verifyCodeUIState){
+            if (it.clickResend){ authenticate(viewModel.args.phone) }
+        }
+
         binding.fabVerify.setOnClickListener {
+            viewModel.loading()
             getVerificationCode(
                 viewModel.verifyCodeUIState.value.code,
                 authCallbacks.getVerificationID()
@@ -51,15 +56,19 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
             .setPhoneNumber(phone)
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
+        viewModel.startTimer()
     }
 
-    private fun getVerificationCode(userSmsCode: String, verificationID: String): Task<AuthResult> {
-        return if (userSmsCode.isNotBlank() && userSmsCode.length == 6) {
-            onVerifyOtp(userSmsCode, verificationID)
-        } else {
-            throw Throwable("Error")
+    private fun getVerificationCode(userSmsCode: String, verificationID: String) {
+        try {
+            if (userSmsCode.isNotBlank() && userSmsCode.length == 6) {
+                onVerifyOtp(userSmsCode, verificationID)
+            } else {
+                viewModel.error("The code consists of 6 digits")
+            }
+        }catch (e:Exception){
+            viewModel.error(e.message.toString())
         }
-
     }
 
     private fun onVerifyOtp(code: String, verificationID: String): Task<AuthResult> {
@@ -80,7 +89,7 @@ class VerificationFragment : BaseFragment<FragmentVerificationBinding>() {
                     findNavController().navigate(VerificationFragmentDirections.actionVerificationFragmentToWhatsChanceActivity())
                     requireActivity().finish()
                 } else {
-                    Log.i("ErrorOfListener", "Error")
+                    viewModel.error("The Code Incorrect")
                 }
             }
     }

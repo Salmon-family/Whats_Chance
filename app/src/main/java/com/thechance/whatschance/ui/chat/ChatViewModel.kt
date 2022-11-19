@@ -63,15 +63,6 @@ class ChatViewModel @Inject constructor(
         )
         viewModelScope.launch { addMessageUseCase(args.userUID, message) }
 
-        val chats = _chatUiState.value.chats.toMutableList()
-        chats.add(
-            MessageUi(
-                textMessage = _chatUiState.value.textMessage,
-                isFromMe = true,
-                time = timeConverter.convertLongToTime(Date().time)
-            )
-        )
-
-        _chatUiState.update { it.copy(textMessage = "", chats = chats) }
+        _chatUiState.update { it.copy(textMessage = "") }
     }
 }
