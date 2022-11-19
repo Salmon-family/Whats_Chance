@@ -16,4 +16,5 @@
 
     <string name="verification_failed">Verification Failed!!</string>
     <string name="resend">Resend</string>
+    <string name="name">Name</string>
 </resources>

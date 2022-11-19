@@ -19,6 +19,7 @@
         tools:context=".ui.authentication.login.LoginFragment">
 
         <ImageView
+            android:id="@+id/imageView2"
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:contentDescription="@string/todo"
@@ -43,14 +44,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/text_input_phone_number" />
 
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_phone_number"
+            android:id="@+id/text_input_user_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:layout_marginEnd="@dimen/spacing_medium"
-            android:hint="@string/phone_number"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/name"
             app:boxStrokeColor="@color/brand_color"
             app:helperTextTextAppearance="@style/HelperTextAppearance"
             app:helperTextTextColor="@color/brand_color"
@@ -60,17 +62,54 @@
             app:layout_constraintTop_toBottomOf="@+id/text_view_login_instructions">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:paddingStart="20dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="20dp"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_phone_number"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/spacing_medium"
+            android:hint="@string/phone_number"
+            app:boxStrokeColor="@color/brand_color"
+            app:helperTextTextAppearance="@style/HelperTextAppearance"
+            app:helperTextTextColor="@color/brand_color"
+            app:hintAnimationEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/picker_country_Code"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_user_name">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:afterTextChanged="@{(text) -> viewModel.onPhoneNumberChange(text)}"
                 android:inputType="phone"
-                android:maxLines="1"
                 android:maxLength="10"
+                android:maxLines="1"
                 android:paddingStart="20dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="20dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
         </com.google.android.material.textfield.TextInputLayout>
+
 
         <TextView
             android:id="@+id/error_message"
