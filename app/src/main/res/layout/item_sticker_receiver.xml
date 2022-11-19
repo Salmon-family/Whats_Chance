@@ -13,7 +13,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_medium">
 
         <ImageView
             android:id="@+id/text_message"
@@ -23,7 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_time"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.30"
+            app:layout_constraintDimensionRatio="1:1"
             app:sticker="@{item.textMessage}" />
 
         <TextView
