@@ -30,19 +30,20 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_chat_sender" />
 
-        <EditText
-            android:id="@+id/input_message"
+        <AutoCompleteTextView
+            android:id="@+id/autoComplete"
             style="@style/TextStyle.Medium"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:hint="@string/chat_hint"
-            android:text="@{viewModel.chatUiState.textMessage}"
             android:afterTextChanged="@{(text) -> viewModel.onTextMessageChange(text)}"
+            android:background="@android:color/transparent"
+            android:completionThreshold="1"
+            android:dropDownHeight="160dp"
+            android:dropDownWidth="match_parent"
+            android:hint="@string/chat_hint"
             android:paddingVertical="@dimen/spacing_medium"
-            android:paddingStart="@dimen/spacing_medium"
-            android:paddingEnd="56dp"
-            android:maxHeight="100dp"
+            android:popupBackground="@null"
+            android:text="@{viewModel.chatUiState.textMessage}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/image_send"
             app:layout_constraintStart_toStartOf="parent" />
