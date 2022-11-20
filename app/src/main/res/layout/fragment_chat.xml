@@ -34,19 +34,20 @@
             android:id="@+id/autoComplete"
             style="@style/TextStyle.Medium"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:afterTextChanged="@{(text) -> viewModel.onTextMessageChange(text)}"
             android:background="@color/white"
             android:completionThreshold="1"
-            android:dropDownHeight="160dp"
             android:dropDownWidth="match_parent"
+            android:dropDownHeight="160dp"
             android:hint="@string/chat_hint"
             android:padding="@dimen/spacing_medium"
             android:popupBackground="@null"
             android:text="@{viewModel.chatUiState.textMessage}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/image_send"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image_send" />
 
         <ImageView
             android:id="@+id/image_send"
@@ -60,8 +61,7 @@
             app:brandColor="@{viewModel.brandColor}"
             app:isEnabled="@{viewModel.chatUiState.enabled}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/autoComplete" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
