@@ -16,7 +16,8 @@ class GetMessagesUseCase @Inject constructor(
     private val chatRepository: ChatRepository,
     private val getCurrentUser: GetCurrentUserUseCase,
     private val messageDtoToEntityMapper: MessageDtoToEntityMapper,
-    private val messageEntityMapper: MessageEntityMapper
+    private val messageEntityMapper: MessageEntityMapper,
+    private val decryptText: DecryptTextUseCase,
 ) {
     suspend operator fun invoke(senderId: String): Flow<List<Message>> {
         return chatRepository.getLocalMessages(senderId).map { it.map(messageEntityMapper::map) }
@@ -26,7 +27,9 @@ class GetMessagesUseCase @Inject constructor(
         CoroutineScope(Dispatchers.IO).launch {
             chatRepository.refreshMessages(getCurrentUser()?.uid ?: "").collect {
                 chatRepository.deleteMessages()
-                chatRepository.saveMessagesLocally(it.map(messageDtoToEntityMapper::map))
+                chatRepository.saveMessagesLocally(it.map{ message ->
+                    messageDtoToEntityMapper.map(message.copy(textMessage = decryptText(message.textMessage)))
+                })
             }
         }
 
