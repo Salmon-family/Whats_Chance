@@ -1,6 +1,7 @@
 # :incoming_envelope:	 Whats Chance 
 
 ## :rocket: Tech stack
+- [Android NDK](https://developer.android.com/ndk)
 - [FireBase](https://firebase.google.com/docs/auth/android/phone-auth?authuser=0)
 - [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
 - [Room](https://developer.android.com/jetpack/androidx/releases/room)
